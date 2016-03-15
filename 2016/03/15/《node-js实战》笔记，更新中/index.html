@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>《node.js实战》笔记，更新中 | 发动机的博客</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="1.1、curl 命令行访问web资源：">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="《node.js实战》笔记，更新中"/>
+  <meta property="og:site_name" content="发动机的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">发动机的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-03-15T08:07:01.000Z"><a href="/2016/03/15/《node-js实战》笔记，更新中/">2016-03-15</a></time>
+      
+      
+  
+    <h1 class="title">《node.js实战》笔记，更新中</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h5 id="1-1、curl-命令行访问web资源："><a href="#1-1、curl-命令行访问web资源：" class="headerlink" title="1.1、curl 命令行访问web资源："></a>1.1、<em>curl</em> 命令行访问web资源：</h5><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;安装：  http://curl.haxx.se/download.html 在`Win32-generic`区域下载安装</span><br><span class="line">&gt;使用：启动新cmd输入   curl -li http://localhost:端口号</span><br><span class="line">&gt;curl -X GET http://...   curl -X POST http://...   get/post请求</span><br></pre></td></tr></table></figure>
+<h5 id="1-2、debug断点调试："><a href="#1-2、debug断点调试：" class="headerlink" title="1.2、debug断点调试："></a>1.2、<em>debug</em>断点调试：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; debug模式启动断点调试：node debug main.js</span><br><span class="line">&gt; 设置断点： setBreakpoint(行数)</span><br><span class="line">&gt; 继续运行：cont</span><br><span class="line">&gt; 打开curl命令访问端口，此时执行至断点处(显示break in 、、、main.js:断点行数)</span><br><span class="line">&gt;下一步：next，此时执行过断点语句</span><br><span class="line">&gt;启动Node REPL：repl，此时可查看已执行语句的变量值，输入变量名回车即可查看变量值</span><br><span class="line">&gt;Ctrl+c退出repl状态，Ctrl+d退出dubug模式</span><br><span class="line">&gt;常用命令：step(跳入)、out(跳出)、backtrace(执行帧，行数)、list(n)显示当前执行行的前后两行代码</span><br></pre></td></tr></table></figure>
+<h5 id="1-3、异步回调函数-全TM是套路"><a href="#1-3、异步回调函数-全TM是套路" class="headerlink" title="1.3、异步回调函数:(全TM是套路)"></a>1.3、异步回调函数:(<strong>全TM是套路</strong>)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">自定义的函数xx，参数为一个callback，</span><br><span class="line">里面调NodeAPI.method(arg1,function(err,result)&#123;</span><br><span class="line">       if(err)&#123;                    //报错执行err为非空的callback并return</span><br><span class="line">           callback(err);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        callback(null,result);      //没报错就走err为null的callback</span><br><span class="line">    &#125;)</span><br><span class="line">调用xx函数时加入回调函数</span><br><span class="line">function(err,result)&#123;</span><br><span class="line">	if(err)&#123;返回报错信息piapia...&#125;;</span><br><span class="line">	否则返回piapia...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/nodejs/">nodejs</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/node/">node</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/03/15/《node-js实战》笔记，更新中/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/life/">life</a><small>1</small></li>
+  
+    <li><a href="/categories/nodejs/">nodejs</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/node/">node</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 John Doe
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
