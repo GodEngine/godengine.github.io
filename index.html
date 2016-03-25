@@ -50,6 +50,42 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-03-25T02:33:12.000Z"><a href="/2016/03/25/CSS3动画/">2016-03-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/03/25/CSS3动画/">CSS3动画</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>###What the FUCK is <strong>CSS3动画</strong>？<br>CSS animations可以让一个css样式以动画形式过渡到另一个样式。Animations 由两部分组成，一组描述元素的animation属性和一组<em>keyframes</em>。后者定义动画样式的起始状态，期间可能走过的轨迹和结束状态；前者配置动画的时机，持续时间等动画的细节。分别介绍如下<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2016/03/25/CSS3动画/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-03-17T10:33:39.000Z"><a href="/2016/03/17/CSS3媒体查询/">2016-03-17</a></time>
       
       
@@ -60,16 +96,15 @@
     </header>
     <div class="entry">
       
-        <h3 id="What-the-FUCK-is-CSS3媒体查询？"><a href="#What-the-FUCK-is-CSS3媒体查询？" class="headerlink" title="What the FUCK is CSS3媒体查询？"></a>What the FUCK is <strong>CSS3媒体查询</strong>？</h3><p>一个document在不同的终端显示效果可能不一样，即可能在不同终端使用不同的css样式，为解决这种问题，HTML4中定义了Media queries(媒体查询)这种机制，即使用media属性区分不同的终端，并由CSS解析媒体查询相关语法，以实现对不同媒体终端使用不同的样式(<a href="https://drafts.csswg.org/mediaqueries-3/#background" target="_blank" rel="external">翔细</a>)。栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;screen&quot; href=&quot;sans-serif.css&quot;&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;print&quot; href=&quot;serif.css&quot;&gt;</span><br></pre></td></tr></table></figure></p>
-<h3 id="CSS3媒体查询语法"><a href="#CSS3媒体查询语法" class="headerlink" title="CSS3媒体查询语法"></a>CSS3媒体查询<strong>语法</strong></h3><p>媒体查询语法是在css2中描述的,CSS3进行了扩展。由1个media_type和0个/多个expressions组成,(<a href="https://drafts.csswg.org/mediaqueries-3/#syntax" target="_blank" rel="external">翔细</a>)<br><img src="/images/mediaQuerySyntax.png" alt="如图"><br>说白就是@media后面是media_query_list,<br>media_query_list由0/n个media_query组成，之间用”,”隔开<br>media_query由一个media_type和0/n个expression组成，<br>media_type和expression之间，expression和expression之间都用and隔开，<br>expression由(media_feature：value)形式组成;</p>
-<h3 id="哪能用-HTML-XHTML-XML-import-and-media都可以用哦，如下："><a href="#哪能用-HTML-XHTML-XML-import-and-media都可以用哦，如下：" class="headerlink" title="哪能用?    HTML, XHTML, XML, @import and @media都可以用哦，如下："></a><strong>哪能用</strong>?    HTML, XHTML, XML, @import and @media都可以用哦，如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; media=&quot;screen and (color), projection and (color)&quot; rel=&quot;stylesheet&quot; href=&quot;example.css&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; media=&quot;screen and (color), projection and (color)&quot; rel=&quot;stylesheet&quot; href=&quot;example.css&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;?xml-stylesheet media=&quot;screen and (color), projection and (color)&quot; rel=&quot;stylesheet&quot; href=&quot;example.css&quot; ?&gt;</span><br><span class="line"></span><br><span class="line">@import url(example.css) screen and (color), projection and (color);</span><br><span class="line"></span><br><span class="line">@media screen and (color), projection and (color) &#123; … &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="语法中的media-type"><a href="#语法中的media-type" class="headerlink" title="语法中的media_type"></a><area>语法中的<strong>media_type</strong></h3><p>media_type指媒体类型，指明是打印机(print)啊，还是电视(tv)啊，还是pc显示器(screen)啊，还是吹风机啊(<em>吹风机</em>？)，具体的<a href="https://www.w3.org/TR/1999/REC-html401-19991224/types.html#h-6.13" target="_blank" rel="external">请打开</a>,下载一个<a href="http://css.doyoe.com/" target="_blank" rel="external">CSS参考手册</a>,没事扫两眼也是极好的。<br>note:media_type有一些兼容性问题，具体细查css手册。</p>
-<h3 id="语法中的media-feature"><a href="#语法中的media-feature" class="headerlink" title="语法中的media_feature"></a>语法中的<strong>media_feature</strong></h3><p>media_feature指媒体特性，指明是宽(width)啊，高(height)啊，分辨率啊(resolution),帅啊丑啊(<em>什么鬼</em>)，<br>大部分媒体特性都接受min和max用于表达“大于或等于”和“小与或等于”,如：width会有min-width和max-width.<br>具体的<a href="https://drafts.csswg.org/mediaqueries-3/#media1" target="_blank" rel="external">请打开</a>,下载一个<a href="http://css.doyoe.com/" target="_blank" rel="external">CSS参考手册</a>,没事扫两眼也是极好的。</p>
-<h2 id="具体细节性，经验性的会在后续添加。。。"><a href="#具体细节性，经验性的会在后续添加。。。" class="headerlink" title="具体细节性，经验性的会在后续添加。。。"></a>具体细节性，经验性的会在后续添加。。。</h2>
+        <h3 id="What-the-FUCK-is-CSS3媒体查询？"><a href="#What-the-FUCK-is-CSS3媒体查询？" class="headerlink" title="What the FUCK is CSS3媒体查询？"></a>What the FUCK is <strong>CSS3媒体查询</strong>？</h3>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/03/17/CSS3媒体查询/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -100,26 +135,14 @@
         <blockquote>
 <p>MDN堪称web开发的百宝箱，最好看英文，中文可能翻译有误且有些难点没有翻译（太不负责任。。。）</p>
 </blockquote>
-<p>1，    <em>命名规范</em>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_ / $ / 字母开头，包含_ / $ / 字母/数字，其他的均不可以。(不规范的属性名可以用object.[“propName”]获取，而不可以用object.propName来获取)</span><br></pre></td></tr></table></figure></p>
-<p>2，    <em>声明</em>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var — 无块级作用域 </span><br><span class="line">let(6) — 有块级作用域，同一个作用域重复定义变量报错，提前引用let声明会报错</span><br><span class="line">const(6) —创建只读常量，块级作用域，不能在同一作用域内与函数名和变量名一样，const变量引用的对象值可以变，但只能引用这个对象，不可以给该变量赋其他值</span><br><span class="line">undefined 数值环境下转换为NaN,而null为0。</span><br><span class="line">声明提升： </span><br><span class="line">引用之后var定义的函数不会引发异常，而是得到undefined值，即赋值是无法提升的，只提升声明。</span><br></pre></td></tr></table></figure></p>
-<p>3，    <em>数据结构与类型</em>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">六个基本类型 — String /Number/Null/Undefined/Boolean/Symbol(6 实例是唯一不变的)</span><br><span class="line">Object / Function</span><br><span class="line">Undefined在私有作用域内可以赋值，全局作用域是无法赋值的</span><br></pre></td></tr></table></figure></p>
-<p>4，    <em>数据类型转换</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">parseInt（String，radix）— IE8及以下020按八进制转换，IE9以上及其他浏览器按十进制转换</span><br><span class="line">Number() — 严格转换，只要有一个无法转换字符，即返回NaN，忽略八进制的前导0,Number(“”)转换成0</span><br><span class="line">String() — 将任意类型的值转换为Sirng类型，原始类型直接加””,对象返回”function...”</span><br><span class="line">Boolean() —将任意类型值转换为布尔值，(Null/Undefined/NaN/+_0/””转换为false)，其他全部转换为true</span><br><span class="line">If 调用的是Boolean()判断</span><br><span class="line">一个值为字符串，另一个值为非字符串，则后者转为字符串</span><br><span class="line">对象转换时先调用valueOf(),然后调用toString(),[]结果为””,对象为”[object Object]”</span><br><span class="line">对象在+前面时看做代码块，忽略值</span><br></pre></td></tr></table></figure></p>
-<p>5，转义： 字符串末尾加\可以实现换行，替换\n；</p>
-<p>6，标签语句跳出循环：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">循环声明出使用lable:来定义跳出位置，continue:继续执行lable</span><br></pre></td></tr></table></figure></p>
-<p>7，*异常处理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">可以throw出任何含有值得表达式</span><br><span class="line">UserException(message)&#123;</span><br><span class="line">    this.message = message;</span><br><span class="line">    this.name = “UserException”</span><br><span class="line">&#125;;</span><br><span class="line">	UserException.prototype.toString = function()&#123;</span><br><span class="line">	return this.name+”:”+this.message</span><br><span class="line">	&#125;</span><br><span class="line">Catch到异常后可以访问异常对象</span><br><span class="line">Finally&#123;&#125;中的返回值会屏蔽try catch中的返回值，作为整个捕获过程的返回值</span><br></pre></td></tr></table></figure></p>
-<p>8，函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">值传递：参数为原始类型参数时，为值传递，改变参数值不会影响外部定义的值</span><br><span class="line"></span><br><span class="line">引用传递：参数为引用类型时，改变引用对象的属性会影响外部定义的该对象</span><br><span class="line"></span><br><span class="line">函数声明会提升：（只有function()&#123;&#125;的形式）</span><br><span class="line"></span><br><span class="line">函数内部调用arguments.callee指向函数本身，即在递归中用arguments.callee()取代functionName();</span><br><span class="line"></span><br><span class="line">函数内部全局的this值（如serTimeout内调用this），可以通过赋值给另一个变量的方式来解决（var that = this，全局的this用that替代）</span><br><span class="line">闭包：http://jibbering.com/faq/notes/closures/</span><br></pre></td></tr></table></figure></p>
-<p>9，函数参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">es6中新增了默认参数(function(a,b=1)&#123;&#125;)和剩余参数(function(first,...theArgs)&#123;&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>10，URL编码解码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">编码原因：</span><br><span class="line">    服务的解析参数时，是按&amp;，=，符号进行解析key、value值得，为了避免在value值中也出现这些用来区分键值的特殊符号，就需要对键值进行编码。</span><br><span class="line"></span><br><span class="line">encodeURI，encodeURIComponent：前者将整个url转码，后者用来转value值,eq:</span><br><span class="line">var parseUrlSearch = function() &#123;</span><br><span class="line">    var query=	window.location.search.slice(1);</span><br><span class="line">    var result = &#123;&#125;; </span><br><span class="line">query.split(&quot;&amp;&quot;).forEach(function(part) &#123;</span><br><span class="line">    var item = part.split(&quot;=&quot;); </span><br><span class="line">    result[item[0]] = decodeURIComponent(item[1]);</span><br><span class="line"> &#125;);</span><br><span class="line"> return result; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>11，操作符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/ :	JavaScript中1/2===0.5</span><br><span class="line">&amp;, !,^,~ :JavaScript中的二进制操作符将操作数转换为二进制位，对应位取与或非等，奖结果的二进制数在转换为10进制作为结果</span><br></pre></td></tr></table></figure></p>
-<p>11.1,逻辑操作符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&amp;&amp;：如果expr1能转换为false，返回expr1；否则返回expr2；</span><br><span class="line">||：如果expr1能转换为true，返回expr1；否则返回expr2；</span><br><span class="line">！：如果expr可以转换为true，则返回false，否则返回true；</span><br></pre></td></tr></table></figure></p>
-<p>11.2一元操作符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">delete ：</span><br><span class="line">不能删除var 声明的变量（没用var声明的可以删除）以及内置函数的属性（内置函数是可以删除的）对变量和方法名没有影响，可以删除全局未用var声明的对象，删除Array的元素不影响长度</span><br><span class="line"></span><br><span class="line">typeof：</span><br><span class="line">    Typeof null—&gt;Object, typeof (predefind object)—&gt;function,typeof Math—&gt;object</span><br><span class="line"></span><br><span class="line">void:</span><br><span class="line">	  return undefined. 立即执行的function 声明前加void强制使函数声明变为表达式，并可以执行；JavaScript：function():将返回值的内容覆盖当前的页面，用void(0)返回</span><br><span class="line">	  </span><br><span class="line">in：</span><br><span class="line">    指对象属性或者数值下标，delete属性或者array[n]时，prop in Object/index in Array返回false</span><br><span class="line">	  </span><br><span class="line">instanceof：</span><br><span class="line">object instanceof constructor ，判断依据是该构造函数的prototype是否在该对象的原型链中，即调用Object.getPrototypeOf(onject)=== constructor.prototype. （字面量的string instanceof Sting/Object都是false）iframe框架中不用的环境导致instanceof 会出现问题，比如Array.prototype !== window.frames[0].Array，此时最好用Array.isArray();</span><br></pre></td></tr></table></figure></p>
-<p>9，操作符优先级：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table</span><br></pre></td></tr></table></figure></p>
-<p>9，数字和日期：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">数字分为二进制（binary），八进制（Octal），十进制（decimal），十六进制（hexadecimal）</span><br><span class="line">0开头且下一位大于7解析为十进制数字，小于8解析为八进制数</span><br><span class="line">0b/B开头且后面数字为0或者1为二进制数，否则报语法错误</span><br></pre></td></tr></table></figure></p>
-
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/03/16/MDN小笔记/#more" class="more-link">Read More</a>
+          </div>
         
         
       
@@ -223,7 +246,7 @@
   <h3 class="title">Kategorien</h3>
   <ul class="entry">
   
-    <li><a href="/categories/css/">css</a><small>1</small></li>
+    <li><a href="/categories/css/">css</a><small>2</small></li>
   
     <li><a href="/categories/js/">javascript</a><small>1</small></li>
   
@@ -240,7 +263,7 @@
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/css3/">css3</a><small>1</small></li>
+    <li><a href="/tags/css3/">css3</a><small>2</small></li>
   
     <li><a href="/tags/js/">js</a><small>1</small></li>
   
