@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS3transition | 发动机的博客</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="What the FUCK is transition？transition是transition-property, transition-duration, transition-timing-function, and transition-delay四个CSS属性的缩写，用来定义一个元素在两个状态(样式)之间的过渡效果。什么是状态呢？比如伪类定义的:hover,:active,:focus等状态下的样式，还有js的设置动态效果。什么是过渡效果呢？就是最常见的比如按钮按下去背景慢慢的变化效果。各属性分别介绍乳下：">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="CSS3transition"/>
+  <meta property="og:site_name" content="发动机的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">发动机的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-05T08:26:34.000Z"><a href="/2016/04/05/CSS3transition/">2016-04-05</a></time>
+      
+      
+  
+    <h1 class="title">CSS3transition</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="What-the-FUCK-is-transition？"><a href="#What-the-FUCK-is-transition？" class="headerlink" title="What the FUCK is transition？"></a>What the FUCK is <strong>transition</strong>？</h3><p>transition是transition-property, transition-duration, transition-timing-function, and transition-delay四个CSS属性的缩写，用来定义一个元素在两个状态(样式)之间的过渡效果。什么是状态呢？比如伪类定义的:hover,:active,:focus等状态下的样式，还有js的设置动态效果。什么是过渡效果呢？就是最常见的比如按钮按下去背景<em>慢慢</em>的变化效果。各属性分别介绍乳下：<br><a id="more"></a></p>
+<h3 id="transition-property："><a href="#transition-property：" class="headerlink" title="transition-property："></a>transition-property：</h3><p>指定过渡效果用在<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties" target="_blank" rel="external">哪一个css属性</a>上，默认值all，当指定为简写时，比如background，其所有的子属性（background-color…）都会被应用上动画效果,多个值用逗号隔开。上码：</p>
+<h3 id="transition-duration"><a href="#transition-duration" class="headerlink" title="transition-duration:"></a>transition-duration:</h3><p>指定过渡花费的时间（s或ms）。默认值为0，即没有动画效果，负值是不合法的，可以指定多个duration，多个duration是和已定义的property一一对应的。当用普通写法（transition-…）写，且和transition-property不一致时，遵循以下写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">div &#123;</span><br><span class="line">  transition-property: opacity, left, top, height;</span><br><span class="line">  transition-duration: 3s, 5s;</span><br><span class="line">&#125;</span><br><span class="line">转换为：</span><br><span class="line">div &#123;</span><br><span class="line">  transition-property: opacity, left, top, height;</span><br><span class="line">  transition-duration: 3s, 5s, 3s, 5s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">div &#123;</span><br><span class="line">  transition-property: opacity, left;</span><br><span class="line">  transition-duration: 3s, 5s, 2s, 1s;</span><br><span class="line">&#125;</span><br><span class="line">转换为：</span><br><span class="line">div &#123;</span><br><span class="line">  transition-property: opacity, left;</span><br><span class="line">  transition-duration: 3s, 5s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="transition-delay"><a href="#transition-delay" class="headerlink" title="transition-delay:"></a>transition-delay:</h3><p>指延迟触发过渡效果的时间。默认值为0，即状态改变是立即触发transition效果，负值是也是立即触发，不过会表现的从半中间开始渲染一样。当用普通写法（transition-…）写，且和transition-property不一致，且少于transition-property时，用0补齐，多了自动忽略多余的。</p>
+<h3 id="transition-timing-function"><a href="#transition-timing-function" class="headerlink" title="transition-timing-function:"></a>transition-timing-function:</h3><p>这个请参考单独写的<code>WTF系列之animation-timing-function</code></p>
+<p><strong>note</strong><br>使用transition简写时默认第一个<code>&lt;time&gt;</code>为duration，第二个为delay。</p>
+<p>记得加厂商前缀。。。上码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">    border-style: solid;</span><br><span class="line">    border-width: 1px;</span><br><span class="line">    display: block;</span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 100px;</span><br><span class="line">    background-color: #0000FF;</span><br><span class="line">    -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;</span><br><span class="line">    transition: width 2s, height 2s, background-color 2s, transform 2s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.box:hover &#123;</span><br><span class="line">    background-color: #FFCCCC;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    -webkit-transform: rotate(180deg);</span><br><span class="line">    transform: rotate(180deg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/css3/">css3</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/css/">css</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/04/05/CSS3transition/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/css/">css</a><small>3</small></li>
+  
+    <li><a href="/categories/css3/">css3</a><small>1</small></li>
+  
+    <li><a href="/categories/js/">javascript</a><small>2</small></li>
+  
+    <li><a href="/categories/life/">life</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/css/">css</a><small>1</small></li>
+  
+    <li><a href="/tags/css3/">css3</a><small>3</small></li>
+  
+    <li><a href="/tags/js/">js</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 John Doe
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
