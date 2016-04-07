@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS3box-shadow | 发动机的博客</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="What the FUCK is box-shadow？box-shadow属性用来指定元素的阴影效果，用一个逗号隔开的值列表来描述。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="CSS3box-shadow"/>
+  <meta property="og:site_name" content="发动机的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">发动机的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-07T09:35:18.000Z"><a href="/2016/04/07/CSS3box-shadow/">2016-04-07</a></time>
+      
+      
+  
+    <h1 class="title">CSS3box-shadow</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="What-the-FUCK-is-box-shadow？"><a href="#What-the-FUCK-is-box-shadow？" class="headerlink" title="What the FUCK is box-shadow？"></a>What the FUCK is <strong>box-shadow</strong>？</h3><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow" target="_blank" rel="external">box-shadow</a>属性用来指定元素的阴影效果，用一个逗号隔开的值列表来描述。<br><a id="more"></a></p>
+<blockquote>
+<p><code>&lt;shadow&gt; = inset? &amp;&amp; &lt;length&gt;{2,4} &amp;&amp; &lt;color&gt;?</code></p>
+</blockquote>
+<p>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box-shadow: inset 2px 2px 2px 2px black;</span><br></pre></td></tr></table></figure></p>
+<p>以上栗介绍<strong>值</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">inset: </span><br><span class="line">    默认该值为未指定的。在未指定时，阴影效果为像外部投影，即元素内部是不出现阴影效果的。当用inset关键字指定时，阴影效果为向内投影，即元素外部是不出现阴影效果的，此时阴影覆盖background上面，但是在content内容下面。</span><br><span class="line">    </span><br><span class="line">&lt;offset-x&gt; &lt;offset-y&gt;（第一、二个length值）:</span><br><span class="line">第一、二个length值代表阴影在水平和垂直方向上的偏移量(可以理解为延伸量)。可以为负值，负值即向左/向上偏移。常用单位可以为px,em,rem等等，具体请查阅MDN大法。</span><br><span class="line"></span><br><span class="line">&lt;blur-radius&gt;（第三个length值）：</span><br><span class="line">第三个length值代表阴影模糊的范围，值越大，模糊的范围越大，不可以为负值，负值是将没有阴影效果。默认值为0；</span><br><span class="line"></span><br><span class="line">&lt;spread-radius&gt;（第四个length值）</span><br><span class="line">第四个length值代表阴影扩大的范围，和blur-radius值唯一区别是效果不同，范围变化是一样的，负值跟0效果是一样的</span><br><span class="line"></span><br><span class="line">color:</span><br><span class="line">设置阴影颜色。配合颜色</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>box-shadow本身不占位置，不会影响布局，还在原来的位置。只是相当于copy一份目标元素（像影子），然后通过offset-x/y设置相对于原位置的偏移，<code>&lt;spread-radius&gt;</code>改变了影子的大小，<code>&lt;blur-radius&gt;</code>改变模糊度的大小。</p>
+</li>
+<li><p>设置多个box-shadow的话用逗号隔开，渲染时先指定的阴影在上面，重叠部分的阴影效果会叠加,比如四个边阴影不一样，则用四个列表来渲染。</p>
+</li>
+</ul>
+<p>介绍一些<a href="http://buttoncssgenerator.com/" target="_blank" rel="external">小工具</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Box-shadow_generator" target="_blank" rel="external">等等</a>;</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/css/">css</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/css3/">css3</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/04/07/CSS3box-shadow/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/css/">css</a><small>5</small></li>
+  
+    <li><a href="/categories/js/">javascript</a><small>2</small></li>
+  
+    <li><a href="/categories/life/">life</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/css3/">css3</a><small>5</small></li>
+  
+    <li><a href="/tags/js/">js</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 John Doe
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
