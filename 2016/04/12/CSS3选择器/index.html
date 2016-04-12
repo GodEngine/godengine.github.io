@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS3选择器 | 发动机的博客</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="css共五类选择符，分别是元素选择符、关系选择符、属性选择符、伪类选择符、伪对象选择符（他么自己以前差不多只用第一类…羞愤），过了css1/2中的，总结下CCS3新增的选择符。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="CSS3选择器"/>
+  <meta property="og:site_name" content="发动机的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">发动机的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-12T06:52:55.000Z"><a href="/2016/04/12/CSS3选择器/">2016-04-12</a></time>
+      
+      
+  
+    <h1 class="title">CSS3选择器</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>css共五类选择符，分别是元素选择符、关系选择符、属性选择符、伪类选择符、伪对象选择符（<em>他么自己以前差不多只用第一类…羞愤</em>），过了css1/2中的，总结下CCS3新增的选择符。<br><a id="more"></a></p>
+<h3 id="关系选择符"><a href="#关系选择符" class="headerlink" title="关系选择符"></a>关系选择符</h3><ul>
+<li><p>兄弟选择符（E~F）<br>e~f<br><img src="/images/E~F.png" alt="e~f"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;当指E（第一个）后面（不包含E）所有的兄弟元素F。</span><br><span class="line">&gt;css2中的E+F两种情况，当E和F相同时，选中的是E后面紧挨着的连续所有F（必须是连续的，F可能不止一个）；当E和F不同时，选中的是E后面紧挨着的第一个F（只有一个）。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>属性选择符<br>E[att^=”val”]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">指具有att属性且属性值为以val开头的字符串的E元素。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>E[att^=”val”]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">指具有att属性且属性值为以val结尾的字符串的E元素。</span><br></pre></td></tr></table></figure></p>
+<p>E[att*=”val”]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">选择具有att属性且属性值为包含val的字符串的E元素。</span><br></pre></td></tr></table></figure></p>
+<p>以上几个的栗子:<br><img src="/images/attrSelector.png" alt="attrSelector"></p>
+<ul>
+<li>伪类选择符<br>E:not(s)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配不含有s选择符的元素E。s可以使其他任意类型的选择符</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>E:last-child<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配必须位于父元素下的最后一个位置的子元素E。同理还有css2中的E:first-child，也必须是父元素的第一个子元素，如果第一个元素不是E，那选取失效。</span><br></pre></td></tr></table></figure></p>
+<p>E:only-child<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配必须位于父元素下的唯一一个子元素E,且不能有其他子元素，否则匹配失败。</span><br></pre></td></tr></table></figure></p>
+<p>E:nth-child(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 首先按元素选择符E定位到E，然后依次判断这些E是否位于父元素的第n个位置上，如果不是，则该E没有被选</span><br><span class="line">&gt; 2n/2n+1可以进行奇偶判定</span><br></pre></td></tr></table></figure></p>
+<p>E:nth-last-child(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">同上的nth-child(),只是顺序是从后往前。</span><br></pre></td></tr></table></figure></p>
+<p>以上几个的栗子:<br><img src="/images/childSelector.png" alt="childSelector"></p>
+<p>E:first-of-type<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先根据元素选择符E定位到E，然后检测其是否为第一个E，不是则没有被选中</span><br></pre></td></tr></table></figure></p>
+<p>E:last-of-type<br>以上几个的栗子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先根据元素选择符E定位到E，然后检测其是否为同辈中最后一个E，不是则没有被选中</span><br></pre></td></tr></table></figure></p>
+<p>E:only-of-type<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先根据元素选择符E定位到E，然后检测其是否为同辈中唯一一个E，不是则没有被选中</span><br></pre></td></tr></table></figure></p>
+<p>E:nth-of-type(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先根据元素选择符E定位到E，然后检测其是否为同辈中第n个E，不是则没有被选中</span><br></pre></td></tr></table></figure></p>
+<p>E:nth-last-of-type(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先根据元素选择符E定位到E，然后检测其是否为同辈中倒数第n个E，不是则没有被选中</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/typeSelector.png" alt="typeSelector"><br>E:empty<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先根据元素选择符E定位到E,检测其有没有任何子元素（包括text子元素），没有则被选中</span><br></pre></td></tr></table></figure></p>
+<p>E:checked<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">选中input type为radio与checkbox时被选中的元素，css手册给出的例子不错，结合了:after伪类</span><br></pre></td></tr></table></figure></p>
+<p>E:enabled/E:disabled<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">选中用户界面上处于可用/不可用（disabled=&quot;disabled&quot;）状态的元素E</span><br></pre></td></tr></table></figure></p>
+<p>E:target<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当a标签的href属性是锚点，且点击该a标签时，该锚点所在的元素被选中</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>伪对象选择符<br>E::selection<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">选中被选中的文本，设置其background-color和color，text-shadow(IE11不支持)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>看完css选择器，姿势涨了不少，学习还是得系统的看，东一口西一口着实不行。。。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/css/">css</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/css3/">css3</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/04/12/CSS3选择器/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/css/">css</a><small>7</small></li>
+  
+    <li><a href="/categories/js/">javascript</a><small>2</small></li>
+  
+    <li><a href="/categories/life/">life</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/css3/">css3</a><small>7</small></li>
+  
+    <li><a href="/tags/js/">js</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 John Doe
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
