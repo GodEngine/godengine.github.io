@@ -69,7 +69,7 @@
 <p>再来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">还是上面的html结构，再改下部分css</span><br><span class="line">  .two &#123;margin-bottom:20px&#125;</span><br><span class="line">  .noCollapse &#123;</span><br><span class="line">    border:1px solid;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
 <p><img src="/images/collapse_three.png" alt="图3"><br>上图中的case2表现出了我们设置div.two元素margin-bottom的本意，即与父元素之间有一个20px的间距，而case1中却没有出现，表现的像是父元素的下边和div.two下面<strong>一起有了一个margin-bottom的效果</strong>。</p>
 <p>最后一个栗子，<a href="http://stackoverflow.com/questions/25350805/margin-collapse-and-clearance" target="_blank" rel="external">Google</a>了下（<em>百度真心不给力</em>），看官自行考虑。这个例子是clearance对collapse的影响，下面的条件中会说明。</p>
-<p>上面几种情况中第一个case出现的问题，就叫Collapsing margins。</p>
+<p>上面几种情况中第一个case出现的问题，就叫Collapsing margins(IE7及以下版本的的haslyout属性不符合W3C规范，不会出现这种情况)。</p>
 <h3 id="二、产生该现象的条件"><a href="#二、产生该现象的条件" class="headerlink" title="二、产生该现象的条件"></a>二、产生该现象的条件</h3><p><a href="https://www.w3.org/TR/CSS2/box.html#propdef-margin" target="_blank" rel="external">W3C官网文档</a>是这么解释的</p>
 <ul>
 <li><p>垂直相邻的两条边界（兄弟元素）会发生collapse，如图2，除了两种例外：<br>一、根元素不参与collapse；<br>二、最后一个栗子情况，其中一个元素引入了<a href="https://www.w3.org/TR/CSS2/visuren.html#clearance" target="_blank" rel="external">clearance</a>间隙时不会出现collapse。间隙的解释大概是与浮动元素相邻的元素设置了不为none的clear属性时，就有可能引入间隙。有可能？上面 stackoverflow上解释了clear不为none时引和没引入clearance的两种情况。</p>
@@ -90,13 +90,13 @@
         
   
   <div class="categories">
-    <a href="/categories/干货/">干货</a>
+    <a href="/categories/css/">css</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/css/">css</a>
+    <a href="/tags/干货/">干货</a>
   </div>
 
         
@@ -141,13 +141,11 @@
   <h3 class="title">Kategorien</h3>
   <ul class="entry">
   
-    <li><a href="/categories/css/">css</a><small>7</small></li>
+    <li><a href="/categories/css/">css</a><small>8</small></li>
   
-    <li><a href="/categories/js/">javascript</a><small>2</small></li>
+    <li><a href="/categories/js/">javascript</a><small>3</small></li>
   
     <li><a href="/categories/life/">life</a><small>1</small></li>
-  
-    <li><a href="/categories/干货/">干货</a><small>1</small></li>
   
   </ul>
 </div>
@@ -158,11 +156,11 @@
   <h3 class="title">Tags</h3>
   <ul class="entry">
   
-    <li><a href="/tags/css/">css</a><small>1</small></li>
-  
     <li><a href="/tags/css3/">css3</a><small>7</small></li>
   
     <li><a href="/tags/js/">js</a><small>2</small></li>
+  
+    <li><a href="/tags/干货/">干货</a><small>2</small></li>
   
   </ul>
 </div>
