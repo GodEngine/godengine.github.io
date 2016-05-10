@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | 发动机的博客</title>
+  <title>Expressions | 发动机的博客</title>
   <meta name="author" content="John Doe">
   
-  <meta name="description" content="万事不说，先拜东哥">
+  <meta name="description" content="概述经常听到“javascript表达式”这一说，MDN上是这么解释的…以下算是自己理解+翻译吧">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Hello World"/>
+  <meta property="og:title" content="Expressions"/>
   <meta property="og:site_name" content="发动机的博客"/>
 
   
@@ -51,27 +51,41 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-03-11T02:23:57.371Z"><a href="/2016/03/11/Hello world/">2016-03-11</a></time>
+        <time datetime="2016-05-10T03:13:55.000Z"><a href="/2016/05/10/Expressions/">2016-05-10</a></time>
       
       
   
-    <h1 class="title">Hello World</h1>
+    <h1 class="title">Expressions</h1>
   
 
     </header>
     <div class="entry">
       
-        <blockquote>
-<h5 id="万事不说，先拜东哥"><a href="#万事不说，先拜东哥" class="headerlink" title="万事不说，先拜东哥"></a>万事不说，先拜<a href="http://www.cnblogs.com/Darren_code/" target="_blank" rel="external"><strong>东哥</strong></a></h5></blockquote>
-<a id="more"></a>
-<p><em>hello world</em> ？开场白？恩恩~程序猿嘛。<br>15年11月到了新公司，开始用sublime（sublime大法好），开始逛github（github得永生），开始翻MDN（MDN说真相），开始用hexo搭博客（一键部署保平安）。</p>
-<p>职业点了有没有，越来越像个前端了有没有。。。</p>
-<p>没有，还没有，html5，css3，less，gulp，node，移动端。。。啊，好多，好黑，好柔，好亮。。。还是个初级菜廖。。。</p>
-<p>每晚下班都会在央视大楼下碰到那对刺骨寒风中收废品的男女，和跟他们擦身而过的奔驰宝马奥迪，回来时后都会在楼下看到西风凛冽里卖水果的大哥，晚上生意好，下班回来买水果的多。</p>
-<p>感觉像是在这个城市的角落，感觉大家都在做着什么。</p>
-<p>早起上班前要看看ES6，下午下班后要翻翻CSS3,晚上要研究研究node，写总结，写笔记，跟老妈视视频，陪秀姐聊聊天，上群里扯扯淡。。。</p>
-<p>年轻人都很好学，教父级别的，也还在一线奋斗，不肯罢手。</p>
-<p>May god bless us，May god bless my family</p>
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>经常听到“javascript表达式”这一说，<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions" target="_blank" rel="external">MDN</a>上是这么解释的…以下算是自己理解+翻译吧<br><a id="more"></a></p>
+<blockquote>
+<p>An expression is any valid unit of code that resolves to a value</p>
+</blockquote>
+<p><strong>一个表达式是任意可以解析为一个值的，合法的代码片段</strong>；</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>概念上来讲，表达式（代码片段）包括两类：</p>
+<ul>
+<li>变量赋值  <em>如 x = 5</em>;</li>
+<li>能代表一个值   <em>如4+5</em>；</li>
+</ul>
+<p>javascript语言把表达式分为以下几类：</p>
+<ul>
+<li><p>算数运算</p>
+<p>  计算结果为数值（1,2.4 …）,包括使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Arithmetic_operators" target="_blank" rel="external">运算符</a>运算: +、-、<em>、%、/、*</em>(幂)、++、–、</p>
+</li>
+<li><p>String<br> 计算结果为字符串（”a”…）：包括用字符串连接符+的，如”a”+”b”</p>
+</li>
+<li><p>逻辑运算<br>  计算结果为boolean：用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators#Short-Circuit_Evaluation" target="_blank" rel="external">逻辑运算符</a>进行运算的, 请留意逻辑运算<strong>返回值</strong>那部分…</p>
+</li>
+<li><p>原始表达式<br>  javascript中的关键字(this…)及常规的表达式,如()括号等</p>
+</li>
+<li><p>Left-hand-side expressions（左端符？尼玛真不知如何翻译）<br> 如new，super，<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator" target="_blank" rel="external">Spread operator</a>（传播符，可以表示为数组）</p>
+</li>
+</ul>
+<p>能强行归为以上类型的就算是<strong>javascript表达式</strong>了吧。。。</p>
 
       
     </div>
@@ -80,7 +94,7 @@
         
   
   <div class="categories">
-    <a href="/categories/life/">life</a>
+    <a href="/categories/js/">javascript</a>
   </div>
 
         
@@ -107,7 +121,7 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://yoursite.com/2016/03/11/Hello world/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://yoursite.com/2016/05/10/Expressions/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>
