@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ES6_Iteration protocols | 发动机的博客</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="ES6中新增了iterable protocol和iterator protocol，即可迭代协议和迭代器协议，前者规定JavaScript对象可以自定义本身被遍历时的行为，后者规定了作为一个迭代器应有的标准方法。（遍历和迭代意思差不多）">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="ES6_Iteration protocols"/>
+  <meta property="og:site_name" content="发动机的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">发动机的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-05-19T08:54:01.000Z"><a href="/2016/05/19/ES6之Iteration-protocols/">2016-05-19</a></time>
+      
+      
+  
+    <h1 class="title">ES6_Iteration protocols</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>ES6中新增了iterable protocol和iterator protocol，即可迭代协议和<br>迭代器协议，前者规定JavaScript对象可以自定义本身被遍历时的行为，后者规定了作为一个迭代器应有的标准方法。（遍历和迭代意思差不多）<br><a id="more"></a></p>
+<h3 id="一、iterable-protocol-可迭代协议"><a href="#一、iterable-protocol-可迭代协议" class="headerlink" title="一、iterable protocol 可迭代协议"></a>一、iterable protocol 可迭代协议</h3><p>遵循了这个协议的JavaScript对象都可以称为<em>iterable objects</em>，即可迭代的对象，很多JavaScript内建对象都遵循了这个协议(包括Array,Map,Set,String,TypeArray,arguments，Generator实例等等)。那么<strong>怎么算遵循了这个协议呢？</strong></p>
+<blockquote>
+<p>只要实现了@@iterator方法，即只要对象本身或其原型链上有[Symbol.iterator]属性，该属性值为无参函数，且该函数返回一个遵循iterator protocol（下面会说明）的对象（iterator迭代器）。</p>
+</blockquote>
+<p>栗如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;abc&quot;，                //String遵循iterable protocol</span><br><span class="line">var array = [1,2,3];             //Array遵循iterable protocol</span><br><span class="line">typeof str[Symbol.iterator]      // 结果为function</span><br><span class="line">typeof array[Symbol.iterator]    //结果为function</span><br></pre></td></tr></table></figure></p>
+<p><strong>遵循了这个协议然后呢？</strong><br>遵循iterable protocol协议的对象在被迭代时(如被for…of，spread oprator扩展运算符，yield*操作时)，会调用其@@iterator方法，即调用obj[Symbol.iterator]方法，并返回一个iterator对象，当然该iterator对象遵循iterator protocol，下面会提到。</p>
+<h3 id="二、for…of"><a href="#二、for…of" class="headerlink" title="二、for…of"></a>二、for…of</h3><p>for…of语句用来循环迭代一个可被迭代的对象(<em>iterable objects</em>)，语法为</p>
+<blockquote>
+<p>for (variable of iterable) {statement}</p>
+</blockquote>
+<p>iterable即iterable objects，将该object的内的值遍历出来并复制给variable；<br>更多for…of的栗子请看<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank" rel="external">MDN大法好</a>。</p>
+<h3 id="三、iterator-protocol-迭代器协议"><a href="#三、iterator-protocol-迭代器协议" class="headerlink" title="三、iterator protocol 迭代器协议"></a>三、iterator protocol 迭代器协议</h3><p>遵循这个协议的对象都可以称为iterator，即迭代器。那么<strong>怎么算遵循了这个协议呢？</strong></p>
+<blockquote>
+<p>当对象实现了一个next()方法，且该方法满足以下条件。<br>该方法返回一个包含两个属性值的对象一个为done的boolean属性，true时表示 迭代至最后一个值，false表示非最后一个值，false等同于没有指定done属性；一个为value属性，可以为任何JavaScript值，在done属性为true时被忽略。</p>
+</blockquote>
+<p>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;abc&quot;;</span><br><span class="line">var iter = str[Symbol.iterator]();      //拿到String的迭代器</span><br><span class="line"></span><br><span class="line">iter.next();                //&#123;value:&quot;a&quot;,done:false&#125;</span><br><span class="line">iter.next();                //&#123;value:&quot;b&quot;,done:fasle&#125;</span><br><span class="line">iter.next();                //&#123;value:&quot;c&quot;,done:true&#125;</span><br><span class="line"></span><br><span class="line">for(var value of str)&#123;                 //for...of自动连续调用迭代器的next方法</span><br><span class="line">    consle.log(value);       //a,b,c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">1，客官可以把for..of中的str换成iter,发现结果仍一样...,说明撒？</span><br><span class="line">说明iter这个迭代器本身也遵循了iterable protocol协议，</span><br><span class="line"></span><br><span class="line">试试：</span><br><span class="line">typeof iter[Symbol,iterator]       //&quot;function&quot;</span><br><span class="line">2，我擦？再来看这个：</span><br><span class="line">iter[Symbol,iterator]===iter        //true</span><br><span class="line"></span><br><span class="line">原来String迭代器不仅遵循iterator protocol，也遵循iterable protocol，且其[Symbol.iterator]()方法返回的就是自己。</span><br><span class="line"></span><br><span class="line">返回第一个问题，为啥写成str和iter迭代结果一样呢？因为for...of会去拿str的迭代器，即iter，并调用iter的next方法，你写成iter，for...of找到就是它，所以结果一样。</span><br><span class="line"></span><br><span class="line">很多对象本身即遵循iterator protocol，也遵循iterable protocol，例如逼格稍高的Generator实例对象，理解本章对理解generator非常有益。</span><br><span class="line"></span><br><span class="line">3,调用iter的next()方法可以看到返回符合iterator protocol协议的值，value和done；</span><br></pre></td></tr></table></figure></p>
+<h3 id="四、自定义对象被迭代时的行为"><a href="#四、自定义对象被迭代时的行为" class="headerlink" title="四、自定义对象被迭代时的行为"></a>四、自定义对象被迭代时的行为</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">var someString = new String(&quot;abc&quot;);</span><br><span class="line"></span><br><span class="line">someString[Symbol.iterator] = function() &#123;</span><br><span class="line">  return &#123; </span><br><span class="line">    next: function() &#123;</span><br><span class="line">      if (this._first) &#123;</span><br><span class="line">        this._first = false;</span><br><span class="line">        return &#123; value: &quot;bye&quot;, done: false &#125;;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        return &#123; done: true &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    _first: true</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for(var value of someString)&#123;</span><br><span class="line">    console.log(value);                 //&quot;bye&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">如上修改了someString的默认的[Symbol.iterator]方法，并且返回了一个迭代器对象，该迭代器对象指定了someString第一次返回&quot;bye&quot;,第二次被迭代时done为true，停止迭代。</span><br><span class="line"></span><br><span class="line">注意自定义的迭代器最好有结束迭代的设置，即要有done为true的情况，否则for...of会一直调用next()方法，直到遇见done为true才停止，没有的话就TM成死循环了。</span><br></pre></td></tr></table></figure>
+<p>更详细的内容请看<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols" target="_blank" rel="external">MDN</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/js/">javascript</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/es6/">es6</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/05/19/ES6之Iteration-protocols/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/css/">css</a><small>8</small></li>
+  
+    <li><a href="/categories/js/">javascript</a><small>5</small></li>
+  
+    <li><a href="/categories/life/">life</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/css3/">css3</a><small>7</small></li>
+  
+    <li><a href="/tags/es6/">es6</a><small>1</small></li>
+  
+    <li><a href="/tags/js/">js</a><small>2</small></li>
+  
+    <li><a href="/tags/干货/">干货</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 John Doe
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
