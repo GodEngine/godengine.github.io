@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>闭包 | 发动机的博客</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="闭包都被说烂了…，当做对自己学习的一个总结吧…jQuery(er)大哥写的《JavaScript ninja》里介绍的赶脚是比较清晰的，以下算是对原著翻译加读后感吧。从以下几个方面来介绍，结合后面的码，会更好理解。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="闭包"/>
+  <meta property="og:site_name" content="发动机的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">发动机的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-05-26T07:09:38.000Z"><a href="/2016/05/26/闭包/">2016-05-26</a></time>
+      
+      
+  
+    <h1 class="title">闭包</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>闭包都被说烂了…，当做对自己学习的一个总结吧…jQuery(er)大哥写的《JavaScript ninja》里介绍的赶脚是比较清晰的，以下算是对原著翻译加读后感吧。从以下几个方面来介绍，结合后面的码，会更好理解。<br><a id="more"></a></p>
+<ul>
+<li>什么是闭包</li>
+<li>闭包的意义</li>
+<li>闭包是怎么工作的</li>
+<li>闭包的应用场景</li>
+</ul>
+<h2 id="First-Blood：What-the-fucking-closure-is？"><a href="#First-Blood：What-the-fucking-closure-is？" class="headerlink" title="First Blood：What the fucking closure is？"></a>First Blood：What the fucking closure is？</h2><blockquote>
+<p>当一个函数声明时，便会创建一个与此函数相关的scope，这个scope允许该函数获取或者操作函数外部的变量，换句话说，这个scope里包含了函数外部所有的变量。即通过这个scope，函数可以获取到函数声明时所处的作用域内所有变量，这个scope，就是闭包。</p>
+</blockquote>
+<p>故理论上所有函数声明时就都会创建闭包，所谓的”函数外部所有的变量”，其实是指函数的上下文作用域链。但是实际上我们特指那些所处的上下文已被销毁（外部函数调用完毕），但内部函数依然存在，且引用了外部函数变量的情况。</p>
+<h2 id="double-kill：what’s-the-meaning-of-closure"><a href="#double-kill：what’s-the-meaning-of-closure" class="headerlink" title="double kill：what’s the meaning of closure?"></a>double kill：what’s the meaning of closure?</h2><ol>
+<li>函数被调用时，会创建出一个<strong>execution context</strong>（执行上下文），然后放到<strong>execution stack</strong>（执行栈）的顶端（入栈）。</li>
+<li>execution context分两个阶段，创建阶段和执行阶段。</li>
+<li>创建阶段，JavaScript解释器首先创建一个<strong>activation object</strong>（活动对象），activation object包含了所有execution context内的<em>变量</em>，<em>函数声明</em>，<em>arguments</em> ，然后初始化<strong>scope chain</strong>（作用域链），scope chain中包含了execution stack（执行栈）里每一个execution context（执行上下文）。</li>
+<li>至此创建阶段完成，开始进入执行阶段，执行阶段代码被解析执行。</li>
+<li>此过程中函数局部变量的保存方式是通过动态分配内存实现的，如果有内部函数引用了该函数的局部变量，则将局部变量存至堆中，否则存在栈中，防止函数调用结束出栈所有局部变量被销毁。</li>
+<li>内部函数声明时创建的<strong>闭包</strong>保存了外部函数上下文（内部函数本身也在闭包环境内），并<strong>保存在内存</strong>中（堆中），使得我们可以通过内部函数和它所在闭包，访问到外部函数中的信息，哪怕外部函数已经执行完毕。</li>
+<li>内部函数调用完毕，JavaScript引擎认为可以清理时，被当做辣鸡回收，闭包被清除。</li>
+</ol>
+<h2 id="triple-kill：How-closure-work？"><a href="#triple-kill：How-closure-work？" class="headerlink" title="triple kill：How closure work？"></a>triple kill：How closure work？</h2><p>先上马：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var beforeFun = &quot;beforeFun&quot;;</span><br><span class="line"></span><br><span class="line">var handler;</span><br><span class="line"></span><br><span class="line">function foo()&#123;</span><br><span class="line">  var inner = &quot;inner&quot;;</span><br><span class="line">  </span><br><span class="line">  function goo()&#123;</span><br><span class="line">    return [beforeFun,inner,afterGoo,afterFun];</span><br><span class="line">  &#125;;</span><br><span class="line">  </span><br><span class="line">   handler =  goo;</span><br><span class="line">  var afterGoo = &quot;afterGoo&quot;;</span><br><span class="line">  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var afterFun = &quot;afterFun&quot;;</span><br><span class="line"></span><br><span class="line">foo();</span><br><span class="line">handler();                 </span><br><span class="line">// [&quot;beforeFun&quot;, &quot;inner&quot;, &quot;afterGoo&quot;, &quot;afterFun&quot;]</span><br></pre></td></tr></table></figure></p>
+<p>我们以这个goo函数作为说明闭包的切入点，结合上面一套装逼理论，来说goo是如何通过闭包拿到那三个值的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1，foo函数调用，创建foo的执行上下文，并将其放进执行栈，执行上下文创建过程中创建的执行对象包含了foo内的变量，函数声明，以及arguments，代码执行阶段使全局作用域中的handler引用了内部的函数goo；</span><br><span class="line"></span><br><span class="line">2，foo的局部变量inner，afterGoo由于被goo引用，被分配至堆中，所以当foo执行完毕出栈时，inner，afterGoo没有同时被销毁。</span><br><span class="line"></span><br><span class="line">3，goo声明时,产生了一个包含goo的scope（闭包），这个闭包保存了goo声明时所处的上下文内的变量，beforeFun,inner,afterGoo,afterFun都在这个闭包之中。</span><br><span class="line"></span><br><span class="line">4，所以虽然foo执行完毕，但是由于内部函数goo所处的闭包存在，使得我们可以到foo的局部变量，并维持在内存中，直至goo执行完毕，被安全的当做辣鸡回收。</span><br><span class="line"></span><br><span class="line">5，没有闭包的这种机制（动态分配内存，瞎编的...），foo执行完毕后，foo内部的变量随着foo被调用完毕被销毁就无法被拿到了，而由于闭包这种机制，我们在foo执行完毕后依然可以拿到并维持foo的内部数据。这大概就是闭包的意义...</span><br></pre></td></tr></table></figure></p>
+<p><strong>闭包就像一个”气泡”,包裹了当前这个函数以及这儿函数以外的所有变量等信息，并保存在内存中，直到这个函数被javascript引擎清除，即垃圾回收，或者页面unload，闭包只是一个概念，没有专门的对象用来存储这些信息，但它是确实存在的</strong></p>
+<h2 id="ultra-kill：Putting-closure-to-work"><a href="#ultra-kill：Putting-closure-to-work" class="headerlink" title="ultra kill：Putting closure to work"></a>ultra kill：Putting closure to work</h2><ul>
+<li><p><strong>获取私有化变量</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  function Ninja() &#123;             </span><br><span class="line">    var feints = 0;                          </span><br><span class="line">    this.getFeints = function()&#123;  </span><br><span class="line">      return feints;                   </span><br><span class="line">    &#125;;                                 </span><br><span class="line">    this.feint = function()&#123;     </span><br><span class="line">      feints++;                  </span><br><span class="line">    &#125;;                           </span><br><span class="line">  &#125;</span><br><span class="line">var ninja = new Ninja();    </span><br><span class="line">ninja.feint();</span><br><span class="line">ninja.getFeints();      //1                             </span><br><span class="line">ninja.feints;           //undefined</span><br></pre></td></tr></table></figure>
+<p>我们把代码至于chrome的调试器中，并在两个匿名函数内<strong>打断点</strong>，执行并观察面板右侧chrome提供的闭包指示（只有在内部函数引用外部函数内资源，且在内部函数打断点时，chrome可以显示内部函数所处的闭包维护的变量）；</p>
+</li>
+</ul>
+<p><img src="/images/closure.png" alt="closure"></p>
+<p>可以看到：</p>
+<ol>
+<li>ninja.feint指向的匿名函数内部的feints=0，即持有了Ninja函数的内部变量feints，执行后+1变为1；</li>
+<li>ninja.getFeints指向的匿名函数内部的feints=1，即与ninja.feint共同持有Ninja函数的内部变量feints；</li>
+<li>通过闭包实现了面向对象的javascript编程，构造函数私有化变量，并通过内部函数所处的闭包，可以使实例能访问到构造函数的私有变量。</li>
+</ol>
+<ul>
+<li><strong>在回调函数和timer中使用</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">示例1， </span><br><span class="line">$(&quot;button&quot;).click(function()&#123;</span><br><span class="line">    var $ele = $(&quot;#element&quot;);</span><br><span class="line">        $ele.html(&quot;loading&quot;);</span><br><span class="line">    jquery.ajax(&#123;</span><br><span class="line">        url:&quot;&quot;,</span><br><span class="line">        success:function(data)&#123;</span><br><span class="line">            $ele.html(data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"> &#125;);</span><br><span class="line"> </span><br><span class="line"> 闭包在示例1中的意义：</span><br><span class="line">        不通过闭包在html(&quot;loading&quot;)时和html(data)时每次都需要写$()去获取元素，而把元素保存在一个变量里，通过闭包，回调函数中直接拿变量就行了，无须再去$()获取元素，提高了速度。</span><br><span class="line">        </span><br><span class="line"> 示例2，</span><br><span class="line"> function animate(id)&#123;</span><br><span class="line">     var ele = document.getElementById(id);</span><br><span class="line">     var tick = 0;</span><br><span class="line">     var timer = setInterval(function()&#123;</span><br><span class="line">        if(tick&lt;10)&#123;</span><br><span class="line">            ele.style.left = tick+&quot;px&quot;;</span><br><span class="line">            tick++;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            clearInterval(timer);</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;,10);</span><br><span class="line"> &#125;</span><br><span class="line"> 闭包在示例2中的意义：</span><br><span class="line">         假设ele与tick定义在全局作用域中，上述代码不会出什么问题。但是当再次调用animate(id2)时，问题便会出现，后面调用的animate中计数器受到影响。而如上所示的代码，不同的animate调用，即不同的匿名函数通过自身所在的闭包会维护自身的一份闭包环境，初始化的tick都是0，互不影响。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><strong>绑定函数的上下文</strong><br> 我们来看bind方法的简易实现，<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind#Polyfill" target="_blank" rel="external">mdn</a>有更为健壮的实现。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.bind = function()&#123;</span><br><span class="line">    var fn = this,</span><br><span class="line">    arg = Array.prototype.slice.call(arguments),</span><br><span class="line">    object = arg.shift();</span><br><span class="line">    </span><br><span class="line">    return function()&#123;</span><br><span class="line">        fn.apply(object,arg.concat(</span><br><span class="line">            Array.prototype.slice.call(arguments)</span><br><span class="line">            )</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var str = &quot;f**k&quot;;</span><br><span class="line">function anyFunction(arg)&#123;</span><br><span class="line">    return arguments[0]+this+arguments[1];</span><br><span class="line">&#125;;</span><br><span class="line">var fun = anyFunction.bind(myObject,&quot;suffix-&quot;);</span><br><span class="line">fun(&quot;-postfix&quot;);            //&quot;pre-f**k-after&quot;</span><br><span class="line"></span><br><span class="line">闭包在绑定函数上下文中意义：    </span><br><span class="line">        一眼看过去，bind函数返回一个引用了内部变量的函数，返回的函数内部通过闭包维持了bind函数内的两个局部变量。一个为被调用的函数自身，一个为bind()中指定的预设定参数(函数柯理化)。</span><br><span class="line">        闭包扮演的角色是bind函数返回的匿名函数内部总能通过闭包持有bind()中传递的参数，作为返回函数的上下文的，且这种预定于参数的方法可以实现延迟执行的效果（柯理化），虽然我并没有看出有什么卵用。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>理论知识上当然细读ecmaScript规范所得到的理解是最准确的，但是规范总归是最难看懂的，在理解尽可能接近准确的前提下，代码表现上的正确可以作为接近理论准确的一个标准。</p>
+<p>closure相关蚊帐；</p>
+<ul>
+<li><a href="http://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html" target="_blank" rel="external">TOM大叔jAVscript系列</a>,太丰富了，不好消化</li>
+<li><a href="http://ryanmorr.com/understanding-scope-and-context-in-javascript/" target="_blank" rel="external">蚊帐一</a></li>
+<li><a href="http://www.programering.com/a/MjN4UTMwATY.html" target="_blank" rel="external">蚊帐二</a></li>
+<li><a href="http://stackoverflow.com/questions/111102/how-do-javascript-closures-work" target="_blank" rel="external">stackoverflow</a></li>
+</ul>
+<p>未完待续…</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/js/">javascript</a>
+  </div>
+
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/05/26/闭包/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/css/">css</a><small>8</small></li>
+  
+    <li><a href="/categories/js/">javascript</a><small>6</small></li>
+  
+    <li><a href="/categories/life/">life</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/css3/">css3</a><small>7</small></li>
+  
+    <li><a href="/tags/es6/">es6</a><small>1</small></li>
+  
+    <li><a href="/tags/js/">js</a><small>2</small></li>
+  
+    <li><a href="/tags/干货/">干货</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 John Doe
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
