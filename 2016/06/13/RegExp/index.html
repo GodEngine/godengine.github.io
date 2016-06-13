@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Expressions | 发动机的博客</title>
+  <title>RegExp | 发动机的博客</title>
   <meta name="author" content="John Doe">
   
-  <meta name="description" content="概述经常听到“javascript表达式”这一说，MDN上是这么解释的…以下算是自己理解+翻译吧">
+  <meta name="description" content="正则基础（基本概念）：">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Expressions"/>
+  <meta property="og:title" content="RegExp"/>
   <meta property="og:site_name" content="发动机的博客"/>
 
   
@@ -51,41 +51,46 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-05-10T03:13:55.000Z"><a href="/2016/05/10/Expressions/">2016-05-10</a></time>
+        <time datetime="2016-06-13T03:11:31.000Z"><a href="/2016/06/13/RegExp/">2016-06-13</a></time>
       
       
   
-    <h1 class="title">Expressions</h1>
+    <h1 class="title">RegExp</h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>经常听到“javascript表达式”这一说，<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions" target="_blank" rel="external">MDN</a>上是这么解释的…以下算是自己理解+翻译吧<br><a id="more"></a></p>
-<blockquote>
-<p>An expression is any valid unit of code that resolves to a value</p>
-</blockquote>
-<p><strong>一个表达式是任意可以解析为一个值的，合法的代码片段</strong>；</p>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>概念上来讲，表达式（代码片段）包括两类：</p>
-<ul>
-<li>变量赋值  <em>如 x = 5</em>;</li>
-<li>能代表一个值   <em>如4+5</em>；</li>
+        <ul>
+<li>正则基础（基本概念）：</li>
 </ul>
-<p>javascript语言把表达式分为以下几类：</p>
+<a id="more"></a>
+<ol>
+<li>精确匹配(eg: /adc/)</li>
+<li>类匹配(eg: [abc],[^abc],[a-c])</li>
+<li>转义(eg: \/匹配/)</li>
+<li>开头与结尾(eg: ^, $)</li>
+<li>重复匹配(eg: ?,+,*,{n},{n,m},{n,})</li>
+<li>预定义的字符类(eg: \t,\r,\d…)</li>
+<li>组(eg: (abc))</li>
+<li>或(eg: a|b)</li>
+<li>反向引用(eg:如下栗子)</li>
+<li>消极匹配(eg: (?:))</li>
+</ol>
+<p>以上加上最基础的创建正则表达式与flag标识符，即组成正则表达式的常用的基础概念。</p>
 <ul>
-<li><p>算数运算</p>
-<p>  计算结果为数值（1,2.4 …）,包括使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Arithmetic_operators" target="_blank" rel="external">运算符</a>运算: +、-、<em>、%、/、*</em>(幂)、++、–、</p>
-</li>
-<li><p>String<br> 计算结果为字符串（”a”…）：包括用字符串连接符+的，如”a”+”b”</p>
-</li>
-<li><p>逻辑运算<br>  计算结果为boolean：用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators#Short-Circuit_Evaluation" target="_blank" rel="external">逻辑运算符</a>进行运算的, 请留意逻辑运算<strong>返回值</strong>那部分…</p>
-</li>
-<li><p>原始表达式<br>  javascript中的关键字(this…)及常规的表达式,如()括号等</p>
-</li>
-<li><p>Left-hand-side expressions（左端符？尼玛真不知如何翻译）<br> 如new，super，<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator" target="_blank" rel="external">Spread operator</a>（传播符，可以表示为数组）</p>
+<li><strong>BackReferences</strong>反向引用；<br>栗子：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">要求：</span><br><span class="line">    匹配xml格式的元素:</span><br><span class="line">    var str=&apos;&lt;/someTag&gt;something&lt;/someTag&gt;&apos;;</span><br><span class="line">正则：</span><br><span class="line">    /&lt;(\w+)&gt;(.+)&lt;\/\1&gt;/</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>能强行归为以上类型的就算是<strong>javascript表达式</strong>了吧。。。</p>
+<p>如上的反斜杠后面跟一个数字，\1代表引用第一个小括号里匹配到的pattern（\w+）。即\后面跟一个从1开始的数字，分别代表第几个小括号所匹配的pattern。如果没有反向引用，如何能匹配到这种xml格式呢？</p>
+<ul>
+<li><p>String.prototype.match(/reg/g)<br> match方法在正则表达式参数的标识符为g时，不会将捕获的子pattern（小括号匹配到的）返回到结果数组里，而是把所有符合整个正则表达式的字符串一一放进去，捕获（capture）到的不会出现在结果中。如果想同时实现，用循环调用RegExp的exec方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;&lt;div class=&apos;test&apos;&gt;&lt;b&gt;Hello&lt;/b&gt;&lt;/div&gt;&quot;;</span><br><span class="line">var reg = /&lt;(\/?)(\w+)([^&gt;]*?)/g,match;</span><br><span class="line">while(match=tag.exec(str) !== null)&#123;</span><br><span class="line">    //每次匹配都可以进行捕获（capture）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>(?:)消极匹配<br>在只是简单用组而无需捕获时（”()”小括号），尽可能的用(?:)取消对组的捕获，这样可以提高性能，减少引擎不必要的运算。</p>
+</li>
+</ul>
+<p>未完待添加…</p>
 
       
     </div>
@@ -121,7 +126,7 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://yoursite.com/2016/05/10/Expressions/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://yoursite.com/2016/06/13/RegExp/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>
