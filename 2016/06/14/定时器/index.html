@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>定时器 | 发动机的博客</title>
+  <meta name="author" content="John Doe">
+  
+  <meta name="description" content="定时器和线程是如何工作的
+
+设定和清除定时器
+JavaScript中的线程
+定时器与线程的关系
+timeout 和 interval 的区别
+
+
+
+setting-and-clearing">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="定时器"/>
+  <meta property="og:site_name" content="发动机的博客"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">发动机的博客</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-06-14T10:54:58.000Z"><a href="/2016/06/14/定时器/">2016-06-14</a></time>
+      
+      
+  
+    <h1 class="title">定时器</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li><p>定时器和线程是如何工作的</p>
+<ul>
+<li><a href="#setting-and-clearing">设定和清除定时器</a></li>
+<li><a href="#timer-thread">JavaScript中的线程</a></li>
+<li><a href="#timer-and-thread">定时器与线程的关系</a></li>
+<li><a href="#diffrences-between-timeout-and-interval">timeout 和 interval 的区别</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="setting-and-clearing"><a href="#setting-and-clearing" class="headerlink" title="setting-and-clearing"></a>setting-and-clearing</h2><a id="more"></a>
+<p>clearTimeout和clearInterval都可以清除两种定时器，不过最好各用个的</p>
+<h2 id="timer-thread"><a href="#timer-thread" class="headerlink" title="timer-thread"></a>timer-thread</h2><p>由于JavaScript单线程的特点，异步的事件(click、timer、xhr…)作为消息都被放入一个<strong>消息队列</strong>中，每个消息与一个方法相关（即<strong>回调函数</strong>）。消息队列一直处于等待通知的状态中（<strong>异步轮询</strong>），当JavaScript主线程空闲下来，即栈(stack)中为空时，主线程会向消息队列发出通知，然后消息队列会依次一个一个将消息队列中的事件按<strong>先进先出</strong>的原则(不同浏览器具体实现方式可能不同)取出来，与消息相关的方法被依次放入栈中执行。<br>消息在处理的过程中(即回调函数执行过程)是”Run-to-completion”的，即一股劲儿执行完毕不会被打断的，多线程的语言比如java可能会停止当前线程去开启其他线程，而JavaScript不会，所以导致如果你的消息处理时间过长，浏览器会阻塞，并提示script执行过久，所以最好把处理过长的消息拆开处理。<br>具体参考<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop" target="_blank" rel="external">MDN</a> and <a href="http://stackoverflow.com/questions/21607692/understanding-the-event-loop" target="_blank" rel="external">S.O.</a></p>
+<h2 id="timer-and-thread"><a href="#timer-and-thread" class="headerlink" title="timer and thread"></a>timer and thread</h2><ol>
+<li>定时器任务的执行时刻<strong>并不是</strong>定时器设定的延迟时间后的时刻，由于JavaScript <strong>单线程</strong>的特点，消息队列中的任务执行时刻是由何时放入以及队列当前前面的任务执行所花费的时间一同决定的。队列中前面的任务花费时间越长，该任务等待的时间越久。</li>
+</ol>
+<h2 id="diffrences-between-timeout-and-interval"><a href="#diffrences-between-timeout-and-interval" class="headerlink" title="diffrences between timeout and interval"></a>diffrences between timeout and interval</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">式1：</span><br><span class="line">setTimeout(function repeatMe() &#123;</span><br><span class="line">/* Some long block of code... */</span><br><span class="line">setTimeout(repeatMe, 10);</span><br><span class="line">&#125;, 10);</span><br><span class="line"></span><br><span class="line">式2：</span><br><span class="line">setInterval(function() &#123;</span><br><span class="line">/* Some long block of code... */</span><br><span class="line">&#125;, 10);</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>式1能保证方法的两次执行间隔<strong>至少</strong>为10，而式2无法保证，即setTimeout定时器能保证<strong>至少</strong>要等待的时间。式2中，假设该定时器的前一个任务实例执行过程中(此时队列里已经没有该任务实例了)，setInterval又放入队里一个任务实例，且中间没有其他任务，那么这两个任务间隔就为近乎0了。</p>
+</li>
+<li><p>setTimeout定时器会将一个消息任务在指定的时间后放入消息队列中；而setInterval定时器<strong>尝试</strong>在每隔指定的时间后向消息队列放入任务，但是为了保证消息队列中最多只有一个该任务(方法的实例)，如果setInterval在指定放入任务的时刻发现队列中已经存在了该任务，则会<strong>跳过</strong>该任务的放入。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/js/">javascript</a>
+  </div>
+
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/06/14/定时器/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Kategorien</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/css/">css</a><small>10</small></li>
+  
+    <li><a href="/categories/js/">javascript</a><small>8</small></li>
+  
+    <li><a href="/categories/life/">life</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/css3/">css3</a><small>8</small></li>
+  
+    <li><a href="/tags/es6/">es6</a><small>1</small></li>
+  
+    <li><a href="/tags/干货/">干货</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 John Doe
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
