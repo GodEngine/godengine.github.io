@@ -6,16 +6,7 @@
   <title>定时器 | 发动机的博客</title>
   <meta name="author" content="John Doe">
   
-  <meta name="description" content="定时器和线程是如何工作的
-
-设定和清除定时器
-JavaScript中的线程
-定时器与线程的关系
-timeout 和 interval 的区别
-
-
-用定时器分解耗时的操作
-核心定时器控件setting-and-clearing">
+  <meta name="description" content="定时器和线程是如何工作的">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -71,7 +62,7 @@ timeout 和 interval 的区别
     <div class="entry">
       
         <ul>
-<li><p>定时器和线程是如何工作的</p>
+<li>定时器和线程是如何工作的<a id="more"></a>
 <ul>
 <li><a href="#setting-and-clearing">设定和清除定时器</a></li>
 <li><a href="#timer-thread">JavaScript中的线程</a></li>
@@ -80,8 +71,7 @@ timeout 和 interval 的区别
 </ul>
 </li>
 <li><a href="#dealing-with-expensive-processing">用定时器分解耗时的操作</a></li>
-<li><a href="#central-timer-control">核心定时器控件</a><h2 id="setting-and-clearing"><a href="#setting-and-clearing" class="headerlink" title="setting-and-clearing"></a>setting-and-clearing</h2><a id="more"></a>
-clearTimeout和clearInterval都可以清除两种定时器，不过最好各用个的</li>
+<li><a href="#central-timer-control">核心定时器控件</a><h2 id="setting-and-clearing"><a href="#setting-and-clearing" class="headerlink" title="setting-and-clearing"></a>setting-and-clearing</h2>clearTimeout和clearInterval都可以清除两种定时器，不过最好各用个的</li>
 </ul>
 <h2 id="timer-thread"><a href="#timer-thread" class="headerlink" title="timer-thread"></a>timer-thread</h2><p>由于JavaScript单线程的特点，异步的事件(click、timer、xhr…)作为消息都被放入一个<strong>消息队列</strong>中，每个消息与一个方法相关（即<strong>回调函数</strong>）。消息队列一直处于等待通知的状态中（<strong>异步轮询</strong>），当JavaScript主线程空闲下来，即栈(stack)中为空时，主线程会向消息队列发出通知，然后消息队列会依次一个一个将消息队列中的事件按<strong>先进先出</strong>的原则(不同浏览器具体实现方式可能不同)取出来，与消息相关的方法被依次放入栈中执行。<br>消息在处理的过程中(即回调函数执行过程)是”Run-to-completion”的，即一股劲儿执行完毕不会被打断的，多线程的语言比如java可能会停止当前线程去开启其他线程，而JavaScript不会，所以导致如果你的消息处理时间过长，浏览器会阻塞，并提示script执行过久，所以最好把处理过长的消息拆开处理。<br>具体参考<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop" target="_blank" rel="external">MDN</a> and <a href="http://stackoverflow.com/questions/21607692/understanding-the-event-loop" target="_blank" rel="external">S.O.</a></p>
 <h2 id="timer-and-thread"><a href="#timer-and-thread" class="headerlink" title="timer and thread"></a>timer and thread</h2><ol>
@@ -119,7 +109,7 @@ clearTimeout和clearInterval都可以清除两种定时器，不过最好各用�
 
 
 <section id="comment">
-  <h1 class="title">Comments</h1>
+  <h1 class="title">Kommentare</h1>
 
   
       <div id="fb-root"></div>
@@ -142,17 +132,17 @@ clearTimeout和clearInterval都可以清除两种定时器，不过最好各用�
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="search" name="q" results="0" placeholder="Suche">
     <input type="hidden" name="q" value="site:yoursite.com">
   </form>
 </div>
 
   
 <div class="widget tag">
-  <h3 class="title">Categories</h3>
+  <h3 class="title">Kategorien</h3>
   <ul class="entry">
   
-    <li><a href="/categories/css/">css</a><small>10</small></li>
+    <li><a href="/categories/css/">css</a><small>11</small></li>
   
     <li><a href="/categories/js/">javascript</a><small>8</small></li>
   
@@ -171,7 +161,7 @@ clearTimeout和clearInterval都可以清除两种定时器，不过最好各用�
   
     <li><a href="/tags/es6/">es6</a><small>1</small></li>
   
-    <li><a href="/tags/干货/">干货</a><small>2</small></li>
+    <li><a href="/tags/干货/">干货</a><small>3</small></li>
   
   </ul>
 </div>
