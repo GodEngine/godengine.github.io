@@ -4,20 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>CSS3媒体查询 | 发动机的博客</title>
+  <title>canvas二 | 发动机的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="What the FUCK is CSS3媒体查询？">
+  <meta name="description" content="妈蛋没个开头还不能写了">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS3媒体查询">
-<meta property="og:url" content="http://yoursite.com/2016/03/17/CSS3媒体查询/index.html">
+<meta property="og:title" content="canvas二">
+<meta property="og:url" content="http://yoursite.com/2016/07/12/canvas二/index.html">
 <meta property="og:site_name" content="发动机的博客">
-<meta property="og:description" content="What the FUCK is CSS3媒体查询？">
-<meta property="og:image" content="http://yoursite.com/images/mediaQuerySyntax.png">
-<meta property="og:updated_time" content="2016-03-25T03:16:20.067Z">
+<meta property="og:description" content="妈蛋没个开头还不能写了">
+<meta property="og:updated_time" content="2016-07-12T11:49:23.600Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS3媒体查询">
-<meta name="twitter:description" content="What the FUCK is CSS3媒体查询？">
-<meta name="twitter:image" content="http://yoursite.com/images/mediaQuerySyntax.png">
+<meta name="twitter:title" content="canvas二">
+<meta name="twitter:description" content="妈蛋没个开头还不能写了">
   
     <link rel="alternative" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
   
@@ -187,11 +185,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-CSS3媒体查询" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-canvas二" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/17/CSS3媒体查询/" class="article-date">
-  	<time datetime="2016-03-17T10:33:39.000Z" itemprop="datePublished">2016-03-17</time>
+      <a href="/2016/07/12/canvas二/" class="article-date">
+  	<time datetime="2016-07-12T11:42:07.000Z" itemprop="datePublished">2016-07-12</time>
 </a>
     </div>
   
@@ -204,7 +202,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      CSS3媒体查询
+      canvas二
     </h1>
   
 
@@ -213,14 +211,10 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css3/">css3</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li></ul>
 	</div>
 
         
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/css/">css</a>
-	</div>
-
 
         <div class="clearfix"></div>
       </div>
@@ -228,13 +222,51 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="What-the-FUCK-is-CSS3媒体查询？"><a href="#What-the-FUCK-is-CSS3媒体查询？" class="headerlink" title="What the FUCK is CSS3媒体查询？"></a>What the FUCK is <strong>CSS3媒体查询</strong>？</h3><a id="more"></a>
-<p>一个document在不同的终端显示效果可能不一样，即可能在不同终端使用不同的css样式，为解决这种问题，HTML4中定义了Media queries(媒体查询)这种机制，即使用media属性区分不同的终端，并由CSS解析媒体查询相关语法，以实现对不同媒体终端使用不同的样式(<a href="https://drafts.csswg.org/mediaqueries-3/#background" target="_blank" rel="external">翔细</a>)。栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;screen&quot; href=&quot;sans-serif.css&quot;&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;print&quot; href=&quot;serif.css&quot;&gt;</span><br></pre></td></tr></table></figure></p>
-<h3 id="CSS3媒体查询语法"><a href="#CSS3媒体查询语法" class="headerlink" title="CSS3媒体查询语法"></a>CSS3媒体查询<strong>语法</strong></h3><p>媒体查询语法是在css2中描述的,CSS3进行了扩展。由1个media_type和0个/多个expressions组成,(<a href="https://drafts.csswg.org/mediaqueries-3/#syntax" target="_blank" rel="external">翔细</a>)<br><img src="/images/mediaQuerySyntax.png" alt="如图"><br>说白就是@media后面是media_query_list,<br>media_query_list由0/n个media_query组成，之间用”,”隔开<br>media_query由一个media_type和0/n个expression组成，<br>media_type和expression之间，expression和expression之间都用and隔开，<br>expression由(media_feature：value)形式组成;</p>
-<h3 id="哪能用-HTML-XHTML-XML-import-and-media都可以用哦，如下："><a href="#哪能用-HTML-XHTML-XML-import-and-media都可以用哦，如下：" class="headerlink" title="哪能用?    HTML, XHTML, XML, @import and @media都可以用哦，如下："></a><strong>哪能用</strong>?    HTML, XHTML, XML, @import and @media都可以用哦，如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; media=&quot;screen and (color), projection and (color)&quot; rel=&quot;stylesheet&quot; href=&quot;example.css&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; media=&quot;screen and (color), projection and (color)&quot; rel=&quot;stylesheet&quot; href=&quot;example.css&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;?xml-stylesheet media=&quot;screen and (color), projection and (color)&quot; rel=&quot;stylesheet&quot; href=&quot;example.css&quot; ?&gt;</span><br><span class="line"></span><br><span class="line">@import url(example.css) screen and (color), projection and (color);</span><br><span class="line"></span><br><span class="line">@media screen and (color), projection and (color) &#123; … &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="语法中的media-type"><a href="#语法中的media-type" class="headerlink" title="语法中的media_type"></a><area>语法中的<strong>media_type</strong></h3><p>media_type指媒体类型，指明是打印机(print)啊，还是电视(tv)啊，还是pc显示器(screen)啊，还是吹风机啊(<em>吹风机</em>？)，具体的<a href="https://www.w3.org/TR/1999/REC-html401-19991224/types.html#h-6.13" target="_blank" rel="external">请打开</a>,下载一个<a href="http://css.doyoe.com/" target="_blank" rel="external">CSS参考手册</a>,没事扫两眼也是极好的。<br>note:media_type有一些兼容性问题，具体细查css手册。</p>
-<h3 id="语法中的media-feature"><a href="#语法中的media-feature" class="headerlink" title="语法中的media_feature"></a>语法中的<strong>media_feature</strong></h3><p>media_feature指媒体特性，指明是宽(width)啊，高(height)啊，分辨率啊(resolution),帅啊丑啊(<em>什么鬼</em>)，<br>大部分媒体特性都接受min和max用于表达“大于或等于”和“小与或等于”,如：width会有min-width和max-width.<br>具体的<a href="https://drafts.csswg.org/mediaqueries-3/#media1" target="_blank" rel="external">请打开</a>,下载一个<a href="http://css.doyoe.com/" target="_blank" rel="external">CSS参考手册</a>,没事扫两眼也是极好的。</p>
-<h5 id="为提高准确性本文从mdn英文原文翻译过来（原汉化的有毒），且每个方法都经过测试。。。"><a href="#为提高准确性本文从mdn英文原文翻译过来（原汉化的有毒），且每个方法都经过测试。。。" class="headerlink" title="为提高准确性本文从mdn英文原文翻译过来（原汉化的有毒），且每个方法都经过测试。。。"></a>为提高准确性本文从mdn英文原文翻译过来（原汉化的有毒），且每个方法都经过测试。。。</h5><h5 id="具体细节性，经验性的会在后续添加。。。"><a href="#具体细节性，经验性的会在后续添加。。。" class="headerlink" title="具体细节性，经验性的会在后续添加。。。"></a>具体细节性，经验性的会在后续添加。。。</h5>
+        <p>妈蛋没个开头还不能写了<a id="more"></a></p>
+<ul>
+<li><a href="#Using-images">canvas图片的使用</a><ul>
+<li><a href="#drawing-images">绘制图片</a></li>
+</ul>
+</li>
+<li><a href="#Transformations">变换</a><ul>
+<li><a href="#save-and-restore">保存和回复</a></li>
+<li><a href="#Translating">转换</a></li>
+<li><a href="#Rotating">旋转</a></li>
+<li><a href="#Scaling">缩放</a></li>
+<li><a href="#Transforms">变换</a></li>
+</ul>
+</li>
+<li><a href="#compositing-and-clipping">定位与裁剪</a><ul>
+<li><a href="#globalCompositeOperation">全局的色彩设置复合</a></li>
+<li><a href="#fill-rules">canvas填充规则</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Using-images"><a href="#Using-images" class="headerlink" title="Using-images"></a>Using-images</h2><h3 id="drawing-images"><a href="#drawing-images" class="headerlink" title="drawing images"></a><strong>drawing images</strong></h3><p>canvas提供了三种绘制图片的方法分别为</p>
+<ul>
+<li>drawImage(image, x, y)：  引用一个image对象并从canvas的(x,y)坐标点处绘制</li>
+<li>drawImage(image, x, y, width, height)： 同上并制定图片宽高为width和height</li>
+<li>drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)：  引用一个image并从原图的(sx,xy)开始裁剪宽高为sWidth和sHeight的大小，并将其从canvas的(dx,dy)处绘制成宽高为dWidth，dHeight的图片</li>
+</ul>
+<p>image对象可以是HEMLImageElement或者HTMLVideoElement或者另一个HTMLCanvasElement，但注意需要在image对象加载完毕后再绘制</p>
+<h2 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a>Transformations</h2><h3 id="save-and-restore"><a href="#save-and-restore" class="headerlink" title="save and restore"></a><strong>save and restore</strong></h3><ul>
+<li>O.save()： 每一次调用该方法，都会将canvas当前的状态，包括transformations变换，strokeStyle，fillStyle等属性，当前的clipping path等信息压入一个栈中</li>
+<li>O.restore()： 每一次调用该方法，都会将上一次save()时push到栈里的信息pop出栈，即回复到上一次save时的状态，不用再手动修改一些属性</li>
+</ul>
+<h3 id="Translating"><a href="#Translating" class="headerlink" title="Translating"></a><strong>Translating</strong></h3><p>O.translate(x,y)： 将canvas的画布的原点进行裁剪，即将(0,0)点的位置移至(x,y)处。在重复绘制图片时，与save(),restore()方法结合，可以不用再改变绘制的原点坐标，<a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations#A_translate_example" target="_blank" rel="external">示例</a>,且裁剪之外的部分绘制不受影响</p>
+<h3 id="Rotating"><a href="#Rotating" class="headerlink" title="Rotating"></a><strong>Rotating</strong></h3><p>O.rotate()： 将画布按顺时针方向旋转一定的的弧度，可以用Math.PI/180为360度角度单位代表的弧度，然后乘以对应的角度。</p>
+<h3 id="Scaling"><a href="#Scaling" class="headerlink" title="Scaling"></a><strong>Scaling</strong></h3><p>O.scale(x,y)： 将canvas上每一像素默认的宽高按x,y的比例放大缩小，x,y小于1为缩小，大于1则是放大。</p>
+<h3 id="Transforms"><a href="#Transforms" class="headerlink" title="Transforms"></a><strong>Transforms</strong></h3><ul>
+<li>O.transform(a, b, c, d, e, f)： </li>
+</ul>
+<p>有他娘的6个参数，分别为(水平缩放，水平方向的边线顺偏移，垂直方向的边线顺偏移，垂直缩放，水平位移，垂直位移)，当b和c互为相反数时，旋转后原来形状不会变形，否则会变形的。</p>
+<ul>
+<li>setTransform(a, b, c, d, e, f)：重置transform为新的值</li>
+<li>resetTransform()： 重置transform为默认值，即不进行变换</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">特地看了下这个b和c参数：</span><br><span class="line"></span><br><span class="line">当b为1时，水平方向上的边线左端不变，右端沿垂直方向向下(正方向)移动了相对原垂直高度1倍的距离，同理0.5则位移0,5倍的距离，-1则向上位移1倍距离</span><br><span class="line"></span><br><span class="line">当c为1时,垂直方向上的边线上端不变，下端沿水平方向向右(正方向)移动了相对原水平长度1倍的距离，同理0.5则位移0,5倍的距离，-1则向左位移1倍距离</span><br><span class="line"></span><br><span class="line">以上是根据API的解释，实际上的表现更易理解的是b就是垂直方向上进行偏移，c是水平方向进行偏移，当然左上的端点位置是不变的。而不应该按API解释的b是水平c是垂直</span><br></pre></td></tr></table></figure>
+<h2 id="compositing-and-clipping"><a href="#compositing-and-clipping" class="headerlink" title="compositing-and-clipping"></a>compositing-and-clipping</h2><h3 id="globalCompositeOperation"><a href="#globalCompositeOperation" class="headerlink" title="globalCompositeOperation"></a><strong>globalCompositeOperation</strong></h3><p>globalCompositeOperation=”” ,设置全局颜色混合时的规则，妈蛋好复杂，我只能提供地址了，<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation" target="_blank" rel="external">传送门</a></p>
+
       
     </div>
     
@@ -243,18 +275,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/03/25/CSS3动画/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          CSS3动画
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/03/16/MDN小笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MDN小笔记</div>
+    <a href="/2016/07/08/canvas一/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">canvas(一)</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -289,7 +312,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="CSS3媒体查询" data-title="CSS3媒体查询" data-url="http://yoursite.com/2016/03/17/CSS3媒体查询/"></div>
+	<div class="ds-thread" data-thread-key="canvas二" data-title="canvas二" data-url="http://yoursite.com/2016/07/12/canvas二/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

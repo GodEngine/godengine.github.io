@@ -12,10 +12,12 @@
 <meta property="og:url" content="http://yoursite.com/2016/07/08/canvas一/index.html">
 <meta property="og:site_name" content="发动机的博客">
 <meta property="og:description" content="注意事项">
-<meta property="og:updated_time" content="2016-07-08T11:21:49.782Z">
+<meta property="og:image" content="http://yoursite.com/images/fillRules.png">
+<meta property="og:updated_time" content="2016-07-11T09:03:51.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="canvas(一)">
 <meta name="twitter:description" content="注意事项">
+<meta name="twitter:image" content="http://yoursite.com/images/fillRules.png">
   
     <link rel="alternative" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
   
@@ -113,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/干货/" style="font-size: 15px;">干货</a>
+						<a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/html5/" style="font-size: 13.33px;">html5</a> <a href="/tags/干货/" style="font-size: 16.67px;">干货</a>
 					</div>
 				</section>
 				
@@ -224,30 +226,33 @@
       
         <ul>
 <li>注意事项<a id="more"></a></li>
-<li>用canvas画图<ul>
+<li><a href="#Drawing-shapes">用canvas画图</a><ul>
 <li><a href="#绘制矩形">绘制矩形</a></li>
 <li><a href="#绘制路径">绘制路径</a></li>
 <li><a href="#Path2D">Path2D</a></li>
 </ul>
 </li>
-<li>应用颜色和样式<ul>
+<li><a href="#Applying-styles-and-colors">应用颜色和样式</a><ul>
 <li><a href="">fillStyle 和 strokeStyle</a></li>
 <li><a href="Transparency">设置全局的透明度</a></li>
 <li><a href="#line-styles">笔画的样式</a></li>
 <li><a href="#Gradients">渐变</a></li>
 <li><a href="#Patterns">图案</a></li>
 <li><a href="#shadow">阴影</a></li>
+<li><a href="#fill-rules">canvas填充规则</a></li>
 </ul>
 </li>
-<li><a href="#drawing-text">绘制文本</a></li>
+<li><a href="#drawing-text">绘制文本</a><ul>
+<li><a href="#Styling-text">文本样式</a></li>
+<li><a href="#measureText">文本信息</a><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3></li>
 </ul>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+</li>
 <li>当未在canvas标签的attribute上指定width和height时，canvas默认宽高为300*150 px,且此时如果css对canvas设置的样式不符合canvas默认的宽高比例(2:1)时，图像会变形，除非在attribute上显示指定宽高，不宜用css指定;</li>
 <li>canvas元素的样式不会影响实际画布上的图像，无样式设置时canvas是transparent的;</li>
 <li>在canvas内部的内容，可作为不支持canvas时显示的内容，支持的canvas的浏览器会忽略内部的内容;</li>
 <li>闭合标签是必须的，如果遗漏，文档的剩余部分在支持canvas的浏览器中将会当做fallback content后备内容，而不被显示;</li>
 </ul>
-<h2 id="用canvas画图"><a href="#用canvas画图" class="headerlink" title="用canvas画图"></a>用canvas画图</h2><p>在获取node后调用node.getContext(2d),可以获取到<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" target="_blank" rel="external">CanvasRenderingContext2D</a>O,并对其进行操作,canvas只有两种原始类型的形状,矩形和路径：</p>
+<h2 id="Drawing-shapes"><a href="#Drawing-shapes" class="headerlink" title="###　Drawing shapes"></a>###　Drawing shapes</h2><p>在获取node后调用node.getContext(2d),可以获取到<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" target="_blank" rel="external">CanvasRenderingContext2D</a>O,并对其进行操作,canvas只有两种原始类型的形状,矩形和路径：</p>
 <h3 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h3><ul>
 <li>O.fillRect(x,y,width,height)： 默认为黑色的矩形</li>
 <li>O.strokeRect(x,y,width,height)： 默认为灰色边框的矩形</li>
@@ -262,6 +267,7 @@
 <li>O.stroke() or O.fill()： 进行路径绘制或者实心的涂画</li>
 </ol>
 <h3 id="Path2D"><a href="#Path2D" class="headerlink" title="Path2D"></a>Path2D</h3><p>使用<a href="https://developer.mozilla.org/en-US/docs/Web/API/Path2D/Path2D#Using_SVG_paths" target="_blank" rel="external">Path2D Object</a>可以更清晰的使用画布的API，可以缓存画布里的路径对象重复使用并提高性能，而且可以配合svg进行绘画;</p>
+<h3 id="Applying-styles-and-colors"><a href="#Applying-styles-and-colors" class="headerlink" title="Applying styles and colors"></a>Applying styles and colors</h3><hr>
 <h3 id="fillStyle-and-strokeStyle"><a href="#fillStyle-and-strokeStyle" class="headerlink" title="fillStyle and strokeStyle"></a>fillStyle and strokeStyle</h3><p>O.fillStyle / O.strokeStyle = “colorValue”： 用来设置图像填充颜色和图像outline的颜色，默认值为black黑色,colorValue为合法的颜色值;</p>
 <h3 id="Transparency全局透明度"><a href="#Transparency全局透明度" class="headerlink" title="Transparency全局透明度"></a>Transparency全局透明度</h3><p>O.globalAlpha = 0.5：  设置以后所有的图像透明度均为0.5</p>
 <h3 id="line-styles"><a href="#line-styles" class="headerlink" title="line styles"></a>line styles</h3><ul>
@@ -292,6 +298,23 @@
 <li>O.shadowBlur = float：阴影的模糊度</li>
 <li>O.shadowColor = color： 阴影的颜色</li>
 </ul>
+<h3 id="fill-rules"><a href="#fill-rules" class="headerlink" title="fill rules"></a><a href="https://en.wikipedia.org/wiki/Nonzero-rule" target="_blank" rel="external">fill rules</a></h3><p>填充规则用来判断一个点是否属于一段闭合的曲线，如果属于，则是”inside”,即填充，如果不属于，则为”outside”,即不填充。<br><img src="/images/fillRules.png" alt="来自维基百科"></p>
+<ol>
+<li>“nonzero-rule” 非零规则(图B)：<br>以这个点为起点，向外发出一条射线，该射线被两段曲线分割，顺时针方向曲线-1，逆时针方向曲线+1(当然也可以认为顺时针+1，逆时针-1)，由于该射线被两条顺时针方向的曲线分割，和值不为0，故该点为”inside”。总结下，如果分割曲线线的顺逆方向的数量相同，则为”outside”,否则为”inside”;</li>
+<li>“even-odd rule” 奇偶规则(图A)：<br>以这个点为起点，向外发出一条射线，该射线被两段曲线分割，即被偶数个曲线分割，则为”outside”;如果被奇数个曲线分割，则为”inside”</li>
+</ol>
+<h3 id="drawing-text"><a href="#drawing-text" class="headerlink" title="drawing-text"></a>drawing-text</h3><hr>
+<ul>
+<li>O.font=”28px serif”;O.fillText(text,x,y[,maxWidth]);</li>
+<li><p>O.font=”28px serif”;O.strokeText(text,x,y[,maxWidth]);</p>
+<p>canvas rendering context提供了以上两个方法绘制文字，text文本/(x,y)坐标点/文本最大宽度。一个是实心的字体，一个是空心的字体。</p>
+<h3 id="Styling-text"><a href="#Styling-text" class="headerlink" title="Styling text"></a>Styling text</h3></li>
+<li>font=””： 使用css中font的属性值来设置字体，默认值为”10px sans-serif”;</li>
+<li>textAlign=””： 文本对齐方式，start / end / left / right / center. 默认值 start。</li>
+<li>textBaseline = “”： 基线设置，top / hanging / middle / alphabetic / ideographic / bottom。默认值为alphabetic</li>
+<li>direction = “”： 文本起始方向ltr, rtl, inherit</li>
+</ul>
+<h3 id="measureText"><a href="#measureText" class="headerlink" title="measureText"></a>measureText</h3><p>O.measureText()： 返回<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/measureText" target="_blank" rel="external">TextMetrics</a>文本的宽度即一些其他信息，但是目前只支持width…</p>
 
       
     </div>
@@ -300,6 +323,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/07/12/canvas二/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          canvas二
+        
+      </div>
+    </a>
   
   
     <a href="/2016/06/28/堆叠上下文/" id="article-nav-older" class="article-nav-link-wrap">
