@@ -4,21 +4,24 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>css3Color | 发动机的博客</title>
+  <title>canvas三 | 发动机的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="css中有三种表示颜色的方式，第一种是关键字，第二种是RGB()，第三种是HSL()。后两种具体的原理还有待深挖。。。先说说咋用吧。。。
-第一种：关键字">
+  <meta name="description" content="常用动画计时器
+注意事项
+requestanimationframe兼容">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css3Color">
-<meta property="og:url" content="http://yoursite.com/2016/04/08/css3Color/index.html">
+<meta property="og:title" content="canvas三">
+<meta property="og:url" content="http://yoursite.com/2016/07/14/canvas三/index.html">
 <meta property="og:site_name" content="发动机的博客">
-<meta property="og:description" content="css中有三种表示颜色的方式，第一种是关键字，第二种是RGB()，第三种是HSL()。后两种具体的原理还有待深挖。。。先说说咋用吧。。。
-第一种：关键字">
-<meta property="og:updated_time" content="2016-04-08T09:54:43.719Z">
+<meta property="og:description" content="常用动画计时器
+注意事项
+requestanimationframe兼容">
+<meta property="og:updated_time" content="2016-07-15T11:11:28.529Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="css3Color">
-<meta name="twitter:description" content="css中有三种表示颜色的方式，第一种是关键字，第二种是RGB()，第三种是HSL()。后两种具体的原理还有待深挖。。。先说说咋用吧。。。
-第一种：关键字">
+<meta name="twitter:title" content="canvas三">
+<meta name="twitter:description" content="常用动画计时器
+注意事项
+requestanimationframe兼容">
   
     <link rel="alternative" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
   
@@ -188,11 +191,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-css3Color" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-canvas三" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/08/css3Color/" class="article-date">
-  	<time datetime="2016-04-08T09:53:31.000Z" itemprop="datePublished">2016-04-08</time>
+      <a href="/2016/07/14/canvas三/" class="article-date">
+  	<time datetime="2016-07-14T02:53:30.000Z" itemprop="datePublished">2016-07-14</time>
 </a>
     </div>
   
@@ -205,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      css3Color
+      canvas三
     </h1>
   
 
@@ -214,14 +217,10 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css3/">css3</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li></ul>
 	</div>
 
         
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/css/">css</a>
-	</div>
-
 
         <div class="clearfix"></div>
       </div>
@@ -229,16 +228,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>css中有三种表示颜色的方式，第一种是关键字，第二种是RGB()，第三种是HSL()。后两种具体的原理还有待深挖。。。先说说咋用吧。。。</p>
-<h4 id="第一种：关键字"><a href="#第一种：关键字" class="headerlink" title="第一种：关键字"></a>第一种：关键字</h4><a id="more"></a>
-<ul>
-<li>没啥好说的，css1的16种+css2的orange,超出的关键字颜色将被忽略.</li>
-<li>transparent ：rgb(0,0,0,0)的shorthand，即完全透明，即显示背景色。</li>
-<li><strong>currentColor</strong> ：<br>  <em>currentColor</em>此关键可以用于任何可接受颜色的属性上，比如border-color，background-color等等，<br>当使用currentColor时，表示的值为当前元素的color属性值，若当前元素没有color值，则继承自父元素的color属性值，直至根元素的color值。<br>当前元素的color属性发生变化时，当前元素的currentColor值也会相应发生变化。</li>
+        <ul>
+<li><a href="#timer">常用动画计时器</a><ul>
+<li><a href="#timer">注意事项</a></li>
+<li><a href="#polyfill">requestanimationframe兼容</a><a id="more"></a>
+<h3 id="timer"><a href="#timer" class="headerlink" title="timer"></a>timer</h3>常用的动画计时器setTimeout,setInterval，requestAnimationFrame。推荐使用<strong>第三者</strong>，因为浏览器厂商对该API进行了优化，使得如果当前的tab处于非激活状态时，即切换到别的页了，<br>则动画会停止，节省GPU,CPU等资源，省电，而且每秒60帧的刷新频率使你的动画更加smoothly，<a href="http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/" target="_blank" rel="external">资料</a><h3 id="polyfill"><a href="#polyfill" class="headerlink" title="polyfill"></a>polyfill</h3>requestanimationframe方法存在兼容性问题，可以加入chrome前端大神的polyfill———&gt;<a href="https://gist.github.com/paulirish/1579671" target="_blank" rel="external">rAF.js</a>;</li>
 </ul>
-<h4 id="第二种：rgb"><a href="#第二种：rgb" class="headerlink" title="第二种：rgb():"></a>第二种：rgb():</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1,rgb(R,G,B),R、G、B是三原色red，green，blue的简称，可以搭配成其他的颜色。</span><br><span class="line"></span><br><span class="line">2,R、G、B是三个同时为integer的值或者三个同时为percentage的值，integer值在0~255之间，percentage自然是0%~100%，对应以#开头，三位或者6位十六进制数字组成的颜色值。即255 &lt;—&gt; FF(F) &lt;—&gt; 100%</span><br><span class="line"></span><br><span class="line">3，rgba(R,G,B,Alpha):css3中为rgb加了一个值为0~1的alpha参数，用来表示透明度</span><br><span class="line">IE6-8不支持rgba模式，可以用filter滤镜实现：</span><br><span class="line">filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000); </span><br><span class="line">前两位为透明度，后六位为色值。</span><br></pre></td></tr></table></figure>
-<h4 id="第二种：hsl"><a href="#第二种：hsl" class="headerlink" title="第二种：hsl():"></a>第二种：hsl():</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1,hsl(H,S,L)是色相(H)、饱和度(S)、明度(L)三个颜色通道的变化以及它们相互之间的叠加来得到各式各样的颜色。</span><br><span class="line"></span><br><span class="line">2,H实际取值范围为0~360，超出这个范围的相当于在0~360圆环色彩中取值。</span><br><span class="line"></span><br><span class="line">3,S、L取值范围为0%~100%，S越大，颜色中的灰色越少，色彩越鲜艳；L越小，越接近黑色，越大也接近白色。</span><br><span class="line"></span><br><span class="line">4,hsla()与agba()同理，多了一位透明度的参数。</span><br></pre></td></tr></table></figure>
-<p>奉上<a href="http://jiasm.github.io/" target="_blank" rel="external">某处</a>偷来的<a href="http://www.bootcss.com/p/websafecolors/" target="_blank" rel="external">web安全色</a>,web安全色就是在不同浏览器之间渲染差异较小的颜色（受硬件影响不同设备显示的颜色可能会有不同）</p>
+</li>
+</ul>
 
       
     </div>
@@ -248,18 +245,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/04/12/CSS3选择器/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          CSS3选择器
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/07/CSS3box-shadow/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CSS3box-shadow</div>
+    <a href="/2016/07/12/canvas二/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">canvas二</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -294,7 +282,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="css3Color" data-title="css3Color" data-url="http://yoursite.com/2016/04/08/css3Color/"></div>
+	<div class="ds-thread" data-thread-key="canvas三" data-title="canvas三" data-url="http://yoursite.com/2016/07/14/canvas三/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
