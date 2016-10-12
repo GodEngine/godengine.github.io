@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>gradient渐变 | 发动机的博客</title>
+  <title>inline-block元素间的间隙 | 发动机的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="linear-gradient()可以创建图像，表现为线性渐变的颜色，没有实际的大小，大小取决于应用元素的大小。">
+  <meta name="description" content="inline-block元素之间莫名其妙的出现了空格（在没有主动设置任何间隔情况下），这个问题在css-trick上找到solution。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gradient渐变">
-<meta property="og:url" content="http://yoursite.com/2016/06/03/gradient渐变/index.html">
+<meta property="og:title" content="inline-block元素间的间隙">
+<meta property="og:url" content="http://yoursite.com/2016/09/20/inline-block元素间的间隙/index.html">
 <meta property="og:site_name" content="发动机的博客">
-<meta property="og:description" content="linear-gradient()可以创建图像，表现为线性渐变的颜色，没有实际的大小，大小取决于应用元素的大小。">
-<meta property="og:image" content="http://yoursite.com/images/gradient.png">
-<meta property="og:updated_time" content="2016-06-03T10:23:25.000Z">
+<meta property="og:description" content="inline-block元素之间莫名其妙的出现了空格（在没有主动设置任何间隔情况下），这个问题在css-trick上找到solution。">
+<meta property="og:image" content="http://yoursite.com/images/inline-block.png">
+<meta property="og:updated_time" content="2016-09-20T06:24:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gradient渐变">
-<meta name="twitter:description" content="linear-gradient()可以创建图像，表现为线性渐变的颜色，没有实际的大小，大小取决于应用元素的大小。">
-<meta name="twitter:image" content="http://yoursite.com/images/gradient.png">
+<meta name="twitter:title" content="inline-block元素间的间隙">
+<meta name="twitter:description" content="inline-block元素之间莫名其妙的出现了空格（在没有主动设置任何间隔情况下），这个问题在css-trick上找到solution。">
+<meta name="twitter:image" content="http://yoursite.com/images/inline-block.png">
   
     <link rel="alternative" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
   
@@ -187,11 +187,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-gradient渐变" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-inline-block元素间的间隙" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/06/03/gradient渐变/" class="article-date">
-  	<time datetime="2016-06-03T10:22:22.000Z" itemprop="datePublished">2016-06-03</time>
+      <a href="/2016/09/20/inline-block元素间的间隙/" class="article-date">
+  	<time datetime="2016-09-20T06:10:09.000Z" itemprop="datePublished">2016-09-20</time>
 </a>
     </div>
   
@@ -204,7 +204,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      gradient渐变
+      inline-block元素间的间隙
     </h1>
   
 
@@ -213,7 +213,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css3/">css3</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
 	</div>
 
         
@@ -228,18 +228,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>linear-gradient()可以创建图像，表现为线性渐变的颜色，没有实际的大小，大小取决于应用元素的大小。</li>
-</ul>
-<a id="more"></a>
+        <p>inline-block元素之间莫名其妙的出现了空格（在没有主动设置任何间隔情况下），这个问题在css-trick上找到solution。<br><a id="more"></a></p>
 <ul>
-<li>所谓的线性是基于轴线定义的，该轴线以一定的角度穿过元素的中心，当你定义好轴线即渐变的方向时，在垂直于该方向上的线上，每一个点的颜色都是一样的.起点和终点附近的颜色点会和各自起点，终点的颜色一样，所谓的<code>magic corners</code>,神奇海螺？<br><img src="/images/gradient.png" alt="线性渐变"></li>
-<li><p>语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">linear-gradient( 45deg, blue, red );  </div><div class="line">/* 指向45度角方向开始渐变，以blue开始，red结束 */</div><div class="line">linear-gradient( to left top, blue, red);      </div><div class="line">/* 从右下角指向左上角开始渐变，blue开始，red结束 */</div><div class="line"></div><div class="line">linear-gradient( 0deg, blue, green 40%, red ); </div><div class="line">/* 底部指向顶部开始渐变, 蓝色开始, 40%位置变为纯green，两侧渐变，以red结束*/</div><div class="line"></div><div class="line">  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);</div><div class="line">  //实现彩虹一般的渐变，不写stop值就是均分位置的</div></pre></td></tr></table></figure>
+<li><p><strong>表现：</strong><br><img src="/images/inline-block.png" alt="inline-block出现的间隙"></p>
 </li>
-<li><p>你应该这么写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.grad &#123; </div><div class="line">  background-color: #F07575; //不支持渐变时</div><div class="line">  background-image: -webkit-linear-gradient(top, hsl(0, 80%, 70%), #bada55); /*Chrome 25， Safari 6, iOS 6.1, Android 4.3 */</div><div class="line">  background-image:    -moz-linear-gradient(top, hsl(0, 80%, 70%), #bada55); /* For Firefox (3.6 to 15) */</div><div class="line">  background-image:      -o-linear-gradient(top, hsl(0, 80%, 70%), #bada55); /* For old Opera (11.1 to 12.0) */ </div><div class="line">  background-image:         linear-gradient(to bottom, hsl(0, 80%, 70%), #bada55); /* 标准语法*/</div><div class="line">  </div><div class="line">    低版本浏览器在实现渐变时，方向值是起点而不是终点，所以你看到是top，而不是to top。</div><div class="line">    因为当用角度表示方向时，角度指的是终点的方向，而left等方向在低版本浏览器的实现中是起点的方向。</div><div class="line">    所以w3c在最新的标准中，将关键字的形式规定为to direction来和角度标识的方向保持一致。</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+<li><p><strong>原因：</strong><br>原因是html中元素之间有空格…</p>
+</li>
+<li><p><strong>解决方案：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">方案1：</div><div class="line">&lt;ul&gt;</div><div class="line">    &lt;li&gt;</div><div class="line">    one&lt;/li&gt;&lt;li&gt;</div><div class="line">    two&lt;/li&gt;&lt;li&gt;</div><div class="line">    three&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line"></div><div class="line">方案2：</div><div class="line">&lt;ul&gt;</div><div class="line">    &lt;li&gt;one&lt;/li</div><div class="line">    &gt;&lt;li&gt;two&lt;/li</div><div class="line">    &gt;&lt;li&gt;three&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line"></div><div class="line">方案3：</div><div class="line">&lt;ul&gt;</div><div class="line">    &lt;li&gt;one&lt;/li&gt;&lt;!--</div><div class="line">    --&gt;&lt;li&gt;two&lt;/li&gt;&lt;!--</div><div class="line">    --&gt;&lt;li&gt;three&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line"></div><div class="line">//总之就是去掉html元素之间的空格即可，抑或用float和flexbox替代</div></pre></td></tr></table></figure>
+</li>
 </ul>
+<p>没多少东西<a href="https://css-tricks.com/fighting-the-space-between-inline-block-elements/" target="_blank" rel="external">资料奉上</a><br><a href="https://css-tricks.com/" target="_blank" rel="external">css-tricks</a>真乃css之必备良药</p>
 
       
     </div>
@@ -249,18 +248,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/06/13/RegExp/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/10/12/flex/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          RegExp
+          flex
         
       </div>
     </a>
   
   
-    <a href="/2016/06/01/Font/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Font</div>
+    <a href="/2016/09/13/Hello world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -295,7 +294,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="gradient渐变" data-title="gradient渐变" data-url="http://yoursite.com/2016/06/03/gradient渐变/"></div>
+	<div class="ds-thread" data-thread-key="inline-block元素间的间隙" data-title="inline-block元素间的间隙" data-url="http://yoursite.com/2016/09/20/inline-block元素间的间隙/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

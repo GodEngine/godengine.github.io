@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://yoursite.com/images/attrSelector.png">
 <meta property="og:image" content="http://yoursite.com/images/childSelector.png">
 <meta property="og:image" content="http://yoursite.com/images/typeSelector.png">
-<meta property="og:updated_time" content="2016-04-12T06:57:07.743Z">
+<meta property="og:updated_time" content="2016-04-12T06:57:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS3选择器">
 <meta name="twitter:description" content="css共五类选择符，分别是元素选择符、关系选择符、属性选择符、伪类选择符、伪对象选择符（他么自己以前差不多只用第一类…羞愤），过了css1/2中的，总结下CCS3新增的选择符。">
@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/categories/" style="font-size: 10px;">categories</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/html5/" style="font-size: 16.67px;">html5</a> <a href="/tags/干货/" style="font-size: 13.33px;">干货</a>
+						<a href="/tags/categories/" style="font-size: 10px;">categories</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/html5/" style="font-size: 13.33px;">html5</a>
 					</div>
 				</section>
 				
@@ -234,35 +234,35 @@
         <p>css共五类选择符，分别是元素选择符、关系选择符、属性选择符、伪类选择符、伪对象选择符（<em>他么自己以前差不多只用第一类…羞愤</em>），过了css1/2中的，总结下CCS3新增的选择符。<br><a id="more"></a></p>
 <h3 id="关系选择符"><a href="#关系选择符" class="headerlink" title="关系选择符"></a>关系选择符</h3><ul>
 <li><p>兄弟选择符（E~F）<br>e~f<br><img src="/images/E~F.png" alt="e~f"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;当指E（第一个）后面（不包含E）所有的兄弟元素F。</span><br><span class="line">&gt;css2中的E+F两种情况，当E和F相同时，选中的是E后面紧挨着的连续所有F（必须是连续的，F可能不止一个）；当E和F不同时，选中的是E后面紧挨着的第一个F（只有一个）。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;当指E（第一个）后面（不包含E）所有的兄弟元素F。</div><div class="line">&gt;css2中的E+F两种情况，当E和F相同时，选中的是E后面紧挨着的连续所有F（必须是连续的，F可能不止一个）；当E和F不同时，选中的是E后面紧挨着的第一个F（只有一个）。</div></pre></td></tr></table></figure>
 </li>
 <li><p>属性选择符<br>E[att^=”val”]</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">指具有att属性且属性值为以val开头的字符串的E元素。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">指具有att属性且属性值为以val开头的字符串的E元素。</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>E[att^=”val”]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">指具有att属性且属性值为以val结尾的字符串的E元素。</span><br></pre></td></tr></table></figure></p>
-<p>E[att*=”val”]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">选择具有att属性且属性值为包含val的字符串的E元素。</span><br></pre></td></tr></table></figure></p>
+<p>E[att^=”val”]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">指具有att属性且属性值为以val结尾的字符串的E元素。</div></pre></td></tr></table></figure></p>
+<p>E[att*=”val”]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">选择具有att属性且属性值为包含val的字符串的E元素。</div></pre></td></tr></table></figure></p>
 <p>以上几个的栗子:<br><img src="/images/attrSelector.png" alt="attrSelector"></p>
 <ul>
-<li>伪类选择符<br>E:not(s)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配不含有s选择符的元素E。s可以使其他任意类型的选择符</span><br></pre></td></tr></table></figure>
+<li>伪类选择符<br>E:not(s)<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">匹配不含有s选择符的元素E。s可以使其他任意类型的选择符</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>E:last-child<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配必须位于父元素下的最后一个位置的子元素E。同理还有css2中的E:first-child，也必须是父元素的第一个子元素，如果第一个元素不是E，那选取失效。</span><br></pre></td></tr></table></figure></p>
-<p>E:only-child<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配必须位于父元素下的唯一一个子元素E,且不能有其他子元素，否则匹配失败。</span><br></pre></td></tr></table></figure></p>
-<p>E:nth-child(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 首先按元素选择符E定位到E，然后依次判断这些E是否位于父元素的第n个位置上，如果不是，则该E没有被选</span><br><span class="line">&gt; 2n/2n+1可以进行奇偶判定</span><br></pre></td></tr></table></figure></p>
-<p>E:nth-last-child(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">同上的nth-child(),只是顺序是从后往前。</span><br></pre></td></tr></table></figure></p>
+<p>E:last-child<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">匹配必须位于父元素下的最后一个位置的子元素E。同理还有css2中的E:first-child，也必须是父元素的第一个子元素，如果第一个元素不是E，那选取失效。</div></pre></td></tr></table></figure></p>
+<p>E:only-child<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">匹配必须位于父元素下的唯一一个子元素E,且不能有其他子元素，否则匹配失败。</div></pre></td></tr></table></figure></p>
+<p>E:nth-child(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; 首先按元素选择符E定位到E，然后依次判断这些E是否位于父元素的第n个位置上，如果不是，则该E没有被选</div><div class="line">&gt; 2n/2n+1可以进行奇偶判定</div></pre></td></tr></table></figure></p>
+<p>E:nth-last-child(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">同上的nth-child(),只是顺序是从后往前。</div></pre></td></tr></table></figure></p>
 <p>以上几个的栗子:<br><img src="/images/childSelector.png" alt="childSelector"></p>
-<p>E:first-of-type<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先根据元素选择符E定位到E，然后检测其是否为第一个E，不是则没有被选中</span><br></pre></td></tr></table></figure></p>
-<p>E:last-of-type<br>以上几个的栗子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先根据元素选择符E定位到E，然后检测其是否为同辈中最后一个E，不是则没有被选中</span><br></pre></td></tr></table></figure></p>
-<p>E:only-of-type<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先根据元素选择符E定位到E，然后检测其是否为同辈中唯一一个E，不是则没有被选中</span><br></pre></td></tr></table></figure></p>
-<p>E:nth-of-type(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先根据元素选择符E定位到E，然后检测其是否为同辈中第n个E，不是则没有被选中</span><br></pre></td></tr></table></figure></p>
-<p>E:nth-last-of-type(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先根据元素选择符E定位到E，然后检测其是否为同辈中倒数第n个E，不是则没有被选中</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/typeSelector.png" alt="typeSelector"><br>E:empty<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先根据元素选择符E定位到E,检测其有没有任何子元素（包括text子元素），没有则被选中</span><br></pre></td></tr></table></figure></p>
-<p>E:checked<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">选中input type为radio与checkbox时被选中的元素，css手册给出的例子不错，结合了:after伪类</span><br></pre></td></tr></table></figure></p>
-<p>E:enabled/E:disabled<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">选中用户界面上处于可用/不可用（disabled=&quot;disabled&quot;）状态的元素E</span><br></pre></td></tr></table></figure></p>
-<p>E:target<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当a标签的href属性是锚点，且点击该a标签时，该锚点所在的元素被选中</span><br></pre></td></tr></table></figure></p>
+<p>E:first-of-type<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先根据元素选择符E定位到E，然后检测其是否为第一个E，不是则没有被选中</div></pre></td></tr></table></figure></p>
+<p>E:last-of-type<br>以上几个的栗子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先根据元素选择符E定位到E，然后检测其是否为同辈中最后一个E，不是则没有被选中</div></pre></td></tr></table></figure></p>
+<p>E:only-of-type<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先根据元素选择符E定位到E，然后检测其是否为同辈中唯一一个E，不是则没有被选中</div></pre></td></tr></table></figure></p>
+<p>E:nth-of-type(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先根据元素选择符E定位到E，然后检测其是否为同辈中第n个E，不是则没有被选中</div></pre></td></tr></table></figure></p>
+<p>E:nth-last-of-type(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先根据元素选择符E定位到E，然后检测其是否为同辈中倒数第n个E，不是则没有被选中</div></pre></td></tr></table></figure></p>
+<p><img src="/images/typeSelector.png" alt="typeSelector"><br>E:empty<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先根据元素选择符E定位到E,检测其有没有任何子元素（包括text子元素），没有则被选中</div></pre></td></tr></table></figure></p>
+<p>E:checked<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">选中input type为radio与checkbox时被选中的元素，css手册给出的例子不错，结合了:after伪类</div></pre></td></tr></table></figure></p>
+<p>E:enabled/E:disabled<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">选中用户界面上处于可用/不可用（disabled=&quot;disabled&quot;）状态的元素E</div></pre></td></tr></table></figure></p>
+<p>E:target<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">当a标签的href属性是锚点，且点击该a标签时，该锚点所在的元素被选中</div></pre></td></tr></table></figure></p>
 <ul>
-<li>伪对象选择符<br>E::selection<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">选中被选中的文本，设置其background-color和color，text-shadow(IE11不支持)</span><br></pre></td></tr></table></figure>
+<li>伪对象选择符<br>E::selection<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">选中被选中的文本，设置其background-color和color，text-shadow(IE11不支持)</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>看完css选择器，姿势涨了不少，学习还是得系统的看，东一口西一口着实不行。。。</p>
