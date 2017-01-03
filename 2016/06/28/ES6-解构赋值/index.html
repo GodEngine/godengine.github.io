@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>RegExp | 发动机的博客</title>
+  <title>es6之解构 | 发动机的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="正则基础（基本概念）：">
+  <meta name="description" content="解构赋值">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RegExp">
-<meta property="og:url" content="http://yoursite.com/2016/06/13/RegExp/index.html">
+<meta property="og:title" content="es6之解构">
+<meta property="og:url" content="http://yoursite.com/2016/06/28/ES6-解构赋值/index.html">
 <meta property="og:site_name" content="发动机的博客">
-<meta property="og:description" content="正则基础（基本概念）：">
-<meta property="og:updated_time" content="2016-06-13T03:13:58.000Z">
+<meta property="og:description" content="解构赋值">
+<meta property="og:updated_time" content="2017-01-03T12:48:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RegExp">
-<meta name="twitter:description" content="正则基础（基本概念）：">
+<meta name="twitter:title" content="es6之解构">
+<meta name="twitter:description" content="解构赋值">
   
     <link rel="alternative" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
   
@@ -185,11 +185,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-RegExp" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-ES6-解构赋值" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/06/13/RegExp/" class="article-date">
-  	<time datetime="2016-06-13T03:11:31.000Z" itemprop="datePublished">2016-06-13</time>
+      <a href="/2016/06/28/ES6-解构赋值/" class="article-date">
+  	<time datetime="2016-06-28T05:43:52.000Z" itemprop="datePublished">2016-06-28</time>
 </a>
     </div>
   
@@ -202,7 +202,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      RegExp
+      es6之解构
     </h1>
   
 
@@ -210,9 +210,13 @@
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
+	</div>
+
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/js/">javascript</a>
+	<a class="article-category-link" href="/categories/js/">js</a>
 	</div>
 
 
@@ -222,36 +226,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>正则基础（基本概念）：</li>
+        <h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><a id="more"></a>
+<p>es6的主要的解构为两类</p>
+<ul>
+<li><p>对象解构    let {prop1: 《pattern》,prop2: 《pattern》}  = object</p>
+<p>如 let {name:x, age:y}  = {name:1,age:2},此时x为1，y为2</p>
+</li>
+<li>数组解构    let [x,y] = iterable<br>如 let [x,y] = [1，2],测试x为1，y为2</li>
 </ul>
-<a id="more"></a>
-<ol>
-<li>精确匹配(eg: /adc/)</li>
-<li>类匹配(eg: [abc],[^abc],[a-c])</li>
-<li>转义(eg: \/匹配/)</li>
-<li>开头与结尾(eg: ^, $)</li>
-<li>重复匹配(eg: ?,+,*,{n},{n,m},{n,})</li>
-<li>预定义的字符类(eg: \t,\r,\d…)</li>
-<li>组(eg: (abc))</li>
-<li>或(eg: a|b)</li>
-<li>反向引用(eg:如下栗子)</li>
-<li>消极匹配(eg: (?:))</li>
+<h2 id="对象结构的过程"><a href="#对象结构的过程" class="headerlink" title="对象结构的过程"></a>对象结构的过程</h2><ol>
+<li><p>先将被解构者通过全局的toObject()包装为一个Object，而非Object()，因为Object在转换null和undefined时不会抛出异常,而toObject()会抛出，以便提示转化失败</p>
+</li>
+<li><p>变量结构的“变量“指：后面的变量而非属性名，然后以属性名为对应依据，将被解构者某属性的值与结构者<br>该属性对应的变量名相对应<br>即  let {length: len} = ‘abc’; len 为3 ，此时以属性length为依据，将值‘abc’与变量len对应</p>
+</li>
+<li><p>当解构者的key与value名相同时，可以省略一个，即let { x:x} = {x:1}，则可只写一个let {x}={x:1}</p>
+</li>
 </ol>
-<p>以上加上最基础的创建正则表达式与flag标识符，即组成正则表达式的常用的基础概念。</p>
-<ul>
-<li><strong>BackReferences</strong>反向引用；<br>栗子：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">要求：</div><div class="line">    匹配xml格式的元素:</div><div class="line">    var str=&apos;&lt;/someTag&gt;something&lt;/someTag&gt;&apos;;</div><div class="line">正则：</div><div class="line">    /&lt;(\w+)&gt;(.+)&lt;\/\1&gt;/</div></pre></td></tr></table></figure>
+<h2 id="数组解构原理："><a href="#数组解构原理：" class="headerlink" title="数组解构原理："></a>数组解构原理：</h2><ol>
+<li><p>以角标为对应依据，解构iterable，请参考<a href="http://godengine.github.io/2016/05/19/ES6%E4%B9%8BIteration-protocols/" target="_blank" rel="external">ES6_Iteration protocols</a>包括string，celection，generator等可迭代的对象，结构不可迭代对象的会抛出异常</p>
 </li>
-</ul>
-<p>如上的反斜杠后面跟一个数字，\1代表引用第一个小括号里匹配到的pattern（\w+）。即\后面跟一个从1开始的数字，分别代表第几个小括号所匹配的pattern。如果没有反向引用，如何能匹配到这种xml格式呢？</p>
-<ul>
-<li><p>String.prototype.match(/reg/g)<br> match方法在正则表达式参数的标识符为g时，不会将捕获的子pattern（小括号匹配到的）返回到结果数组里，而是把所有符合整个正则表达式的字符串一一放进去，捕获（capture）到的不会出现在结果中。如果想同时实现，用循环调用RegExp的exec方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var str = &quot;&lt;div class=&apos;test&apos;&gt;&lt;b&gt;Hello&lt;/b&gt;&lt;/div&gt;&quot;;</div><div class="line">var reg = /&lt;(\/?)(\w+)([^&gt;]*?)/g,match;</div><div class="line">while(match=tag.exec(str) !== null)&#123;</div><div class="line">    //每次匹配都可以进行捕获（capture）</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li><p>以角标为依据可以跳过holes，记let [,,x] = [1,2,3];x===3 ;true</p>
 </li>
-<li><p>(?:)消极匹配<br>在只是简单用组而无需捕获时（”()”小括号），尽可能的用(?:)取消对组的捕获，这样可以提高性能，减少引擎不必要的运算。</p>
+<li><p>“…”操作符解构数组时，在没有对应值得情况下返回[]，let[a,y,…z]=[‘a’],y为undefined，z为[]</p>
 </li>
-</ul>
-<p>未完待添加…</p>
+</ol>
+<h2 id="设定默认值"><a href="#设定默认值" class="headerlink" title="设定默认值"></a>设定默认值</h2><p>在没有对应值时，解构结果为默认值，对应值为undefined时不会覆盖默认值,undefined会触发默认值<br>let {x:1} = {x:undefined} x为1</p>
+<h2 id="陷阱"><a href="#陷阱" class="headerlink" title="陷阱"></a>陷阱</h2><ol>
+<li>不要以花括号开头</li>
+<li>注意不要重复声明，let {x:x,y:y}即已经声明，之前就不要在声明，如let x；</li>
+</ol>
+<h2 id="参数处理"><a href="#参数处理" class="headerlink" title="参数处理"></a>参数处理</h2><ol>
+<li><p>spread符 与 rest符，都是’…‘<br>rest操作符从Array中解构数据，用于function中把剩余的参数转化一个array(抛弃arguments，拥抱剩余参数)和解构Array使用</p>
+</li>
+<li><p>spread操作符可以将数组解析为function的参数，如Math.max(…[1,2,3]),解析为(1,2,3);    array.push(…[1,2,3])解析为array.push(1,2,3);<br>在字面量数组中将可迭代的元素( iterable)解析为元素，如[1,…[123],4]解析为[1,1,2,3,4]    ;    […’abc’]解析为[‘a’,’b’,’c’]    解析generator  […{*[Symbol.iterator(){yield ‘a’; yield ‘b’}]}]</p>
+</li>
+</ol>
 
       
     </div>
@@ -261,18 +270,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/06/14/定时器/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/06/28/堆叠上下文/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          定时器
+          堆叠上下文
         
       </div>
     </a>
   
   
-    <a href="/2016/06/03/gradient渐变/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">gradient渐变</div>
+    <a href="/2016/06/14/定时器/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">定时器</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -307,7 +316,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="RegExp" data-title="RegExp" data-url="http://yoursite.com/2016/06/13/RegExp/"></div>
+	<div class="ds-thread" data-thread-key="ES6-解构赋值" data-title="es6之解构" data-url="http://yoursite.com/2016/06/28/ES6-解构赋值/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
