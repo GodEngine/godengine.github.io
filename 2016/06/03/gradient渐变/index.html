@@ -7,11 +7,13 @@
   <title>gradient渐变 | 发动机的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="linear-gradient()可以创建图像，表现为线性渐变的颜色，没有实际的大小，大小取决于应用元素的大小。">
+<meta name="keywords" content="css3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gradient渐变">
 <meta property="og:url" content="http://yoursite.com/2016/06/03/gradient渐变/index.html">
 <meta property="og:site_name" content="发动机的博客">
 <meta property="og:description" content="linear-gradient()可以创建图像，表现为线性渐变的颜色，没有实际的大小，大小取决于应用元素的大小。">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/images/gradient.png">
 <meta property="og:updated_time" content="2016-06-03T10:23:25.000Z">
 <meta name="twitter:card" content="summary">
@@ -115,7 +117,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a>
+						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/pm2/" style="font-size: 10px;">pm2</a>
 					</div>
 				</section>
 				
@@ -235,10 +237,10 @@
 <ul>
 <li>所谓的线性是基于轴线定义的，该轴线以一定的角度穿过元素的中心，当你定义好轴线即渐变的方向时，在垂直于该方向上的线上，每一个点的颜色都是一样的.起点和终点附近的颜色点会和各自起点，终点的颜色一样，所谓的<code>magic corners</code>,神奇海螺？<br><img src="/images/gradient.png" alt="线性渐变"></li>
 <li><p>语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">linear-gradient( 45deg, blue, red );  </div><div class="line">/* 指向45度角方向开始渐变，以blue开始，red结束 */</div><div class="line">linear-gradient( to left top, blue, red);      </div><div class="line">/* 从右下角指向左上角开始渐变，blue开始，red结束 */</div><div class="line"></div><div class="line">linear-gradient( 0deg, blue, green 40%, red ); </div><div class="line">/* 底部指向顶部开始渐变, 蓝色开始, 40%位置变为纯green，两侧渐变，以red结束*/</div><div class="line"></div><div class="line">  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);</div><div class="line">  //实现彩虹一般的渐变，不写stop值就是均分位置的</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">linear-gradient( 45deg, blue, red );  </span><br><span class="line">/* 指向45度角方向开始渐变，以blue开始，red结束 */</span><br><span class="line">linear-gradient( to left top, blue, red);      </span><br><span class="line">/* 从右下角指向左上角开始渐变，blue开始，red结束 */</span><br><span class="line"></span><br><span class="line">linear-gradient( 0deg, blue, green 40%, red ); </span><br><span class="line">/* 底部指向顶部开始渐变, 蓝色开始, 40%位置变为纯green，两侧渐变，以red结束*/</span><br><span class="line"></span><br><span class="line">  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);</span><br><span class="line">  //实现彩虹一般的渐变，不写stop值就是均分位置的</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>你应该这么写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.grad &#123; </div><div class="line">  background-color: #F07575; //不支持渐变时</div><div class="line">  background-image: -webkit-linear-gradient(top, hsl(0, 80%, 70%), #bada55); /*Chrome 25， Safari 6, iOS 6.1, Android 4.3 */</div><div class="line">  background-image:    -moz-linear-gradient(top, hsl(0, 80%, 70%), #bada55); /* For Firefox (3.6 to 15) */</div><div class="line">  background-image:      -o-linear-gradient(top, hsl(0, 80%, 70%), #bada55); /* For old Opera (11.1 to 12.0) */ </div><div class="line">  background-image:         linear-gradient(to bottom, hsl(0, 80%, 70%), #bada55); /* 标准语法*/</div><div class="line">  </div><div class="line">    低版本浏览器在实现渐变时，方向值是起点而不是终点，所以你看到是top，而不是to top。</div><div class="line">    因为当用角度表示方向时，角度指的是终点的方向，而left等方向在低版本浏览器的实现中是起点的方向。</div><div class="line">    所以w3c在最新的标准中，将关键字的形式规定为to direction来和角度标识的方向保持一致。</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.grad &#123; </span><br><span class="line">  background-color: #F07575; //不支持渐变时</span><br><span class="line">  background-image: -webkit-linear-gradient(top, hsl(0, 80%, 70%), #bada55); /*Chrome 25， Safari 6, iOS 6.1, Android 4.3 */</span><br><span class="line">  background-image:    -moz-linear-gradient(top, hsl(0, 80%, 70%), #bada55); /* For Firefox (3.6 to 15) */</span><br><span class="line">  background-image:      -o-linear-gradient(top, hsl(0, 80%, 70%), #bada55); /* For old Opera (11.1 to 12.0) */ </span><br><span class="line">  background-image:         linear-gradient(to bottom, hsl(0, 80%, 70%), #bada55); /* 标准语法*/</span><br><span class="line">  </span><br><span class="line">    低版本浏览器在实现渐变时，方向值是起点而不是终点，所以你看到是top，而不是to top。</span><br><span class="line">    因为当用角度表示方向时，角度指的是终点的方向，而left等方向在低版本浏览器的实现中是起点的方向。</span><br><span class="line">    所以w3c在最新的标准中，将关键字的形式规定为to direction来和角度标识的方向保持一致。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -320,7 +322,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 发动机
+    		&copy; 2018 发动机
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

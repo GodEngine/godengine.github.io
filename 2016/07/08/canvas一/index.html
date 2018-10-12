@@ -7,11 +7,13 @@
   <title>canvas(一) | 发动机的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="注意事项">
+<meta name="keywords" content="html5">
 <meta property="og:type" content="article">
 <meta property="og:title" content="canvas(一)">
 <meta property="og:url" content="http://yoursite.com/2016/07/08/canvas一/index.html">
 <meta property="og:site_name" content="发动机的博客">
 <meta property="og:description" content="注意事项">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/images/fillRules.png">
 <meta property="og:updated_time" content="2016-07-11T09:03:51.000Z">
 <meta name="twitter:card" content="summary">
@@ -115,7 +117,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a>
+						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/pm2/" style="font-size: 10px;">pm2</a>
 					</div>
 				</section>
 				
@@ -252,7 +254,7 @@
 <li>在canvas内部的内容，可作为不支持canvas时显示的内容，支持的canvas的浏览器会忽略内部的内容;</li>
 <li>闭合标签是必须的，如果遗漏，文档的剩余部分在支持canvas的浏览器中将会当做fallback content后备内容，而不被显示;</li>
 </ul>
-<h2 id="Drawing-shapes"><a href="#Drawing-shapes" class="headerlink" title="###　Drawing shapes"></a>###　Drawing shapes</h2><p>在获取node后调用node.getContext(2d),可以获取到<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" target="_blank" rel="external">CanvasRenderingContext2D</a>O,并对其进行操作,canvas只有两种原始类型的形状,矩形和路径：</p>
+<h2 id="Drawing-shapes"><a href="#Drawing-shapes" class="headerlink" title="###　Drawing shapes"></a>###　Drawing shapes</h2><p>在获取node后调用node.getContext(2d),可以获取到<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" target="_blank" rel="noopener">CanvasRenderingContext2D</a>O,并对其进行操作,canvas只有两种原始类型的形状,矩形和路径：</p>
 <h3 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h3><ul>
 <li>O.fillRect(x,y,width,height)： 默认为黑色的矩形</li>
 <li>O.strokeRect(x,y,width,height)： 默认为灰色边框的矩形</li>
@@ -266,7 +268,7 @@
 <li>O.closePath()： 闭合路径,调用fill()填充时，路径会自动闭合(stroke()是不行的)而无需调用该方法</li>
 <li>O.stroke() or O.fill()： 进行路径绘制或者实心的涂画</li>
 </ol>
-<h3 id="Path2D"><a href="#Path2D" class="headerlink" title="Path2D"></a>Path2D</h3><p>使用<a href="https://developer.mozilla.org/en-US/docs/Web/API/Path2D/Path2D#Using_SVG_paths" target="_blank" rel="external">Path2D Object</a>可以更清晰的使用画布的API，可以缓存画布里的路径对象重复使用并提高性能，而且可以配合svg进行绘画;</p>
+<h3 id="Path2D"><a href="#Path2D" class="headerlink" title="Path2D"></a>Path2D</h3><p>使用<a href="https://developer.mozilla.org/en-US/docs/Web/API/Path2D/Path2D#Using_SVG_paths" target="_blank" rel="noopener">Path2D Object</a>可以更清晰的使用画布的API，可以缓存画布里的路径对象重复使用并提高性能，而且可以配合svg进行绘画;</p>
 <h3 id="Applying-styles-and-colors"><a href="#Applying-styles-and-colors" class="headerlink" title="Applying styles and colors"></a>Applying styles and colors</h3><hr>
 <h3 id="fillStyle-and-strokeStyle"><a href="#fillStyle-and-strokeStyle" class="headerlink" title="fillStyle and strokeStyle"></a>fillStyle and strokeStyle</h3><p>O.fillStyle / O.strokeStyle = “colorValue”： 用来设置图像填充颜色和图像outline的颜色，默认值为black黑色,colorValue为合法的颜色值;</p>
 <h3 id="Transparency全局透明度"><a href="#Transparency全局透明度" class="headerlink" title="Transparency全局透明度"></a>Transparency全局透明度</h3><p>O.globalAlpha = 0.5：  设置以后所有的图像透明度均为0.5</p>
@@ -276,7 +278,7 @@
 <li>O.lineJoin = “round” / “bevel” / “miter”： 设置两条片段(包括lines,arcs,curves)交汇处应该是 “弧线” “横切” “直角” 样式</li>
 <li>O.miterLimit = value： 麻蛋看不懂这个…</li>
 <li>O.setLineDash([虚线点宽,虚线点间隔])，O.getLineDash()：设置即返回虚线上点的宽度和点之间的间隔的宽度</li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset" target="_blank" rel="external">O.lineDashOffset=value</a>,这个例子一看便知</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset" target="_blank" rel="noopener">O.lineDashOffset=value</a>,这个例子一看便知</li>
 </ul>
 <h3 id="Gradients"><a href="#Gradients" class="headerlink" title="Gradients"></a>Gradients</h3><p>渐变分为线性渐变和环形渐变，首先要创建相应的渐变对象</p>
 <ul>
@@ -291,14 +293,14 @@
 <li>gradient.addColorStop(position, color)</li>
 </ul>
 <p>position是0~1之间的数，意味着从你绘制区域的百分比位置position开始，颜色为第二个参数color，且不参与渐变，即覆盖与之前渐变重叠的区域</p>
-<h3 id="Patterns"><a href="#Patterns" class="headerlink" title="Patterns"></a>Patterns</h3><p>var pattern = O.createPattern(image, type);O.fillStyle / O.strokeStyle= pattern:<br>用来创建一个图像对象，并按”type”(类似于background-repeat)进行重复平铺。”image”是<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasImageSource" target="_blank" rel="external">CanvasImageSource</a>类型值，可以使image对象、video对象，等CanvasImageSource类型值。<br>用image对象作为image参数时，请确image已经加载完毕.<br>最后将值赋值给填充样式或者绘笔的样式</p>
+<h3 id="Patterns"><a href="#Patterns" class="headerlink" title="Patterns"></a>Patterns</h3><p>var pattern = O.createPattern(image, type);O.fillStyle / O.strokeStyle= pattern:<br>用来创建一个图像对象，并按”type”(类似于background-repeat)进行重复平铺。”image”是<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasImageSource" target="_blank" rel="noopener">CanvasImageSource</a>类型值，可以使image对象、video对象，等CanvasImageSource类型值。<br>用image对象作为image参数时，请确image已经加载完毕.<br>最后将值赋值给填充样式或者绘笔的样式</p>
 <h3 id="shadow"><a href="#shadow" class="headerlink" title="shadow"></a>shadow</h3><ul>
 <li>O.shadowOffsetX = float： 阴影在x轴的偏移</li>
 <li>O.shadowOffsetY = float： 阴影在Y轴的偏移</li>
 <li>O.shadowBlur = float：阴影的模糊度</li>
 <li>O.shadowColor = color： 阴影的颜色</li>
 </ul>
-<h3 id="fill-rules"><a href="#fill-rules" class="headerlink" title="fill rules"></a><a href="https://en.wikipedia.org/wiki/Nonzero-rule" target="_blank" rel="external">fill rules</a></h3><p>填充规则用来判断一个点是否属于一段闭合的曲线，如果属于，则是”inside”,即填充，如果不属于，则为”outside”,即不填充。<br><img src="/images/fillRules.png" alt="来自维基百科"></p>
+<h3 id="fill-rules"><a href="#fill-rules" class="headerlink" title="fill rules"></a><a href="https://en.wikipedia.org/wiki/Nonzero-rule" target="_blank" rel="noopener">fill rules</a></h3><p>填充规则用来判断一个点是否属于一段闭合的曲线，如果属于，则是”inside”,即填充，如果不属于，则为”outside”,即不填充。<br><img src="/images/fillRules.png" alt="来自维基百科"></p>
 <ol>
 <li>“nonzero-rule” 非零规则(图B)：<br>以这个点为起点，向外发出一条射线，该射线被两段曲线分割，顺时针方向曲线-1，逆时针方向曲线+1(当然也可以认为顺时针+1，逆时针-1)，由于该射线被两条顺时针方向的曲线分割，和值不为0，故该点为”inside”。总结下，如果分割曲线线的顺逆方向的数量相同，则为”outside”,否则为”inside”;</li>
 <li>“even-odd rule” 奇偶规则(图A)：<br>以这个点为起点，向外发出一条射线，该射线被两段曲线分割，即被偶数个曲线分割，则为”outside”;如果被奇数个曲线分割，则为”inside”</li>
@@ -314,7 +316,7 @@
 <li>textBaseline = “”： 基线设置，top / hanging / middle / alphabetic / ideographic / bottom。默认值为alphabetic</li>
 <li>direction = “”： 文本起始方向ltr, rtl, inherit</li>
 </ul>
-<h3 id="measureText"><a href="#measureText" class="headerlink" title="measureText"></a>measureText</h3><p>O.measureText()： 返回<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/measureText" target="_blank" rel="external">TextMetrics</a>文本的宽度即一些其他信息，但是目前只支持width…</p>
+<h3 id="measureText"><a href="#measureText" class="headerlink" title="measureText"></a>measureText</h3><p>O.measureText()： 返回<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/measureText" target="_blank" rel="noopener">TextMetrics</a>文本的宽度即一些其他信息，但是目前只支持width…</p>
 
       
     </div>
@@ -334,8 +336,8 @@
     </a>
   
   
-    <a href="/2016/06/28/堆叠上下文/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">堆叠上下文</div>
+    <a href="/2016/06/28/ES6-解构赋值/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">es6之解构</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -395,7 +397,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 发动机
+    		&copy; 2018 发动机
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

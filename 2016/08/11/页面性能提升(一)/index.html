@@ -7,11 +7,13 @@
   <title>提升页面性能 | 发动机的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="问题的起因于在实现一个移动端滑动功能时的，性能有些差，尤其在便宜的安卓机上表现尤为如此，故展开了优化的探索…">
+<meta name="keywords" content="css">
 <meta property="og:type" content="article">
 <meta property="og:title" content="提升页面性能">
 <meta property="og:url" content="http://yoursite.com/2016/08/11/页面性能提升(一)/index.html">
 <meta property="og:site_name" content="发动机的博客">
 <meta property="og:description" content="问题的起因于在实现一个移动端滑动功能时的，性能有些差，尤其在便宜的安卓机上表现尤为如此，故展开了优化的探索…">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2016-09-20T06:23:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="提升页面性能">
@@ -113,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a>
+						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/pm2/" style="font-size: 10px;">pm2</a>
 					</div>
 				</section>
 				
@@ -243,32 +245,32 @@
 <li><a href="#devtools">chrome开发者工具</a></li>
 </ul>
 <h2 id="浏览器如何工作"><a href="#浏览器如何工作" class="headerlink" title="浏览器如何工作"></a>浏览器如何工作</h2><ol>
-<li>首先理解下<a href="http://www.html5rocks.com/zh/tutorials/speed/layers/" target="_blank" rel="external">webkit的渲染过程</a></li>
-<li>再来理解下<a href="http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/" target="_blank" rel="external">reflow-repaint-restyle-relayout</a>渲染术语</li>
-<li><a href="http://www.html5rocks.com/en/tutorials/internals/howbrowserswork/" target="_blank" rel="external">浏览器是如何工作的</a></li>
+<li>首先理解下<a href="http://www.html5rocks.com/zh/tutorials/speed/layers/" target="_blank" rel="noopener">webkit的渲染过程</a></li>
+<li>再来理解下<a href="http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/" target="_blank" rel="noopener">reflow-repaint-restyle-relayout</a>渲染术语</li>
+<li><a href="http://www.html5rocks.com/en/tutorials/internals/howbrowserswork/" target="_blank" rel="noopener">浏览器是如何工作的</a></li>
 <li><strong>reflow/layout</strong>：回流/布局。 比如改变node尺寸之类的需要重新计算布局的操作，会引发reflow，页面初始化时会第一次reflow。</li>
 <li><strong>repaint</strong>：重绘。将重新计算完的结果更新在渲染树上叫repaint。</li>
 </ol>
 <p>总之这些渲染过程都是<strong>耗时</strong>的，我们要做的就是从各个方面尽可能<strong>减少这些耗时的过程</strong>，<strong>减少重绘区域的大小</strong>，<strong>合理利用硬件资源</strong>，最终提升性能和优化体验。这三个方面以下都会提到具体的措施。</p>
 <h3 id="硬件加速"><a href="#硬件加速" class="headerlink" title="硬件加速"></a>硬件加速</h3><p>使用一些相关的css属性可以调起终端设备的GPU对页面进行渲染而非普通的浏览器渲染，并适当减少重绘，可以提升渲染的速度，这便是以上提到的<strong>合理利用硬件资源</strong>。</p>
 <ul>
-<li><a href="http://www.w3cplus.com/css3/introduction-to-hardware-acceleration-css-animations.html" target="_blank" rel="external">w3cplus</a>关于硬件加速解释</li>
-<li>使用<a href="http://blog.teamtreehouse.com/increase-your-sites-performance-with-hardware-accelerated-css" target="_blank" rel="external">css3d调起硬件加速</a></li>
-<li><a href="http://div.io/topic/1348" target="_blank" rel="external">不盲目使用</a>css3</li>
+<li><a href="http://www.w3cplus.com/css3/introduction-to-hardware-acceleration-css-animations.html" target="_blank" rel="noopener">w3cplus</a>关于硬件加速解释</li>
+<li>使用<a href="http://blog.teamtreehouse.com/increase-your-sites-performance-with-hardware-accelerated-css" target="_blank" rel="noopener">css3d调起硬件加速</a></li>
+<li><a href="http://div.io/topic/1348" target="_blank" rel="noopener">不盲目使用</a>css3</li>
 </ul>
 <p>使用一些对样式没有影响的CSS3D属性可以唤起硬件加速获得较好的渲染效果。过多的使用ccs3D等变换会提高内存占用，反而影响性能，总之一句话，合理利用硬件资源以获得最佳的展现效果(<em>废话</em>)。</p>
-<h3 id="css属性触发"><a href="#css属性触发" class="headerlink" title="css属性触发"></a>css属性触发</h3><p><a href="https://csstriggers.com/" target="_blank" rel="external">籽料奉上</a>，该API提供了css属性分别引起浏览器怎样的重绘或者重排。<br><a href="http://www.html5rocks.com/zh/tutorials/speed/scrolling/" target="_blank" rel="external">该文章 </a>中提到一个非常有用的概念，<strong>position:fixed</strong>对重绘区域的影响。每当scrolling时fixed定位的元素都会引起重绘，如果多个这种元素在页面上组成一个较大的重绘区域时会相当严重影响性能。例如这篇文章中提到的<a href="http://www.html5rocks.com/static/demos/scrolling/demo.html#" target="_blank" rel="external">demo页</a>相对窗口width:100%的fixed顶部导航栏和相对窗口height:100%的fixed右侧菜单栏组成一块全屏大小的绘制区域，scroll时明显的影响到了FPS(FPS面板中可以看到)。所以我们在使用fixed元素时，尽量避免他们在一个层中或者避免组成较大的绘制区域,即上面提到的<strong>减少重绘区域的大小</strong>。</p>
-<h3 id="will-chage"><a href="#will-chage" class="headerlink" title="will chage"></a>will chage</h3><p>css提供了为元素添加<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/will-change" target="_blank" rel="external">will-change</a>属性用来给浏览器一个提示，表明该元素即将在哪一个属性上发生变化，浏览器将提前准备而且将优化措施置于内存中。使得相应更快，更迅速。当然也是以消耗内存为前提的，所以最好精确化，最小化使用该属性而不是给无用的元素添加该属性。兼容性不是那么好，但总比没有强…</p>
-<h3 id="js优化"><a href="#js优化" class="headerlink" title="js优化"></a>js优化</h3><p>js对dom操作时引发的重绘与重排(有的叫回流)对于性能(尤其是重排)的影响很大。<a href="http://www.css88.com/archives/4996" target="_blank" rel="external">WEB前端开发</a>这篇博客有较为翔细的解释(应该是翻译妈蛋),我找到了<a href="http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/" target="_blank" rel="external">原文</a>，优化目的只有一个，尽可能少的引起浏览器的重排/绘…以下算是重点:</p>
+<h3 id="css属性触发"><a href="#css属性触发" class="headerlink" title="css属性触发"></a>css属性触发</h3><p><a href="https://csstriggers.com/" target="_blank" rel="noopener">籽料奉上</a>，该API提供了css属性分别引起浏览器怎样的重绘或者重排。<br><a href="http://www.html5rocks.com/zh/tutorials/speed/scrolling/" target="_blank" rel="noopener">该文章 </a>中提到一个非常有用的概念，<strong>position:fixed</strong>对重绘区域的影响。每当scrolling时fixed定位的元素都会引起重绘，如果多个这种元素在页面上组成一个较大的重绘区域时会相当严重影响性能。例如这篇文章中提到的<a href="http://www.html5rocks.com/static/demos/scrolling/demo.html#" target="_blank" rel="noopener">demo页</a>相对窗口width:100%的fixed顶部导航栏和相对窗口height:100%的fixed右侧菜单栏组成一块全屏大小的绘制区域，scroll时明显的影响到了FPS(FPS面板中可以看到)。所以我们在使用fixed元素时，尽量避免他们在一个层中或者避免组成较大的绘制区域,即上面提到的<strong>减少重绘区域的大小</strong>。</p>
+<h3 id="will-chage"><a href="#will-chage" class="headerlink" title="will chage"></a>will chage</h3><p>css提供了为元素添加<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/will-change" target="_blank" rel="noopener">will-change</a>属性用来给浏览器一个提示，表明该元素即将在哪一个属性上发生变化，浏览器将提前准备而且将优化措施置于内存中。使得相应更快，更迅速。当然也是以消耗内存为前提的，所以最好精确化，最小化使用该属性而不是给无用的元素添加该属性。兼容性不是那么好，但总比没有强…</p>
+<h3 id="js优化"><a href="#js优化" class="headerlink" title="js优化"></a>js优化</h3><p>js对dom操作时引发的重绘与重排(有的叫回流)对于性能(尤其是重排)的影响很大。<a href="http://www.css88.com/archives/4996" target="_blank" rel="noopener">WEB前端开发</a>这篇博客有较为翔细的解释(应该是翻译妈蛋),我找到了<a href="http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/" target="_blank" rel="noopener">原文</a>，优化目的只有一个，尽可能少的引起浏览器的重排/绘…以下算是重点:</p>
 <ol>
 <li>尽量<strong>一次性</strong>执行style的操作，如放入cssText中，分步执行js操作会导致多次重绘重排。</li>
-<li>缓存那些导致强制触发flush队列的js操作，比如操作offsetTop, offsetLeft等样式信息，具体可以触发的dom操作可以参考<a href="http://gent.ilcore.com/2011/03/how-not-to-trigger-layout-in-webkit.html" target="_blank" rel="external">这位大哥整理的</a>。</li>
+<li>缓存那些导致强制触发flush队列的js操作，比如操作offsetTop, offsetLeft等样式信息，具体可以触发的dom操作可以参考<a href="http://gent.ilcore.com/2011/03/how-not-to-trigger-layout-in-webkit.html" target="_blank" rel="noopener">这位大哥整理的</a>。</li>
 <li>对一个element进行频繁操作时，<strong>先</strong> display:none，执行你的复杂的dom操作，然后<strong>恢复</strong>display原状态，这期间dom操作便不会引起重绘/排(真TM机智啊)…</li>
 <li>对需要更新的node进行拷贝，然后一次性替换原node，说白了目的也是避免对dom直接的分步操作导致过多的重排重绘</li>
-<li>使用DocumentFragments进行node集合的插入，<a href="http://ejohn.org/blog/dom-documentfragments/" target="_blank" rel="external">John Resig的博客</a>有提起，但是没有明显的指出与浏览器的重排重绘联系起来。</li>
+<li>使用DocumentFragments进行node集合的插入，<a href="http://ejohn.org/blog/dom-documentfragments/" target="_blank" rel="noopener">John Resig的博客</a>有提起，但是没有明显的指出与浏览器的重排重绘联系起来。</li>
 </ol>
 <p>总之即<strong>减少耗时的渲染过程</strong>。</p>
-<h3 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h3><p>大多数设备的屏幕刷新频率为60次/秒，即我们所说的FPS为60时，视觉体验较好。动画的执行建议用requestAnimationFrame而非setTimeout/setInterval，前者由浏览器厂商做了针对性的优化，针对不同刷新频率的设备能调整fps，能保证执行每一帧前回调函数都会执行(setInterval在执行队列中有实例存在时就会跳过本次实例的放入，导致丢失帧)，反正就raf好~~至于具体为啥用requeAnimationFrame，请参考<a href="http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/" target="_blank" rel="external">google前端大神</a>与<a href="http://www.html5rocks.com/en/tutorials/speed/rendering/" target="_blank" rel="external">html5rock</a>中的具体阐述。</p>
+<h3 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h3><p>大多数设备的屏幕刷新频率为60次/秒，即我们所说的FPS为60时，视觉体验较好。动画的执行建议用requestAnimationFrame而非setTimeout/setInterval，前者由浏览器厂商做了针对性的优化，针对不同刷新频率的设备能调整fps，能保证执行每一帧前回调函数都会执行(setInterval在执行队列中有实例存在时就会跳过本次实例的放入，导致丢失帧)，反正就raf好~~至于具体为啥用requeAnimationFrame，请参考<a href="http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/" target="_blank" rel="noopener">google前端大神</a>与<a href="http://www.html5rocks.com/en/tutorials/speed/rendering/" target="_blank" rel="noopener">html5rock</a>中的具体阐述。</p>
 <h2 id="devtools"><a href="#devtools" class="headerlink" title="devtools"></a>devtools</h2><p>原谅我。。。我用的不熟，请自行Googleing chrome开发工具查找项目运行中性能的瓶颈。。。</p>
 <p>从一开始编码时意识里就存在这些优化的套路，最后的效果绝逼是不一样的…</p>
 
@@ -351,7 +353,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 发动机
+    		&copy; 2018 发动机
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

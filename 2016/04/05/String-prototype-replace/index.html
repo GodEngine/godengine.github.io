@@ -6,19 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>String.prototype.replace | 发动机的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="replace()
-str.replace(regexp|substr, newSubStr|function[, flags])">
+  <meta name="description" content="replace() str.replace(regexp|substr, newSubStr|function[, flags])">
 <meta property="og:type" content="article">
 <meta property="og:title" content="String.prototype.replace">
 <meta property="og:url" content="http://yoursite.com/2016/04/05/String-prototype-replace/index.html">
 <meta property="og:site_name" content="发动机的博客">
-<meta property="og:description" content="replace()
-str.replace(regexp|substr, newSubStr|function[, flags])">
+<meta property="og:description" content="replace() str.replace(regexp|substr, newSubStr|function[, flags])">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2016-06-03T10:27:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="String.prototype.replace">
-<meta name="twitter:description" content="replace()
-str.replace(regexp|substr, newSubStr|function[, flags])">
+<meta name="twitter:description" content="replace() str.replace(regexp|substr, newSubStr|function[, flags])">
   
     <link rel="alternative" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
   
@@ -116,7 +114,7 @@ str.replace(regexp|substr, newSubStr|function[, flags])">
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a>
+						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/pm2/" style="font-size: 10px;">pm2</a>
 					</div>
 				</section>
 				
@@ -225,16 +223,16 @@ str.replace(regexp|substr, newSubStr|function[, flags])">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="replace"><a href="#replace" class="headerlink" title="replace()"></a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace" target="_blank" rel="external">replace()</a></h3><blockquote>
+        <h3 id="replace"><a href="#replace" class="headerlink" title="replace()"></a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace" target="_blank" rel="noopener">replace()</a></h3><blockquote>
 <p>str.replace(regexp|substr, newSubStr|function[, flags])</p>
 </blockquote>
 <a id="more"></a>
 <p>replace()是js内建对象String原型上的方法，用于替换字符串中的一部分值并将最终结果作为一个新的字符串返回（不会改变原字符串），我们直接介绍其常用(第一个参数为RegExp)的两种方法。</p>
-<h3 id="str-replace-regexp，newSubStr"><a href="#str-replace-regexp，newSubStr" class="headerlink" title="str.replace(regexp，newSubStr)"></a>str.replace(regexp，newSubStr)</h3><p>当replacement(<em>newSubStr</em>)是一个string时，replacement中某些特殊字符便代表了特殊的含义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$$: 代表一个&apos;$&apos;字符串</div><div class="line">$&amp;: 代表regexp匹配的子字符串</div><div class="line">$`: 代表匹配到的子串儿之前的部分</div><div class="line">$&apos;: 代表匹配到的子串儿之后的部分</div><div class="line">$n or $nn:当n或nn是一个十进制数时，代表正则表达式中匹配到的第n/nn个小括号中的内容</div></pre></td></tr></table></figure></p>
-<p>来个栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var str = &quot;[-god-]&quot;;</div><div class="line">var resul = str.replace(/-([\w]*)-/,&quot;$$:$&amp;:$`:$&apos;:$1&quot;);</div><div class="line">console.log(resul);  //[$:-god-:[:]:god]</div></pre></td></tr></table></figure></p>
-<h3 id="str-replace-regexp，function"><a href="#str-replace-regexp，function" class="headerlink" title="str.replace(regexp，function)"></a>str.replace(regexp，function)</h3><p>当replacement(<em>function</em>)是一个function时，replacement中参数列表则默认代表如下含义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">第一个参数（match or any）: 代表regexp匹配的子字符串（同上的$&amp;）</div><div class="line">第二个参数（P1 or any）:代表正则表达式中匹配到的第一个小括号中的内容 </div><div class="line">第三个参数（P2 or any）：代表正则表达式中匹配到的第二个小括号中的内容，以此类推.. </div><div class="line">倒数第二个参数（offset or any）:代表regexp匹配的子字符串首字符在原字符串的index值</div><div class="line">倒数第一个参数（string or any）：代表原字符串</div></pre></td></tr></table></figure></p>
-<p>function中的arguments默认为以上的参数列表，有几个参数则按顺序将arguments值依次赋给参数。当regexp的参数包含g（global）时，function会执行相应匹配的次数，转换所有匹配到的值。<br>官方的栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var str = &apos;x-x_&apos;;</div><div class="line">var retArr = [];</div><div class="line">str.replace(/(x_*)|(-)/g, function(match, p1, p2) &#123; </div><div class="line">  if (p1) &#123; retArr.push(&#123; on: true, length: p1.length &#125;); &#125;</div><div class="line">  if (p2) &#123; retArr.push(&#123; on: false, length: 1 &#125;); &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">console.log(retArr);   //避免的使用for循环，逼格也高</div></pre></td></tr></table></figure></p>
-<p>说白这个方法的核心其实是<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="external">正则</a>尼玛。。。不说了，学正则去</p>
+<h3 id="str-replace-regexp，newSubStr"><a href="#str-replace-regexp，newSubStr" class="headerlink" title="str.replace(regexp，newSubStr)"></a>str.replace(regexp，newSubStr)</h3><p>当replacement(<em>newSubStr</em>)是一个string时，replacement中某些特殊字符便代表了特殊的含义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$$: 代表一个&apos;$&apos;字符串</span><br><span class="line">$&amp;: 代表regexp匹配的子字符串</span><br><span class="line">$`: 代表匹配到的子串儿之前的部分</span><br><span class="line">$&apos;: 代表匹配到的子串儿之后的部分</span><br><span class="line">$n or $nn:当n或nn是一个十进制数时，代表正则表达式中匹配到的第n/nn个小括号中的内容</span><br></pre></td></tr></table></figure></p>
+<p>来个栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;[-god-]&quot;;</span><br><span class="line">var resul = str.replace(/-([\w]*)-/,&quot;$$:$&amp;:$`:$&apos;:$1&quot;);</span><br><span class="line">console.log(resul);  //[$:-god-:[:]:god]</span><br></pre></td></tr></table></figure></p>
+<h3 id="str-replace-regexp，function"><a href="#str-replace-regexp，function" class="headerlink" title="str.replace(regexp，function)"></a>str.replace(regexp，function)</h3><p>当replacement(<em>function</em>)是一个function时，replacement中参数列表则默认代表如下含义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一个参数（match or any）: 代表regexp匹配的子字符串（同上的$&amp;）</span><br><span class="line">第二个参数（P1 or any）:代表正则表达式中匹配到的第一个小括号中的内容 </span><br><span class="line">第三个参数（P2 or any）：代表正则表达式中匹配到的第二个小括号中的内容，以此类推.. </span><br><span class="line">倒数第二个参数（offset or any）:代表regexp匹配的子字符串首字符在原字符串的index值</span><br><span class="line">倒数第一个参数（string or any）：代表原字符串</span><br></pre></td></tr></table></figure></p>
+<p>function中的arguments默认为以上的参数列表，有几个参数则按顺序将arguments值依次赋给参数。当regexp的参数包含g（global）时，function会执行相应匹配的次数，转换所有匹配到的值。<br>官方的栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;x-x_&apos;;</span><br><span class="line">var retArr = [];</span><br><span class="line">str.replace(/(x_*)|(-)/g, function(match, p1, p2) &#123; </span><br><span class="line">  if (p1) &#123; retArr.push(&#123; on: true, length: p1.length &#125;); &#125;</span><br><span class="line">  if (p2) &#123; retArr.push(&#123; on: false, length: 1 &#125;); &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(retArr);   //避免的使用for循环，逼格也高</span><br></pre></td></tr></table></figure></p>
+<p>说白这个方法的核心其实是<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="noopener">正则</a>尼玛。。。不说了，学正则去</p>
 
       
     </div>
@@ -315,7 +313,7 @@ str.replace(regexp|substr, newSubStr|function[, flags])">
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 发动机
+    		&copy; 2018 发动机
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

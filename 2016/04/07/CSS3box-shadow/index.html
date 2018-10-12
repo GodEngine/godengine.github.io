@@ -7,11 +7,13 @@
   <title>CSS3box-shadow | 发动机的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="What the FUCK is box-shadow？box-shadow属性用来指定元素的阴影效果，用一个逗号隔开的值列表来描述。">
+<meta name="keywords" content="css3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS3box-shadow">
 <meta property="og:url" content="http://yoursite.com/2016/04/07/CSS3box-shadow/index.html">
 <meta property="og:site_name" content="发动机的博客">
 <meta property="og:description" content="What the FUCK is box-shadow？box-shadow属性用来指定元素的阴影效果，用一个逗号隔开的值列表来描述。">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2016-04-07T09:37:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS3box-shadow">
@@ -113,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a>
+						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/pm2/" style="font-size: 10px;">pm2</a>
 					</div>
 				</section>
 				
@@ -226,19 +228,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="What-the-FUCK-is-box-shadow？"><a href="#What-the-FUCK-is-box-shadow？" class="headerlink" title="What the FUCK is box-shadow？"></a>What the FUCK is <strong>box-shadow</strong>？</h3><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow" target="_blank" rel="external">box-shadow</a>属性用来指定元素的阴影效果，用一个逗号隔开的值列表来描述。<br><a id="more"></a></p>
+        <h3 id="What-the-FUCK-is-box-shadow？"><a href="#What-the-FUCK-is-box-shadow？" class="headerlink" title="What the FUCK is box-shadow？"></a>What the FUCK is <strong>box-shadow</strong>？</h3><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow" target="_blank" rel="noopener">box-shadow</a>属性用来指定元素的阴影效果，用一个逗号隔开的值列表来描述。<br><a id="more"></a></p>
 <blockquote>
 <p><code>&lt;shadow&gt; = inset? &amp;&amp; &lt;length&gt;{2,4} &amp;&amp; &lt;color&gt;?</code></p>
 </blockquote>
-<p>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">box-shadow: inset 2px 2px 2px 2px black;</div></pre></td></tr></table></figure></p>
-<p>以上栗介绍<strong>值</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">inset: </div><div class="line">    默认该值为未指定的。在未指定时，阴影效果为像外部投影，即元素内部是不出现阴影效果的。当用inset关键字指定时，阴影效果为向内投影，即元素外部是不出现阴影效果的，此时阴影覆盖background上面，但是在content内容下面。</div><div class="line">    </div><div class="line">&lt;offset-x&gt; &lt;offset-y&gt;（第一、二个length值）:</div><div class="line">第一、二个length值代表阴影在水平和垂直方向上的偏移量(可以理解为延伸量)。可以为负值，负值即向左/向上偏移。常用单位可以为px,em,rem等等，具体请查阅MDN大法。</div><div class="line"></div><div class="line">&lt;blur-radius&gt;（第三个length值）：</div><div class="line">第三个length值代表阴影模糊的范围，值越大，模糊的范围越大，不可以为负值，负值是将没有阴影效果。默认值为0；</div><div class="line"></div><div class="line">&lt;spread-radius&gt;（第四个length值）</div><div class="line">第四个length值代表阴影扩大的范围，和blur-radius值唯一区别是效果不同，范围变化是一样的，负值跟0效果是一样的</div><div class="line"></div><div class="line">color:</div><div class="line">设置阴影颜色。配合颜色</div></pre></td></tr></table></figure></p>
+<p>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box-shadow: inset 2px 2px 2px 2px black;</span><br></pre></td></tr></table></figure></p>
+<p>以上栗介绍<strong>值</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">inset: </span><br><span class="line">    默认该值为未指定的。在未指定时，阴影效果为像外部投影，即元素内部是不出现阴影效果的。当用inset关键字指定时，阴影效果为向内投影，即元素外部是不出现阴影效果的，此时阴影覆盖background上面，但是在content内容下面。</span><br><span class="line">    </span><br><span class="line">&lt;offset-x&gt; &lt;offset-y&gt;（第一、二个length值）:</span><br><span class="line">第一、二个length值代表阴影在水平和垂直方向上的偏移量(可以理解为延伸量)。可以为负值，负值即向左/向上偏移。常用单位可以为px,em,rem等等，具体请查阅MDN大法。</span><br><span class="line"></span><br><span class="line">&lt;blur-radius&gt;（第三个length值）：</span><br><span class="line">第三个length值代表阴影模糊的范围，值越大，模糊的范围越大，不可以为负值，负值是将没有阴影效果。默认值为0；</span><br><span class="line"></span><br><span class="line">&lt;spread-radius&gt;（第四个length值）</span><br><span class="line">第四个length值代表阴影扩大的范围，和blur-radius值唯一区别是效果不同，范围变化是一样的，负值跟0效果是一样的</span><br><span class="line"></span><br><span class="line">color:</span><br><span class="line">设置阴影颜色。配合颜色</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><p>box-shadow本身不占位置，不会影响布局，还在原来的位置。只是相当于copy一份目标元素（像影子），然后通过offset-x/y设置相对于原位置的偏移，<code>&lt;spread-radius&gt;</code>改变了影子的大小，<code>&lt;blur-radius&gt;</code>改变模糊度的大小。</p>
 </li>
 <li><p>设置多个box-shadow的话用逗号隔开，渲染时先指定的阴影在上面，重叠部分的阴影效果会叠加,比如四个边阴影不一样，则用四个列表来渲染。</p>
 </li>
 </ul>
-<p>介绍一些<a href="http://buttoncssgenerator.com/" target="_blank" rel="external">小工具</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Box-shadow_generator" target="_blank" rel="external">等等</a>;</p>
+<p>介绍一些<a href="http://buttoncssgenerator.com/" target="_blank" rel="noopener">小工具</a>,<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Box-shadow_generator" target="_blank" rel="noopener">等等</a>;</p>
 
       
     </div>
@@ -319,7 +321,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 发动机
+    		&copy; 2018 发动机
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

@@ -7,11 +7,13 @@
   <title>canvas二 | 发动机的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="妈蛋没个开头还不能写了more了">
+<meta name="keywords" content="html5">
 <meta property="og:type" content="article">
 <meta property="og:title" content="canvas二">
 <meta property="og:url" content="http://yoursite.com/2016/07/12/canvas二/index.html">
 <meta property="og:site_name" content="发动机的博客">
 <meta property="og:description" content="妈蛋没个开头还不能写了more了">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2016-07-15T03:17:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="canvas二">
@@ -113,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a>
+						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/pm2/" style="font-size: 10px;">pm2</a>
 					</div>
 				</section>
 				
@@ -253,7 +255,7 @@
 <li>O.save()： 每一次调用该方法，都会将canvas当前的状态，包括transformations变换，strokeStyle，fillStyle等属性，当前的clipping path等信息压入一个栈中</li>
 <li>O.restore()： 每一次调用该方法，都会将上一次save()时push到栈里的信息pop出栈，即回复到上一次save时的状态，不用再手动修改一些属性</li>
 </ul>
-<h3 id="Translating"><a href="#Translating" class="headerlink" title="Translating"></a><strong>Translating</strong></h3><p>O.translate(x,y)： 将canvas的画布的原点进行裁剪，即将(0,0)点的位置移至(x,y)处。在重复绘制图片时，与save(),restore()方法结合，可以不用再改变绘制的原点坐标，<a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations#A_translate_example" target="_blank" rel="external">示例</a>,且裁剪之外的部分绘制不受影响。第二次translate时是相对于前一次的位置变换的而不是初始位置。</p>
+<h3 id="Translating"><a href="#Translating" class="headerlink" title="Translating"></a><strong>Translating</strong></h3><p>O.translate(x,y)： 将canvas的画布的原点进行裁剪，即将(0,0)点的位置移至(x,y)处。在重复绘制图片时，与save(),restore()方法结合，可以不用再改变绘制的原点坐标，<a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations#A_translate_example" target="_blank" rel="noopener">示例</a>,且裁剪之外的部分绘制不受影响。第二次translate时是相对于前一次的位置变换的而不是初始位置。</p>
 <h3 id="Rotating"><a href="#Rotating" class="headerlink" title="Rotating"></a><strong>Rotating</strong></h3><p>O.rotate()： 将画布按顺时针方向旋转一定的的弧度，可以用Math.PI/180为360度角度单位代表的弧度，然后乘以对应的角度。</p>
 <h3 id="Scaling"><a href="#Scaling" class="headerlink" title="Scaling"></a><strong>Scaling</strong></h3><p>O.scale(x,y)： 将canvas上每一像素默认的宽高按x,y的比例放大缩小，x,y小于1为缩小，大于1则是放大。</p>
 <h3 id="Transforms"><a href="#Transforms" class="headerlink" title="Transforms"></a><strong>Transforms</strong></h3><ul>
@@ -264,8 +266,8 @@
 <li>setTransform(a, b, c, d, e, f)：重置transform为新的值</li>
 <li>resetTransform()： 重置transform为默认值，即不进行变换</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">特地看了下这个b和c参数：</div><div class="line"></div><div class="line">当b为1时，水平方向上的边线左端不变，右端沿垂直方向向下(正方向)移动了相对原垂直高度1倍的距离，同理0.5则位移0,5倍的距离，-1则向上位移1倍距离</div><div class="line"></div><div class="line">当c为1时,垂直方向上的边线上端不变，下端沿水平方向向右(正方向)移动了相对原水平长度1倍的距离，同理0.5则位移0,5倍的距离，-1则向左位移1倍距离</div><div class="line"></div><div class="line">以上是根据API的解释，实际上的表现更易理解的是b就是垂直方向上进行偏移，c是水平方向进行偏移，当然左上的端点位置是不变的。而不应该按API解释的b是水平c是垂直</div></pre></td></tr></table></figure>
-<h2 id="compositing-and-clipping"><a href="#compositing-and-clipping" class="headerlink" title="compositing-and-clipping"></a>compositing-and-clipping</h2><h3 id="globalCompositeOperation"><a href="#globalCompositeOperation" class="headerlink" title="globalCompositeOperation"></a><strong>globalCompositeOperation</strong></h3><p>globalCompositeOperation=”” ,设置全局颜色混合时的规则，妈蛋好复杂，我只能提供地址了，<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation" target="_blank" rel="external">传送门</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">特地看了下这个b和c参数：</span><br><span class="line"></span><br><span class="line">当b为1时，水平方向上的边线左端不变，右端沿垂直方向向下(正方向)移动了相对原垂直高度1倍的距离，同理0.5则位移0,5倍的距离，-1则向上位移1倍距离</span><br><span class="line"></span><br><span class="line">当c为1时,垂直方向上的边线上端不变，下端沿水平方向向右(正方向)移动了相对原水平长度1倍的距离，同理0.5则位移0,5倍的距离，-1则向左位移1倍距离</span><br><span class="line"></span><br><span class="line">以上是根据API的解释，实际上的表现更易理解的是b就是垂直方向上进行偏移，c是水平方向进行偏移，当然左上的端点位置是不变的。而不应该按API解释的b是水平c是垂直</span><br></pre></td></tr></table></figure>
+<h2 id="compositing-and-clipping"><a href="#compositing-and-clipping" class="headerlink" title="compositing-and-clipping"></a>compositing-and-clipping</h2><h3 id="globalCompositeOperation"><a href="#globalCompositeOperation" class="headerlink" title="globalCompositeOperation"></a><strong>globalCompositeOperation</strong></h3><p>globalCompositeOperation=”” ,设置全局颜色混合时的规则，妈蛋好复杂，我只能提供地址了，<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation" target="_blank" rel="noopener">传送门</a></p>
 <h3 id="clip"><a href="#clip" class="headerlink" title="clip"></a><strong>clip</strong></h3><p>调用O.clip()方法，可以按上一步绘制出的图形裁剪出来一个区域，在这之后的绘制只有在clip()区域内的图像才会出现，超出范围的被遮盖，可以添加之前提到的fillRule填充规则。</p>
 
       
@@ -347,7 +349,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 发动机
+    		&copy; 2018 发动机
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

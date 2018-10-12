@@ -12,6 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/09/JavaScript分号自动插入机制/index.html">
 <meta property="og:site_name" content="发动机的博客">
 <meta property="og:description" content="这片博客主要总结(翻译…)下JavaScript语言中的分号自动插入机制 ASI，以及表达式Expression和声明 statement的概念和区别。从后两者开始说起：">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2016-09-09T03:30:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript分号自动插入机制">
@@ -113,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a>
+						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/pm2/" style="font-size: 10px;">pm2</a>
 					</div>
 				</section>
 				
@@ -222,30 +223,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这片博客主要总结(翻译…)下JavaScript语言中的分号自动插入机制 <strong>ASI</strong>，以及表达式<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions" target="_blank" rel="external">Expression</a>和声明 <strong>statement</strong>的概念和区别。从后两者开始说起：<br><a id="more"></a></p>
+        <p>这片博客主要总结(翻译…)下JavaScript语言中的分号自动插入机制 <strong>ASI</strong>，以及表达式<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions" target="_blank" rel="noopener">Expression</a>和声明 <strong>statement</strong>的概念和区别。从后两者开始说起：<br><a id="more"></a></p>
 <h2 id="1、Expression和statement的关系和区别"><a href="#1、Expression和statement的关系和区别" class="headerlink" title="1、Expression和statement的关系和区别"></a>1、Expression和statement的关系和区别</h2><blockquote>
 <p>An expression is any valid unit of code that resolves to a value</p>
+</blockquote>
+<blockquote>
 <p>Statements is everything that “does something”. A program is always a sequence of statements </p>
 </blockquote>
 <p><em>一个Expression是任意可以<strong>解析为一个值</strong>的，合法的代码片段；</em></p>
 <p><em>一个Statements也是JavaScript完成逻辑的组成片段，可以由expression和合法的JavaScript语法组成，不要求必须返回一个值</em></p>
 <p>区别突出在expression重在可以<strong>转化为一个值</strong>，而statement重在<strong>完成一个逻辑</strong>，这个逻辑可以由很多expression和其他语法构成。比如for语句，无法转化成一个值，不是expression，但是却是一个statement；任意一个expression后面加个分号也都可以看做是一个statement（尼玛有点绕…）。</p>
 <p>statements<strong>必须</strong>以分号作为结尾（除了特殊几个，如下2-2）；而expression末尾加上分号也就变成了statements。由于提到expression并没有强制要求以分号结尾，故这里得说明一下JavaScript的Auto Semicolon Insertion (ASI)分号自动插入机制。</p>
-<h2 id="2、Auto-Semicolon-Insertion-ASI-分号自动插入机制"><a href="#2、Auto-Semicolon-Insertion-ASI-分号自动插入机制" class="headerlink" title="2、Auto Semicolon Insertion (ASI)分号自动插入机制"></a>2、Auto Semicolon Insertion (ASI)分号自动插入机制</h2><p>Semicolon Insertion只是一个术语，并不意味着在代码解析阶段真实插入分号，只是用来说明写不写分号是可选的而非必须的。<a href="https://www.zhihu.com/question/20298345" target="_blank" rel="external">知乎</a>上对加还是不加这个问题的讨论还是蛮激烈的…</p>
-<h3 id="2-1-statements组成"><a href="#2-1-statements组成" class="headerlink" title="2.1 statements组成"></a>2.1 statements组成</h3><p>js解析器会尽可能把新的符号作为当前statements的一部分除非遇到了分号，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">例1：</div><div class="line">var a=1</div><div class="line">console.log(a)</div><div class="line"></div><div class="line">这里a=1后面并没有加分号，但整个语句可以执行，因为1后面跟console是非法的，所以解析器智能的将如上代码以如下的方式对待：</div><div class="line"></div><div class="line">var a=1；</div><div class="line">console.log(a)</div><div class="line"></div><div class="line">例2：</div><div class="line">由此也引发了一些问题，比如说如下的demo：</div><div class="line"></div><div class="line">a = b + c</div><div class="line">(d + e).print()</div><div class="line"></div><div class="line">这里解析器会将c作为一个function，function后加括号调用是合法的，并且传入d+e作为参数调用，最终将其对待为：</div><div class="line"> a = b + c(d + e).print()</div><div class="line"> </div><div class="line">如果本意是a=b+c为一个语句，那么不加分号情况下的执行结果就会出错，类似的情况还有如下几个：</div><div class="line"></div><div class="line">例3：</div><div class="line">a = b</div><div class="line">/hi/g.exec(c).map(d)</div><div class="line"></div><div class="line">b后如果不加分号解析器会解析为：</div><div class="line">a = b / hi / g.exec(c).map(d)</div><div class="line">按除法对待，如果本意是下面那句是个正则的操作，那么执行结果也会报错</div><div class="line"></div><div class="line">例4：</div><div class="line">var foo = &quot;bar&quot;</div><div class="line">[ &quot;red&quot;, &quot;green&quot; ].foreach(function(c) &#123; console.log(c) &#125;)</div><div class="line"></div><div class="line">&quot;bar&quot;后不加分号解析器将后面分号作为obj[]般调用对象的属性一样对待，解析为：</div><div class="line">var foo = &quot;bar&quot;[ &quot;red&quot;, &quot;green&quot; ].foreach(function(c) &#123; console.log(c) &#125;)</div><div class="line">执行结果报错</div><div class="line"></div><div class="line">总结：在没有分号情况下，解析器将语法上合法的字符尽可能的并入一个statement中，如上例2,3,4的情况一定要加上分号使之成为一个statement来提示解析器正确解析以便得出预期的结果</div></pre></td></tr></table></figure></p>
+<h2 id="2、Auto-Semicolon-Insertion-ASI-分号自动插入机制"><a href="#2、Auto-Semicolon-Insertion-ASI-分号自动插入机制" class="headerlink" title="2、Auto Semicolon Insertion (ASI)分号自动插入机制"></a>2、Auto Semicolon Insertion (ASI)分号自动插入机制</h2><p>Semicolon Insertion只是一个术语，并不意味着在代码解析阶段真实插入分号，只是用来说明写不写分号是可选的而非必须的。<a href="https://www.zhihu.com/question/20298345" target="_blank" rel="noopener">知乎</a>上对加还是不加这个问题的讨论还是蛮激烈的…</p>
+<h3 id="2-1-statements组成"><a href="#2-1-statements组成" class="headerlink" title="2.1 statements组成"></a>2.1 statements组成</h3><p>js解析器会尽可能把新的符号作为当前statements的一部分除非遇到了分号，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">例1：</span><br><span class="line">var a=1</span><br><span class="line">console.log(a)</span><br><span class="line"></span><br><span class="line">这里a=1后面并没有加分号，但整个语句可以执行，因为1后面跟console是非法的，所以解析器智能的将如上代码以如下的方式对待：</span><br><span class="line"></span><br><span class="line">var a=1；</span><br><span class="line">console.log(a)</span><br><span class="line"></span><br><span class="line">例2：</span><br><span class="line">由此也引发了一些问题，比如说如下的demo：</span><br><span class="line"></span><br><span class="line">a = b + c</span><br><span class="line">(d + e).print()</span><br><span class="line"></span><br><span class="line">这里解析器会将c作为一个function，function后加括号调用是合法的，并且传入d+e作为参数调用，最终将其对待为：</span><br><span class="line"> a = b + c(d + e).print()</span><br><span class="line"> </span><br><span class="line">如果本意是a=b+c为一个语句，那么不加分号情况下的执行结果就会出错，类似的情况还有如下几个：</span><br><span class="line"></span><br><span class="line">例3：</span><br><span class="line">a = b</span><br><span class="line">/hi/g.exec(c).map(d)</span><br><span class="line"></span><br><span class="line">b后如果不加分号解析器会解析为：</span><br><span class="line">a = b / hi / g.exec(c).map(d)</span><br><span class="line">按除法对待，如果本意是下面那句是个正则的操作，那么执行结果也会报错</span><br><span class="line"></span><br><span class="line">例4：</span><br><span class="line">var foo = &quot;bar&quot;</span><br><span class="line">[ &quot;red&quot;, &quot;green&quot; ].foreach(function(c) &#123; console.log(c) &#125;)</span><br><span class="line"></span><br><span class="line">&quot;bar&quot;后不加分号解析器将后面分号作为obj[]般调用对象的属性一样对待，解析为：</span><br><span class="line">var foo = &quot;bar&quot;[ &quot;red&quot;, &quot;green&quot; ].foreach(function(c) &#123; console.log(c) &#125;)</span><br><span class="line">执行结果报错</span><br><span class="line"></span><br><span class="line">总结：在没有分号情况下，解析器将语法上合法的字符尽可能的并入一个statement中，如上例2,3,4的情况一定要加上分号使之成为一个statement来提示解析器正确解析以便得出预期的结果</span><br></pre></td></tr></table></figure></p>
 <p>由以上栗子引出了ASI的触发时机：<br>当引入换行符且跟随的字符无法添加到当前statement中时（即如果加了后面字符会导致语法上非法，如例1），换行处按自动添加分号对待。</p>
 <h3 id="2-2-不强制加引号的statements"><a href="#2-2-不强制加引号的statements" class="headerlink" title="2.2 不强制加引号的statements"></a>2.2 不强制加引号的statements</h3><ul>
 <li>Loops: for, while (not do-while)</li>
 <li>Branching: if, switch, try</li>
 <li>Function declarations (not function expressions)</li>
 </ul>
-<p>以上来自<a href="http://www.2ality.com/2011/05/semicolon-insertion.html" target="_blank" rel="external">Axel</a>博文，这部分没发现什么卵用</p>
+<p>以上来自<a href="http://www.2ality.com/2011/05/semicolon-insertion.html" target="_blank" rel="noopener">Axel</a>博文，这部分没发现什么卵用</p>
 <h3 id="2-3-以下语法后加换行时按自动插入分号对待"><a href="#2-3-以下语法后加换行时按自动插入分号对待" class="headerlink" title="2.3  以下语法后加换行时按自动插入分号对待"></a>2.3  以下语法后加换行时按自动插入分号对待</h3><ul>
 <li>位于左侧的++、–操作符加空格</li>
 <li>continue + 空格</li>
 <li>break + 空格</li>
 <li>return + 空格</li>
-<li>throw + 空格<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">例1：</div><div class="line">a</div><div class="line">++</div><div class="line">c</div><div class="line">按如下对待：</div><div class="line">a;</div><div class="line">++</div><div class="line">c</div><div class="line">即++、--这俩前缀操作符会避免对前一行的影响</div><div class="line"></div><div class="line">对于 continue, break, return, throw这几个关键字如果后面没有字符了且没有分号，解析器认为不应该对下一行产生影响，按直接插入分号对待</div><div class="line">例2：</div><div class="line">return</div><div class="line">a+b</div><div class="line"></div><div class="line">对待为：</div><div class="line">return；</div><div class="line">a+b</div></pre></td></tr></table></figure>
+<li>throw + 空格<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">例1：</span><br><span class="line">a</span><br><span class="line">++</span><br><span class="line">c</span><br><span class="line">按如下对待：</span><br><span class="line">a;</span><br><span class="line">++</span><br><span class="line">c</span><br><span class="line">即++、--这俩前缀操作符会避免对前一行的影响</span><br><span class="line"></span><br><span class="line">对于 continue, break, return, throw这几个关键字如果后面没有字符了且没有分号，解析器认为不应该对下一行产生影响，按直接插入分号对待</span><br><span class="line">例2：</span><br><span class="line">return</span><br><span class="line">a+b</span><br><span class="line"></span><br><span class="line">对待为：</span><br><span class="line">return；</span><br><span class="line">a+b</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="3-总结一下"><a href="#3-总结一下" class="headerlink" title="3.总结一下"></a>3.总结一下</h2><ol>
@@ -261,19 +264,19 @@
 <p>javascript语言把表达式分为以下几类：</p>
 <ul>
 <li><p>算数运算</p>
-<p>  计算结果为数值（1,2.4 …）,包括使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Arithmetic_operators" target="_blank" rel="external">运算符</a>运算: +、-、<em>、%、/、*</em>(幂)、++、–、</p>
+<p>  计算结果为数值（1,2.4 …）,包括使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Arithmetic_operators" target="_blank" rel="noopener">运算符</a>运算: +、-、*、%、/、**(幂)、++、–、</p>
 </li>
 <li><p>String<br> 计算结果为字符串（”a”…）：包括用字符串连接符+的，如”a”+”b”</p>
 </li>
-<li><p>逻辑运算<br>  计算结果为boolean：用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators#Short-Circuit_Evaluation" target="_blank" rel="external">逻辑运算符</a>进行运算的, 请留意逻辑运算<strong>返回值</strong>那部分…</p>
+<li><p>逻辑运算<br>  计算结果为boolean：用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators#Short-Circuit_Evaluation" target="_blank" rel="noopener">逻辑运算符</a>进行运算的, 请留意逻辑运算<strong>返回值</strong>那部分…</p>
 </li>
 <li><p>原始表达式<br>  javascript中的关键字(this…)及常规的表达式,如()括号等</p>
 </li>
-<li><p>Left-hand-side expressions（左端符？尼玛真不知如何翻译）<br> 如new，super，<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator" target="_blank" rel="external">Spread operator</a>（传播符，可以表示为数组）</p>
+<li><p>Left-hand-side expressions（左端符？尼玛真不知如何翻译）<br> 如new，super，<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator" target="_blank" rel="noopener">Spread operator</a>（传播符，可以表示为数组）</p>
 </li>
 </ul>
 <p>能强行归为以上类型的就算是<strong>javascript表达式</strong>了吧。。。</p>
-<p><a href="http://www.2ality.com/2011/05/semicolon-insertion.html" target="_blank" rel="external">原文</a></p>
+<p><a href="http://www.2ality.com/2011/05/semicolon-insertion.html" target="_blank" rel="noopener">原文</a></p>
 
       
     </div>
@@ -354,7 +357,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 发动机
+    		&copy; 2018 发动机
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

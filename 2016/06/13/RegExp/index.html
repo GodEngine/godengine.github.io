@@ -12,6 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/06/13/RegExp/index.html">
 <meta property="og:site_name" content="发动机的博客">
 <meta property="og:description" content="正则基础（基本概念）：">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2016-06-13T03:13:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RegExp">
@@ -113,7 +114,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a>
+						<a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 20px;">css3</a> <a href="/tags/es6/" style="font-size: 12.5px;">es6</a> <a href="/tags/html5/" style="font-size: 15px;">html5</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/pm2/" style="font-size: 10px;">pm2</a>
 					</div>
 				</section>
 				
@@ -240,13 +241,13 @@
 </ol>
 <p>以上加上最基础的创建正则表达式与flag标识符，即组成正则表达式的常用的基础概念。</p>
 <ul>
-<li><strong>BackReferences</strong>反向引用；<br>栗子：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">要求：</div><div class="line">    匹配xml格式的元素:</div><div class="line">    var str=&apos;&lt;/someTag&gt;something&lt;/someTag&gt;&apos;;</div><div class="line">正则：</div><div class="line">    /&lt;(\w+)&gt;(.+)&lt;\/\1&gt;/</div></pre></td></tr></table></figure>
+<li><strong>BackReferences</strong>反向引用；<br>栗子：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">要求：</span><br><span class="line">    匹配xml格式的元素:</span><br><span class="line">    var str=&apos;&lt;/someTag&gt;something&lt;/someTag&gt;&apos;;</span><br><span class="line">正则：</span><br><span class="line">    /&lt;(\w+)&gt;(.+)&lt;\/\1&gt;/</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>如上的反斜杠后面跟一个数字，\1代表引用第一个小括号里匹配到的pattern（\w+）。即\后面跟一个从1开始的数字，分别代表第几个小括号所匹配的pattern。如果没有反向引用，如何能匹配到这种xml格式呢？</p>
 <ul>
 <li><p>String.prototype.match(/reg/g)<br> match方法在正则表达式参数的标识符为g时，不会将捕获的子pattern（小括号匹配到的）返回到结果数组里，而是把所有符合整个正则表达式的字符串一一放进去，捕获（capture）到的不会出现在结果中。如果想同时实现，用循环调用RegExp的exec方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var str = &quot;&lt;div class=&apos;test&apos;&gt;&lt;b&gt;Hello&lt;/b&gt;&lt;/div&gt;&quot;;</div><div class="line">var reg = /&lt;(\/?)(\w+)([^&gt;]*?)/g,match;</div><div class="line">while(match=tag.exec(str) !== null)&#123;</div><div class="line">    //每次匹配都可以进行捕获（capture）</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;&lt;div class=&apos;test&apos;&gt;&lt;b&gt;Hello&lt;/b&gt;&lt;/div&gt;&quot;;</span><br><span class="line">var reg = /&lt;(\/?)(\w+)([^&gt;]*?)/g,match;</span><br><span class="line">while(match=tag.exec(str) !== null)&#123;</span><br><span class="line">    //每次匹配都可以进行捕获（capture）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>(?:)消极匹配<br>在只是简单用组而无需捕获时（”()”小括号），尽可能的用(?:)取消对组的捕获，这样可以提高性能，减少引擎不必要的运算。</p>
 </li>
@@ -332,7 +333,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 发动机
+    		&copy; 2018 发动机
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
