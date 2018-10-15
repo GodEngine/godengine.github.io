@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="发动机的博客">
 <meta property="og:description" content="pm2 笔记">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-15T11:48:43.000Z">
+<meta property="og:updated_time" content="2018-10-15T12:07:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pm2">
 <meta name="twitter:description" content="pm2 笔记">
@@ -276,7 +276,103 @@
 <pre><code>pm2 start ecosystem.config.js   #启动所有服务
 pm2 start ecosystem.config.js --only app    #只启动app服务
 pm2 stop ecosystem.config.js    #停止所有服务
-</code></pre><p>常用的配置参数如下<br>|字段   |类型   |示例  |含义    |<br>|:——:|——|——|——–|<br>|name|string|’webapp’|应用名称|<br>|script|string|’./path/index.js’|pm2 start启动入口文件|<br>|instances|number|0/max/-1等|实例的运行数目|<br>|exec_mode|string|’cluster’|启动模式,’cluster’/‘fork’|<br>|watch|boolean/[]|true|true则开启监听到文件变化时重启服务|<br>|ignore_watch|list|[‘node_modules’]|忽略对某些文件或文件夹的监听|<br>|max_memory_restart|string|’50M’|最大内存值，超过则重启服务|<br>|env|object|{‘NODE_ENV’: ‘production’, ‘ID’: ‘89’}|设置服务环境|<br>|env_&lt; environment &gt;|string|’env_production’|命令行中带有–env &lt; environment &gt;会将当前服务的环境变量设置为使用该属性对应的值|<br>|log_date_format|string|’YYYY-MM-DD HH:mm Z’|日志格式化|<br>|error_file|string|’/data/log/webapp/error.log’|error日志存放地址|<br>|out_file|string|’/data/log/webapp/error.log’|out日志存放地址|<br>|merge_logs|boolean|true|设为true会在日志文件中隐藏项目名后缀|<br>|source_map_support|boolean|true|是否支持source_map|</p>
+</code></pre><p>常用的配置参数如下</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字段</th>
+<th>类型</th>
+<th>示例</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">name</td>
+<td>string</td>
+<td>‘webapp’</td>
+<td>应用名称</td>
+</tr>
+<tr>
+<td style="text-align:center">script</td>
+<td>string</td>
+<td>‘./path/index.js’</td>
+<td>pm2 start启动入口文件</td>
+</tr>
+<tr>
+<td style="text-align:center">instances</td>
+<td>number</td>
+<td>0/max/-1等</td>
+<td>实例的运行数目</td>
+</tr>
+<tr>
+<td style="text-align:center">exec_mode</td>
+<td>string</td>
+<td>‘cluster’</td>
+<td>启动模式,’cluster’/‘fork’</td>
+</tr>
+<tr>
+<td style="text-align:center">watch</td>
+<td>boolean/[]</td>
+<td>true</td>
+<td>true则开启监听到文件变化时重启服务</td>
+</tr>
+<tr>
+<td style="text-align:center">ignore_watch</td>
+<td>list</td>
+<td>[‘node_modules’]</td>
+<td>忽略对某些文件或文件夹的监听</td>
+</tr>
+<tr>
+<td style="text-align:center">max_memory_restart</td>
+<td>string</td>
+<td>‘50M’</td>
+<td>最大内存值，超过则重启服务</td>
+</tr>
+<tr>
+<td style="text-align:center">env</td>
+<td>object</td>
+<td>{‘NODE_ENV’: ‘production’, ‘ID’: ‘89’}</td>
+<td>设置服务环境</td>
+</tr>
+<tr>
+<td style="text-align:center">env_&lt; environment &gt;</td>
+<td>string</td>
+<td>‘env_production’</td>
+<td>命令行中带有–env &lt; environment &gt;会将当前服务的环境变量设置为使用该属性对应的值</td>
+</tr>
+<tr>
+<td style="text-align:center">log_date_format</td>
+<td>string</td>
+<td>‘YYYY-MM-DD HH:mm Z’</td>
+<td>日志格式化</td>
+</tr>
+<tr>
+<td style="text-align:center">error_file</td>
+<td>string</td>
+<td>‘/data/log/webapp/error.log’</td>
+<td>error日志存放地址</td>
+</tr>
+<tr>
+<td style="text-align:center">out_file</td>
+<td>string</td>
+<td>‘/data/log/webapp/error.log’</td>
+<td>out日志存放地址</td>
+</tr>
+<tr>
+<td style="text-align:center">merge_logs</td>
+<td>boolean</td>
+<td>true</td>
+<td>设为true会在日志文件中隐藏项目名后缀</td>
+</tr>
+<tr>
+<td style="text-align:center">source_map_support</td>
+<td>boolean</td>
+<td>true</td>
+<td>是否支持source_map</td>
+</tr>
+</tbody>
+</table>
 <h2 id="优雅的启动-退出-1"><a href="#优雅的启动-退出-1" class="headerlink" title="优雅的启动/退出"></a>优雅的启动/退出</h2><h3 id="安全退出"><a href="#安全退出" class="headerlink" title="安全退出"></a>安全退出</h3><p>如需在关闭进程前做些保存之类的安全操作，可以通过监听<strong>SIGINT</strong>事件执行相应的处理操作:</p>
 <pre><code>process.on(&apos;SIGINT&apos;, function() {
     db.stop(function(err) {
