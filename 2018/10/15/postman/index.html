@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>postman | 发动机的博客</title>
+  <title>postman入门到进阶 | 发动机的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="总结postman（latest version v6.4.2）从入门到进阶的一些使用。">
 <meta name="keywords" content="postman">
 <meta property="og:type" content="article">
-<meta property="og:title" content="postman">
+<meta property="og:title" content="postman入门到进阶">
 <meta property="og:url" content="http://yoursite.com/2018/10/15/postman/index.html">
 <meta property="og:site_name" content="发动机的博客">
 <meta property="og:description" content="总结postman（latest version v6.4.2）从入门到进阶的一些使用。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-15T12:02:00.000Z">
+<meta property="og:updated_time" content="2018-10-16T11:14:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="postman">
+<meta name="twitter:title" content="postman入门到进阶">
 <meta name="twitter:description" content="总结postman（latest version v6.4.2）从入门到进阶的一些使用。">
   
     <link rel="alternative" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
@@ -204,7 +204,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      postman
+      postman入门到进阶
     </h1>
   
 
@@ -230,7 +230,7 @@
       
         <p>总结postman（latest version v6.4.2）从入门到进阶的一些使用。</p>
 <a id="more"></a>
-<h2 id="界面分部"><a href="#界面分部" class="headerlink" title="界面分部"></a>界面分部</h2><p>顶部操作栏为header bar区域，左侧操作栏为slider bar区域，右侧为builder区域。</p>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="界面分部"><a href="#界面分部" class="headerlink" title="界面分部"></a>界面分部</h3><p>顶部操作栏为header bar区域，左侧操作栏为slider bar区域，右侧为builder区域。</p>
 <h3 id="命名url"><a href="#命名url" class="headerlink" title="命名url"></a>命名url</h3><p>builder区域点击save时，在弹出编辑框的Name栏可以命名这个url，方便辨识。</p>
 <h3 id="console控制台"><a href="#console控制台" class="headerlink" title="console控制台"></a>console控制台</h3><p>底部左下角第三个图标，点击后打开postman console控制台，可以更直观的看到整个请求相应过程。</p>
 <h3 id="setting"><a href="#setting" class="headerlink" title="setting"></a>setting</h3><p>以下为beader bar部分<code>setting</code>下的general setting部分。</p>
@@ -242,7 +242,7 @@
 <h3 id="设置cookie"><a href="#设置cookie" class="headerlink" title="设置cookie"></a>设置cookie</h3><p>builder中<code>Send</code>按钮下方的cookies按钮可以添加cookie。</p>
 <h3 id="预设header"><a href="#预设header" class="headerlink" title="预设header"></a>预设header</h3><p>builder中，<code>Header</code>tab下的<code>Presets</code>可以导入预设定的header，方便保存常用的批量header设置。</p>
 <h3 id="Content-type和enctype-form-data-urlencoded-Raw-Binary"><a href="#Content-type和enctype-form-data-urlencoded-Raw-Binary" class="headerlink" title="Content-type和enctype(form-data/urlencoded/Raw/Binary)"></a>Content-type和enctype(form-data/urlencoded/Raw/Binary)</h3><p><code>Content-type</code>用来告诉server用何种格式解析请求体body，enctype表名请求体body的格式，两者是对应的。form-data可以用来上传文件；urlencoded类似url上拼接的query参数，会对body进行urlencode；raw表名body是纯文本；binary可以用来提交video、audio、image等流数据。</p>
-<h2 id="scripts"><a href="#scripts" class="headerlink" title="scripts"></a>scripts</h2><p>builder中的Pre-request script 和 test栏可以动态的设置request以及对response进行断言。前者可以在发送前设置request，后者可以在response响应后对response进行接口检验。</p>
+<h2 id="collection"><a href="#collection" class="headerlink" title="collection"></a>collection</h2><h4 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h4><h2 id="scripts"><a href="#scripts" class="headerlink" title="scripts"></a>scripts</h2><p>builder中的Pre-request script 和 test栏可以动态的设置request以及对response进行断言。前者可以在发送前设置request，后者可以在response响应后对response进行接口检验。</p>
 <p><code>re-request script</code>分为三个级别，collection级别，folder级别和request级别，在collection目录、folder目录或者request的<code>...</code>操作按钮中点击<code>Edit</code>，然后选择<code>re-request script</code>即可编辑js脚本。</p>
 <p>collection级别的<code>re-request script</code>会在该collection中的每个request运行前执行，folder级别的<code>re-request script</code>会在该collection中的每个request运行前执行，request级别的<code>re-request script</code>会在每个request运行前执行。</p>
 <p>test同理。</p>
@@ -253,10 +253,13 @@
 })
 </code></pre><p>send请求后，test的运行结果会以控制台的形式输出结果。</p>
 <p>编辑<code>re-request script</code>和<code>test</code>时，右侧有常用的功能性代码提示，用来设置变量或者进行断言。<a href="https://learning.getpostman.com/docs/postman/scripts/test_examples" target="_blank" rel="noopener">示例文档</a>中举例了常用的断言方式。</p>
-<h3 id="指定collection运行顺序"><a href="#指定collection运行顺序" class="headerlink" title="指定collection运行顺序"></a>指定collection运行顺序</h3><p>通过设置：</p>
-<pre><code>postman.setNextRequest(&quot;request_name&quot;);
-</code></pre><p>来指定当前请求执行以后应该执行的下一个请求。</p>
-<h2 id="environments-and-globals"><a href="#environments-and-globals" class="headerlink" title="environments and globals"></a>environments and globals</h2><p>environment、globals代表两类键值对的变量集合。postman可以在不同级别的的scope中创建变量，然后在不同的地方引用这些变量获取预设定的值。例如作用域为global级别的变量集合，作用域为environment级别的变量集合，越往后变量优先级越高。global级别的全局变量集合只能有一个。<strong>值的类型都是String，如果需要存储objects或者array，请用JSON序列化</strong>。</p>
+<h3 id="postman-sandbox"><a href="#postman-sandbox" class="headerlink" title="postman sandbox"></a>postman sandbox</h3><p><a href="https://learning.getpostman.com/docs/postman/scripts/postman_sandbox" target="_blank" rel="noopener">postman sandbox</a>是<code>re-request script</code>和<code>test</code>脚本运行时的一个JavaScript执行环境，该环境内置了很多常用的js库方便编写脚本时使用，在脚本使用js库时require使用即可。同时postman提供了一些方法来操作变量，获取cookie、response数据、request数据。</p>
+<pre><code>`postman.setEnvironmentVariable(key, value)`: 设置environment级别变量，global同理。
+`postman.getEnvironmentVariable(key)`: 获取environment级别变量，global同理。
+`postman.clearEnvironmentVariables(key)`: 清楚environment级别变量，global同理。
+`request`: 从request对象中可以获取到data/headers/method/url属性
+`responseBody`: 获取请求体，可以用JSON.parse解析
+</code></pre><h2 id="environments-and-globals"><a href="#environments-and-globals" class="headerlink" title="environments and globals"></a>environments and globals</h2><p>environment、globals代表两类键值对的变量集合。postman可以在不同级别的的scope中创建变量，然后在不同的地方引用这些变量获取预设定的值。例如作用域为global级别的变量集合，作用域为environment级别的变量集合，越往后变量优先级越高。global级别的全局变量集合只能有一个。<strong>值的类型都是String，如果需要存储objects或者array，请用JSON序列化</strong>。</p>
 <h3 id="设置变量。"><a href="#设置变量。" class="headerlink" title="设置变量。"></a>设置变量。</h3><ul>
 <li>builder右上角的environment后的设置按钮和查看按钮都可以设置不同environment级别变量集合以及global级别变量集合。</li>
 <li>collection目录右侧<code>...</code>中的edit中在variables下可以设置collection级别的变量。</li>
@@ -319,7 +322,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="postman" data-title="postman" data-url="http://yoursite.com/2018/10/15/postman/"></div>
+	<div class="ds-thread" data-thread-key="postman" data-title="postman入门到进阶" data-url="http://yoursite.com/2018/10/15/postman/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
