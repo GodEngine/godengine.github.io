@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>postMessage | 发动机的博客</title>
+  <title>typescript-note | 发动机的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简述用postMessage解决iframe自适应高度问题;">
-<meta name="keywords" content="html5">
+  <meta name="description" content="typescript 笔记">
+<meta name="keywords" content="typescipt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="postMessage">
-<meta property="og:url" content="http://yoursite.com/2016/07/26/postMessage/index.html">
+<meta property="og:title" content="typescript-note">
+<meta property="og:url" content="http://yoursite.com/2018/11/07/typescript-note/index.html">
 <meta property="og:site_name" content="发动机的博客">
-<meta property="og:description" content="简述用postMessage解决iframe自适应高度问题;">
+<meta property="og:description" content="typescript 笔记">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2016-07-26T06:27:22.000Z">
+<meta property="og:updated_time" content="2018-11-07T11:49:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="postMessage">
-<meta name="twitter:description" content="简述用postMessage解决iframe自适应高度问题;">
+<meta name="twitter:title" content="typescript-note">
+<meta name="twitter:description" content="typescript 笔记">
   
     <link rel="alternative" href="/atom.xml" title="发动机的博客" type="application/atom+xml">
   
@@ -187,11 +187,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-postMessage" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-typescript-note" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/26/postMessage/" class="article-date">
-  	<time datetime="2016-07-26T03:19:32.000Z" itemprop="datePublished">2016-07-26</time>
+      <a href="/2018/11/07/typescript-note/" class="article-date">
+  	<time datetime="2018-11-07T11:49:01.000Z" itemprop="datePublished">2018-11-07</time>
 </a>
     </div>
   
@@ -204,7 +204,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      postMessage
+      typescript-note
     </h1>
   
 
@@ -213,14 +213,10 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/typescipt/">typescipt</a></li></ul>
 	</div>
 
         
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/js/">javascript</a>
-	</div>
-
 
         <div class="clearfix"></div>
       </div>
@@ -228,29 +224,58 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>简述用postMessage解决iframe自适应高度问题;<br><a id="more"></a></p>
-<ul>
-<li><a href="#postMessage">简介</a></li>
-<li><a href="#sending-message">postMessage()发送信息</a></li>
-<li><a href="#listener">Event Listeners监听信息</a></li>
-<li><a href="#adaptive">传递iframe高度给父页面（自适应）</a></li>
-</ul>
-<h2 id="postMassage"><a href="#postMassage" class="headerlink" title="postMassage:"></a>postMassage:</h2><blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage" target="_blank" rel="noopener">postMessage</a>可以使不同域下的页面实现相互通信</p>
-</blockquote>
-<h2 id="sending-message"><a href="#sending-message" class="headerlink" title="sending message"></a>sending message</h2><p>window.postMessage(message,targetOrigin),window为<strong>信息接收方</strong>的所在的window对象，比如要想A页面向B页面发送信息，则应在A页面执行window_B.postMessage(),以下几种方式获取window：</p>
-<ul>
-<li>var targetWindow = window.open(); </li>
-<li>var targetWindow = frames[n].contentWindow;</li>
-<li>如果是iframe向父页面传信息则是window.top</li>
-</ul>
-<p>message为传递的信息，可以为几乎任意类型的值，因为该参数在传递时被<a href="https://developer.mozilla.org/en-US/docs/DOM/The_structured_clone_algorithm" target="_blank" rel="noopener">自动序列化</a>，且为比json更彻底的序列化，所以各种类型值都可以。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function sendMessage(e) &#123;</span><br><span class="line">   // Prevent any default browser behaviour.</span><br><span class="line">   e.preventDefault();</span><br><span class="line"></span><br><span class="line">   receiverWindow.postMessage(&apos;Hello Treehouse!&apos;, &apos;http://demos.matt-west.com&apos;);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
-<p>targetOrigin为信息接收方的url，接收方的 protocol,port，hostname必须同时与targetOrigin保持一致才可以接收到该信息。*可以匹配任意url但是出去安全考虑不推荐使用。</p>
-<h2 id="listener"><a href="#listener" class="headerlink" title="listener"></a>listener</h2><p>消息接收方要想得到消息需要监听message事件,监听到的messageEvent对象常用属性为data，origin，source<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">if(window.addEventListenr)</span><br><span class="line">    window.addEventListener(&apos;message&apos;, function(e) &#123;</span><br><span class="line">    var message = e.data,    //信息 </span><br><span class="line">        origin = e.origin,  //信息发送的源</span><br><span class="line">        source = e.source;  //信息发送方的window对象</span><br><span class="line">&#125;)else&#123;</span><br><span class="line">    //for IE低版本</span><br><span class="line">    window.attachEvent(&quot;onmessage&quot;,function()&#123;</span><br><span class="line">      var message = e.data；</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="adaptive"><a href="#adaptive" class="headerlink" title="adaptive"></a>adaptive</h2><p>回到开始的问题，则只要在<strong>onload</strong>中获取到当前文档的高度，然后作为message传递给父页面就可以了，不在onload中获取到的高度不一定准确。</p>
-<p>籽料：</p>
-<ul>
-<li><a href="https://www.viget.com/articles/using-javascript-postmessage-to-talk-to-iframes" target="_blank" rel="noopener">using-javascript-postmessage-to-talk-to-iframes</a></li>
+        <h1 id="typescript-笔记"><a href="#typescript-笔记" class="headerlink" title="typescript 笔记"></a>typescript 笔记</h1><a id="more"></a>
+<h2 id="tsconfig-compilerOptions"><a href="#tsconfig-compilerOptions" class="headerlink" title="tsconfig-compilerOptions"></a>tsconfig-compilerOptions</h2><h4 id="target"><a href="#target" class="headerlink" title="target"></a>target</h4><p>指定ts编译后的js版本，默认生成的js版本为’es3’，可指定为’es5’、’es6’、’es2017’、’esnext’.</p>
+<h4 id="module"><a href="#module" class="headerlink" title="module"></a>module</h4><p>js 模块加载机制分别有commonjs(node)、amd(requirejs)、umd等es6原生模块等等，module指定ts编译后的js模块类型，当target值为’es3’和’es5’时，module默认值commonjs，否则为’es6’</p>
+<h4 id="moduleResolution-typescript包寻址机制"><a href="#moduleResolution-typescript包寻址机制" class="headerlink" title="moduleResolution typescript包寻址机制"></a>moduleResolution typescript包寻址机制</h4><p>moduleResolution的值可以为’node’或者’Classic’，默认为后者，代表两种不同的包寻址策略，用来告诉编译器在编译<code>import a from &quot;path&quot;</code>时如何寻找path中模块。</p>
+<p>首先了解下<em>relative</em>和<em>non-relative</em>，<code>import a from &quot;path&quot;</code>时，path可以是带路径(relative)的或不带路径(non-relative)的。以<code>/root/src/folder/A.ts</code>文件中的<code>import { b } from &quot;./moduleB&quot;</code>和<code>import { b } from &quot;moduleB&quot;</code>为例，寻址机制如下</p>
+<p>classic模式下path为<em>relative</em>时的包寻址机制：</p>
+<pre><code>1. /root/src/folder/moduleB.ts
+2. /root/src/folder/moduleB.d.ts
+</code></pre><p>classic模式下path为<em>non-relative</em>时,机制为从import所在的文件开始按目录向上查找：</p>
+<pre><code>1. /root/src/folder/moduleB.ts
+2. /root/src/folder/moduleB.d.ts
+3. /root/src/moduleB.ts
+4. /root/src/moduleB.d.ts
+5. /root/moduleB.ts
+6. /root/moduleB.d.ts
+7. /moduleB.ts
+8. /moduleB.d.ts
+</code></pre><p>node模式下typescript模拟node中包文件带路径的寻址机制，即path为<em>relative</em>时的包寻址机制：</p>
+<pre><code>1. /root/src/moduleB.ts
+2. /root/src/moduleB.tsx
+3. /root/src/moduleB.d.ts
+4. /root/src/moduleB/package.json (查找&quot;types&quot;定义的路径)
+5. /root/src/moduleB/index.ts    
+6. /root/src/moduleB/index.tsx
+7. /root/src/moduleB/index.d.ts
+</code></pre><p>node模式下typescript模拟node中包文件不带路径的寻址机制，即path为<em>rnon-elative</em>时的包寻址机制：</p>
+<pre><code>1. /root/src/node_modules/moduleB.ts
+2. /root/src/node_modules/moduleB.tsx
+3. /root/src/node_modules/moduleB.d.ts
+4. /root/src/node_modules/moduleB/package.json (查找&quot;types&quot;定义的路径)
+5. /root/src/node_modules/moduleB/index.ts    
+6. /root/src/node_modules/moduleB/index.tsx
+7. /root/src/node_modules/moduleB/index.d.ts
+1. /root/node_modules//moduleB.ts
+2. /root/node_modules//moduleB.tsx
+3. /root/node_modules//moduleB.d.ts
+4. /root/node_modules//moduleB/package.json (查找&quot;types&quot;定义的路径)
+5. /root/node_modules//moduleB/index.ts    
+6. /root/node_modules//moduleB/index.tsx
+7. /root/node_modules//moduleB/index.d.ts
+依次向上查找...
+</code></pre><p>当path为relative且path中的module为<code>ambient module declaration</code>(<code>declare module &quot;url&quot;</code>)时，import无法解析该module.而当path为non-relative时，通过指定<em>baseUrl</em>选项，import是可以解析<code>ambient module declaration</code>的。在引入外部依赖时，建议使用non-relative的path。</p>
+<h2 id="module-1"><a href="#module-1" class="headerlink" title="module"></a>module</h2><ul>
+<li>typescript除了支持<code>const a = 1; export a</code>, 也支持<code>export const a = {}</code>,但import时需要用<code>import a = require()</code>引入。</li>
+<li><p>如果模块定义符只作为一个类型注解，并未作为一个表达式，那么require 的包是不会执行的。比如如下代码中，<br>条件不成立情况下，n是没有执行的，有利于性能优化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (flag) &#123;</span><br><span class="line">    <span class="keyword">let</span> a: tyoeof m = <span class="built_in">require</span>(<span class="string">'../n'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以在一个类型文件用module关键字定义多个声明的命名空间，如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ms.d.ts</span></span><br><span class="line">declare <span class="built_in">module</span> <span class="string">"modulea"</span> &#123;</span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">const</span> a = &#123;&#125;</span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">const</span> b = &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">declare <span class="built_in">module</span> <span class="string">"moduleb"</span> &#123;</span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">const</span> a = &#123;&#125;</span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">const</span> b = &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// &lt;reference path="ms.d.ts"&gt;</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> modulea <span class="keyword">from</span> <span class="string">'modulea'</span></span><br><span class="line">modulea.a</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> ms moduleb <span class="string">'moduleb'</span></span><br><span class="line">moduleb.a</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最简单的模块声明<code>declare module &quot;a&quot;</code></p>
+</li>
 </ul>
 
       
@@ -261,18 +286,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/08/11/页面性能提升(一)/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          提升页面性能
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/07/14/canvas三/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">canvas三</div>
+    <a href="/2018/10/15/postman/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">postman入门到进阶</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -307,7 +323,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="postMessage" data-title="postMessage" data-url="http://yoursite.com/2016/07/26/postMessage/"></div>
+	<div class="ds-thread" data-thread-key="typescript-note" data-title="typescript-note" data-url="http://yoursite.com/2018/11/07/typescript-note/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
